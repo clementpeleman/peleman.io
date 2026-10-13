@@ -1,15 +1,15 @@
 import Image from "next/image";
 import { Navigatie, Voettekst } from "./_componenten/kader";
 import { Knop, Plus, Vinkje } from "./_componenten/merk";
+import { Functies } from "./_secties/Functies";
+import { GsmBalk } from "./_secties/GsmBalk";
+import { Overname } from "./_secties/Overname";
+import { PakketTabel } from "./_secties/PakketTabel";
+import { Vergelijking } from "./_secties/Vergelijking";
+import { Zekerheden } from "./_secties/Zekerheden";
 import { contact, inclBtw, laagstePrijs, pakketten, volgendeVrijeWeek } from "@/lib/gegevens";
 
 const glas = "https://images.unsplash.com/photo-1652862730507-32988eb23a67?auto=format&fit=crop&q=75";
-
-const aanbod = [
-  ["Eigen aan jouw zaak.", "Je werk, je diensten en je regio. Duidelijke teksten en echte foto’s, goed leesbaar op je gsm."],
-  ["Een site die bijgehouden wordt.", "Hosting, beveiliging, updates en de aanpassingen van je pakket. Een nieuwe realisatie? Geef ze door."],
-  ["Een vast aanspreekpunt.", "Van het eerste voorbeeld tot de laatste aanpassing. Je weet wie je kan bellen of mailen."],
-];
 
 const stappen = [
   ["Vertel ons over je zaak.", "Een kort formulier. We bekijken je aanvraag en laten binnen één werkdag weten of we een voorbeeld maken."],
@@ -54,7 +54,7 @@ export default function Home() {
               <p className="tekst-groot">
                 Wij bouwen en onderhouden je website. Jij houdt je bezig met je zaak. Eerst zie je een gratis voorbeeld.
               </p>
-              <div className="hero-actie">
+              <div className="hero-actie" data-hero-knop>
                 <Knop />
                 <p className="voorwaarden">Vanaf €{laagstePrijs} per maand, excl. btw. €0 vooraf.</p>
               </div>
@@ -94,23 +94,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="sectie" aria-labelledby="aanbod-titel">
-          <div className="wrap">
-            <h2 id="aanbod-titel" className="titel sectie-kop">
-              Jouw zaak in beeld.
-              <br />
-              De rest geregeld.
-            </h2>
-            <ul className="rijen">
-              {aanbod.map(([titel, tekst]) => (
-                <li key={titel}>
-                  <h3 className="subtitel">{titel}</h3>
-                  <p className="tekst-groot zacht">{tekst}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+        <Zekerheden />
+
+        <Functies />
 
         <section className="sectie sectie--groen" aria-labelledby="waarom-titel">
           <div className="wrap">
@@ -153,6 +139,8 @@ export default function Home() {
           </div>
         </section>
 
+        <Vergelijking />
+
         <section className="sectie sectie--vlak" id="prijzen" aria-labelledby="prijzen-titel">
           <div className="wrap">
             <h2 id="prijzen-titel" className="titel">
@@ -185,17 +173,19 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <div className="prijzen-voorwaarden">
-              <p>Twaalf maanden, daarna maandelijks opzegbaar.</p>
-              <p>Liever in één keer betalen? Je kan je site meteen kopen of later overnemen aan de vooraf bekende overnameprijs.</p>
-            </div>
-            <div className="lancering">
-              <span className="pil pil--licht">Lanceringsaanbod</span>
-              <h3 className="subtitel">Voor de eerste drie zaken.</h3>
-              <p className="zacht">
-                Groei aan €79 per maand tijdens je eerste jaar. Daarna €119. In ruil maken we samen een case met foto’s en een
-                review. Prijzen excl. btw.
-              </p>
+            <p className="prijzen-voorwaarden">Twaalf maanden, daarna maandelijks opzegbaar. Alle prijzen excl. btw.</p>
+            <PakketTabel />
+            <div className="prijzen-extra">
+              <Overname />
+              <div className="lancering">
+                <span className="pil pil--licht">Lanceringsaanbod</span>
+                <h3 className="subtitel">Voor de eerste drie zaken.</h3>
+                <p className="zacht">
+                  Groei aan €79 per maand tijdens je eerste jaar. Daarna €119. In ruil maken we samen een case met foto’s en een
+                  review.
+                </p>
+                <Knop className="lancering-knop" />
+              </div>
             </div>
           </div>
         </section>
@@ -243,7 +233,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="sectie sectie--groen slot" aria-labelledby="slot-titel">
+        <section className="sectie sectie--groen slot" aria-labelledby="slot-titel" data-einde>
           <div className="wrap">
             <h2 id="slot-titel" className="titel">
               Benieuwd hoe jouw zaak <br className="breed" />
@@ -256,6 +246,7 @@ export default function Home() {
         </section>
       </main>
       <Voettekst />
+      <GsmBalk />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     </>
   );

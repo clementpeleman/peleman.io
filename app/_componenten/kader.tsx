@@ -24,27 +24,43 @@ export function Navigatie({ eenvoudig = false }: { eenvoudig?: boolean }) {
 
 export function Voettekst() {
   return (
-    <footer className="voet">
+    <footer className="voet" data-einde>
       <div className="wrap voet-rij">
         <div className="voet-merk">
           <Woordmerk />
           <p>Een website die even goed is als jouw werk.</p>
         </div>
-        <div className="voet-gegevens">
-          <p>
-            <a href={`tel:${contact.telefoon}`}>{contact.telefoonLeesbaar}</a>
-            <br />
-            <a href={`mailto:${contact.email}`}>{contact.email}</a>
-          </p>
-          <p>Ondernemingsnummer {contact.ondernemingsnummer}</p>
+        <nav className="voet-kolom" aria-label="Aanbod">
+          <p className="voet-kop">Aanbod</p>
+          <ul>
+            <li><a href="/#werkwijze">Werkwijze</a></li>
+            <li><a href="/#prijzen">Prijzen</a></li>
+            <li><a href="/#vragen">Vragen</a></li>
+            <li><Link href="/aanvraag">Gratis voorbeeld</Link></li>
+          </ul>
+        </nav>
+        <div className="voet-kolom">
+          <p className="voet-kop">Contact</p>
+          <ul>
+            <li><a href={`tel:${contact.telefoon}`}>{contact.telefoonLeesbaar}</a></li>
+            <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
+            <li>Ondernemingsnummer {contact.ondernemingsnummer}</li>
+          </ul>
         </div>
-        <ul className="voet-links">
-          <li><a href="/#werkwijze">Werkwijze</a></li>
-          <li><a href="/#prijzen">Prijzen</a></li>
-          <li><Link href="/privacy-policy">Privacy</Link></li>
-          <li><Link href="/terms-and-conditions">Voorwaarden</Link></li>
-        </ul>
+        <nav className="voet-kolom" aria-label="Juridisch">
+          <p className="voet-kop">Juridisch</p>
+          <ul>
+            <li><Link href="/privacy-policy">Privacy</Link></li>
+            <li><Link href="/terms-and-conditions">Voorwaarden</Link></li>
+          </ul>
+        </nav>
       </div>
+      <div className="wrap voet-onder">
+        <p>© {new Date().getFullYear()} peleman.io</p>
+      </div>
+      <p className="voet-woordmerk" aria-hidden="true">
+        peleman<span>.io</span>
+      </p>
     </footer>
   );
 }
