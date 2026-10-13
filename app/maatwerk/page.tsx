@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import schaaf from "@/public/beeld/maatwerk/schaaf.jpg";
 import { Navigatie, Voettekst } from "../_componenten/kader";
 import { Knop } from "../_componenten/merk";
+import { RibbelglasFoto } from "../_componenten/Ribbelglas";
 import { AanvraagMock, CaseBeeld, Glasvlak, Punten } from "../_secties/Functies";
 import { GsmBalk } from "../_secties/GsmBalk";
-import { Lancering, PakketKaart } from "../_secties/Pakket";
+import { PakketKaart } from "../_secties/Pakket";
 import { Slot } from "../_secties/Slot";
 import { Vragen } from "../_secties/Vragen";
 import { Werkwijze } from "../_secties/Werkwijze";
-import { cases } from "@/lib/cases";
+import { lvq } from "@/lib/cases";
 import { laagstePrijs, pakketten } from "@/lib/gegevens";
 
 export const metadata: Metadata = {
@@ -57,13 +57,13 @@ export default function Maatwerk() {
               </div>
             </div>
             <figure className="maatwerk-beeld">
-              <Image
+              <RibbelglasFoto
                 className="maatwerk-foto"
                 src={schaaf}
                 alt="Handen van een schrijnwerker die een houten plank schaaft."
-                fill
                 priority
                 sizes="(min-width: 900px) 560px, calc(100vw - 36px)"
+                marges={{ marginRight: 0.6 }}
               />
               <div className="mock-kaart maatwerk-melding" aria-hidden="true">
                 <span className="mock-melding-stip" />
@@ -121,14 +121,14 @@ export default function Maatwerk() {
         <section className="sectie sectie--lijn" aria-labelledby="case-titel">
           <div className="wrap">
             <div className="functie functie--om">
-              <CaseBeeld item={cases[0]} />
+              <CaseBeeld item={lvq} />
               <div className="functie-tekst">
                 <span className="pil pil--licht">Case</span>
                 <h2 id="case-titel" className="titel case-naam">
                   Zo ziet ons werk eruit.
                 </h2>
                 <p className="tekst-groot zacht">
-                  {cases[0].wie}. Geen schrijnwerker, maar dezelfde aanpak: een eigen stijl, het werk in beeld en even sterk op gsm.
+                  {lvq.wie}. Geen schrijnwerker, maar dezelfde aanpak: een eigen stijl, het werk in beeld en even sterk op gsm.
                 </p>
                 <Link href="/cases" className="tekstlink">
                   Bekijk alle cases
@@ -139,23 +139,22 @@ export default function Maatwerk() {
         </section>
 
         <section className="sectie sectie--vlak" aria-labelledby="prijs-titel">
-          <div className="wrap">
-            <h2 id="prijs-titel" className="titel">
-              Eén vaste prijs per maand.
-            </h2>
-            <p className="tekst-groot zacht prijzen-intro">
-              Voor de meeste makers is Groei de juiste keuze. Ontwerp, bouw, hosting en onderhoud zitten erin. Niets vooraf.
-            </p>
-            <div className="maatwerk-prijzen">
-              <PakketKaart pakket={groei} als="div" />
-              <div className="maatwerk-prijzen-rest">
-                <Lancering />
-                <p className="prijzen-voorwaarden">
-                  Twaalf maanden, daarna maandelijks opzegbaar. Alle prijzen excl. btw.{" "}
-                  <Link href="/#prijzen">Vergelijk alle pakketten</Link>
-                </p>
-              </div>
+          <div className="wrap maatwerk-prijzen">
+            <div className="maatwerk-prijzen-tekst">
+              <h2 id="prijs-titel" className="titel">
+                Eén vaste prijs per maand.
+              </h2>
+              <p className="tekst-groot zacht">
+                Voor de meeste makers is Groei de juiste keuze. Ontwerp, bouw, hosting en onderhoud zitten erin, en je betaalt niets
+                vooraf.
+              </p>
+              <p className="prijzen-voorwaarden">
+                Twaalf maanden, daarna maandelijks opzegbaar. Alle prijzen excl. btw.
+                <br />
+                <Link href="/#prijzen">Vergelijk Start, Groei en Pro</Link>
+              </p>
             </div>
+            <PakketKaart pakket={groei} als="div" />
           </div>
         </section>
 

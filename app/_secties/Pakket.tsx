@@ -16,6 +16,12 @@ export function PakketKaart({ pakket: p, als = "li" }: { pakket: Pakket; als?: "
         <br />
         {inclBtw(p.prijs)} incl. btw
       </p>
+      {p.uitgelicht && (
+        <p className="pakket-lancering">
+          <b>Lanceringsaanbod</b> De eerste drie zaken betalen het eerste jaar €79 per maand, in ruil voor een case met foto’s en
+          een review.
+        </p>
+      )}
       <ul className="pakket-inhoud">
         {p.inhoud.map((regel) => (
           <li key={regel}>
@@ -24,20 +30,7 @@ export function PakketKaart({ pakket: p, als = "li" }: { pakket: Pakket; als?: "
           </li>
         ))}
       </ul>
-      <Knop variant={p.uitgelicht ? "wit" : "groen"} className="pakket-knop" />
+      <Knop variant={p.uitgelicht ? "wit" : "rand"} className="pakket-knop" />
     </Element>
-  );
-}
-
-export function Lancering({ titel = "Voor de eerste drie zaken.", kop: Kop = "h3" }: { titel?: string; kop?: "h2" | "h3" }) {
-  return (
-    <div className="lancering">
-      <span className="pil pil--licht">Lanceringsaanbod</span>
-      <Kop className="subtitel">{titel}</Kop>
-      <p className="zacht">
-        Groei aan €79 per maand tijdens je eerste jaar. Daarna €119. In ruil maken we samen een case met foto’s en een review.
-      </p>
-      <Knop className="lancering-knop" />
-    </div>
   );
 }

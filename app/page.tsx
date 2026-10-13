@@ -5,7 +5,7 @@ import { Knop } from "./_componenten/merk";
 import { Functies } from "./_secties/Functies";
 import { GsmBalk } from "./_secties/GsmBalk";
 import { Overname } from "./_secties/Overname";
-import { Lancering, PakketKaart } from "./_secties/Pakket";
+import { PakketKaart } from "./_secties/Pakket";
 import { PakketTabel } from "./_secties/PakketTabel";
 import { Slot } from "./_secties/Slot";
 import { Vergelijking } from "./_secties/Vergelijking";
@@ -125,10 +125,7 @@ export default function Home() {
             </ul>
             <p className="prijzen-voorwaarden">Twaalf maanden, daarna maandelijks opzegbaar. Alle prijzen excl. btw.</p>
             <PakketTabel />
-            <div className="prijzen-extra">
-              <Overname />
-              <Lancering />
-            </div>
+            <Overname />
           </div>
         </section>
 

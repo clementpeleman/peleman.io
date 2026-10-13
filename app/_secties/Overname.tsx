@@ -15,84 +15,88 @@ export function Overname() {
 
   return (
     <div className="overname">
-      <span className="pil pil--licht">Overnemen</span>
-      <h3 className="subtitel">Liever later zelf eigenaar?</h3>
-      <p className="zacht">
-        Na twaalf maanden kan je je site overnemen. De prijs daalt elke maand dat je klant bent, en ligt vooraf vast.
-      </p>
-
-      <fieldset className="overname-keuze">
-        <legend className="verborgen">Pakket</legend>
-        {pakketten.map((p) => (
-          <label key={p.naam} className={p.naam === naam ? "is-gekozen" : undefined}>
-            <input type="radio" name={`${id}-pakket`} value={p.naam} checked={p.naam === naam} onChange={() => setNaam(p.naam)} />
-            {p.naam}
-          </label>
-        ))}
-      </fieldset>
-
-      <label className="overname-schuif" htmlFor={`${id}-maanden`}>
-        <span>Klant sinds</span>
-        <b>{maanden} maanden</b>
-      </label>
-      <input
-        id={`${id}-maanden`}
-        type="range"
-        min={overname.vanaf}
-        max={overname.tot}
-        step={1}
-        value={maanden}
-        onChange={(e) => setMaanden(Number(e.target.value))}
-        aria-valuetext={`${maanden} maanden`}
-        style={{ "--vulling": `${((maanden - overname.vanaf) / (overname.tot - overname.vanaf)) * 100}%` } as React.CSSProperties}
-      />
-
-      <div className="overname-uitkomst">
-        <div>
-          <span>Overnameprijs</span>
-          <output htmlFor={`${id}-maanden`} aria-live="polite">
-            {euro(prijs)}
-          </output>
-        </div>
-        <div>
-          <span>Meteen kopen</span>
-          <b>{euro(pakket.bouwwaarde)}</b>
-        </div>
+      <div className="overname-uitleg">
+        <span className="pil pil--licht">Overnemen</span>
+        <h3 className="subtitel">Liever later zelf eigenaar?</h3>
+        <p className="zacht">
+          Na twaalf maanden kan je je site overnemen. De prijs daalt elke maand dat je klant bent, en ligt vooraf vast.
+        </p>
       </div>
-      <p className="overname-noot">
-        {opBodem ? "Vanaf 48 maanden daalt de prijs niet verder. " : ""}
-        Bedragen excl. btw. Na een overname blijft hosting mogelijk aan €29 per maand.
-      </p>
 
-      <details className="overname-tabel">
-        <summary>Alle bedragen</summary>
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Na</th>
-              {pakketten.map((p) => (
-                <th key={p.naam} scope="col">{p.naam}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Meteen</th>
-              {pakketten.map((p) => (
-                <td key={p.naam}>{euro(p.bouwwaarde)}</td>
-              ))}
-            </tr>
-            {tabelMaanden.map((m) => (
-              <tr key={m}>
-                <th scope="row">{m === overname.bodemNa ? `${m}+ mnd` : `${m} mnd`}</th>
+      <div className="overname-reken">
+        <fieldset className="overname-keuze">
+          <legend className="verborgen">Pakket</legend>
+          {pakketten.map((p) => (
+            <label key={p.naam} className={p.naam === naam ? "is-gekozen" : undefined}>
+              <input type="radio" name={`${id}-pakket`} value={p.naam} checked={p.naam === naam} onChange={() => setNaam(p.naam)} />
+              {p.naam}
+            </label>
+          ))}
+        </fieldset>
+
+        <label className="overname-schuif" htmlFor={`${id}-maanden`}>
+          <span>Klant sinds</span>
+          <b>{maanden} maanden</b>
+        </label>
+        <input
+          id={`${id}-maanden`}
+          type="range"
+          min={overname.vanaf}
+          max={overname.tot}
+          step={1}
+          value={maanden}
+          onChange={(e) => setMaanden(Number(e.target.value))}
+          aria-valuetext={`${maanden} maanden`}
+          style={{ "--vulling": `${((maanden - overname.vanaf) / (overname.tot - overname.vanaf)) * 100}%` } as React.CSSProperties}
+        />
+
+        <div className="overname-uitkomst">
+          <div>
+            <span>Overnameprijs</span>
+            <output htmlFor={`${id}-maanden`} aria-live="polite">
+              {euro(prijs)}
+            </output>
+          </div>
+          <div>
+            <span>Meteen kopen</span>
+            <b>{euro(pakket.bouwwaarde)}</b>
+          </div>
+        </div>
+        <p className="overname-noot">
+          {opBodem ? "Vanaf 48 maanden daalt de prijs niet verder. " : ""}
+          Bedragen excl. btw. Na een overname blijft hosting mogelijk aan €29 per maand.
+        </p>
+
+        <details className="overname-tabel">
+          <summary>Alle bedragen</summary>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Na</th>
                 {pakketten.map((p) => (
-                  <td key={p.naam}>{euro(overnameprijs(p.bouwwaarde, m))}</td>
+                  <th key={p.naam} scope="col">{p.naam}</th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </details>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Meteen</th>
+                {pakketten.map((p) => (
+                  <td key={p.naam}>{euro(p.bouwwaarde)}</td>
+                ))}
+              </tr>
+              {tabelMaanden.map((m) => (
+                <tr key={m}>
+                  <th scope="row">{m === overname.bodemNa ? `${m}+ mnd` : `${m} mnd`}</th>
+                  {pakketten.map((p) => (
+                    <td key={p.naam}>{euro(overnameprijs(p.bouwwaarde, m))}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </details>
+      </div>
     </div>
   );
 }

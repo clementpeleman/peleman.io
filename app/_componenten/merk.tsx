@@ -73,13 +73,13 @@ export function IcoonSleutel() {
 type KnopProps = {
   href?: string;
   children?: React.ReactNode;
-  variant?: "groen" | "wit";
+  variant?: "groen" | "wit" | "rand";
   klein?: boolean;
   className?: string;
 };
 
 export function Knop({ href = "/aanvraag", children = "Gratis voorbeeld", variant = "groen", klein, className }: KnopProps) {
-  const klassen = ["knop", variant === "wit" && "knop--wit", klein && "knop--klein", className].filter(Boolean).join(" ");
+  const klassen = ["knop", variant === "wit" && "knop--wit", variant === "rand" && "knop--rand", klein && "knop--klein", className].filter(Boolean).join(" ");
   return (
     <Link href={href} className={klassen}>
       {children}
