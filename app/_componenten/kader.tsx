@@ -13,6 +13,7 @@ export function Navigatie({ eenvoudig = false }: { eenvoudig?: boolean }) {
             <ul className="kop-links">
               <li><a href="/#werkwijze">Werkwijze</a></li>
               <li><a href="/#prijzen">Prijzen</a></li>
+              <li><Link href="/cases">Cases</Link></li>
               <li><a href="/#vragen">Vragen</a></li>
             </ul>
             <Knop klein />
@@ -31,11 +32,18 @@ export function Voettekst() {
           <Woordmerk />
           <p>Een website die even goed is als jouw werk.</p>
         </div>
+        <nav className="voet-kolom" aria-label="Voor wie">
+          <p className="voet-kop">Voor wie</p>
+          <ul>
+            <li><Link href="/maatwerk">Schrijnwerk, interieurbouw en keukens</Link></li>
+          </ul>
+        </nav>
         <nav className="voet-kolom" aria-label="Aanbod">
           <p className="voet-kop">Aanbod</p>
           <ul>
             <li><a href="/#werkwijze">Werkwijze</a></li>
             <li><a href="/#prijzen">Prijzen</a></li>
+            <li><Link href="/cases">Cases</Link></li>
             <li><a href="/#vragen">Vragen</a></li>
             <li><Link href="/aanvraag">Gratis voorbeeld</Link></li>
           </ul>

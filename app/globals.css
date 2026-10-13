@@ -388,7 +388,7 @@ br.breed { display: none; }
   user-select: none;
 }
 @media (min-width: 900px) {
-  .voet-rij { grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: 48px; }
+  .voet-rij { grid-template-columns: minmax(0, 1.4fr) repeat(4, minmax(0, 1fr)); gap: 40px; }
   .voet-merk { grid-column: auto; }
 }
 
@@ -428,7 +428,7 @@ br.breed { display: none; }
 .functie-punten { display: grid; gap: 16px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--pio-lijn); }
 .functie-punten li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 12px; }
 .functie-punten svg { width: 18px; height: 18px; margin-top: 4px; color: var(--pio-groen); }
-.functie-punten h4 { margin: 0; font: 600 17px/1.35 var(--pio-font-body); color: var(--pio-groen); }
+.functie-punten .punt-titel { margin: 0; font: 600 17px/1.35 var(--pio-font-body); color: var(--pio-groen); }
 .functie-punten p { color: var(--pio-zacht); font-size: 16px; }
 .functie-noot { margin-top: 20px; font-size: 14px; color: var(--pio-zacht); }
 @media (min-width: 900px) {
@@ -683,6 +683,71 @@ br.breed { display: none; }
 
 .bedankt { padding-block: 56px var(--pio-sectie); }
 .bedankt .tekst-groot { margin: 20px 0 32px; max-width: 46ch; }
+
+/* Cases */
+.tekstlink { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; font-weight: 600; color: var(--pio-groen); text-underline-offset: 5px; }
+.tekstlink svg { width: 12px; height: 12px; }
+.functie-mock--vol { position: absolute; inset: 0; }
+.case-desktop {
+  position: absolute; left: 7%; top: 13%; width: 80%;
+  border-radius: 9px; overflow: hidden;
+  background: #fff;
+  box-shadow: 0 24px 60px #06190e59;
+  transform: rotate(-2deg);
+}
+.case-desktop img, .case-gsm img { display: block; width: 100%; height: auto; }
+.case-gsm {
+  position: absolute; right: 6%; bottom: 7%; width: 27%;
+  padding: 5px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 24px 60px #06190e66;
+  transform: rotate(3deg);
+}
+.case-gsm img { border-radius: 15px; }
+.pil--concept { background: transparent; color: var(--pio-zacht); box-shadow: inset 0 0 0 1px var(--pio-kop-2); }
+.case-naam { margin-top: 14px; }
+.case-wie { margin: 6px 0 12px; font-weight: 600; color: var(--pio-groen); }
+.cases-kop { padding-top: 40px; }
+.cases-kop h1 { font-size: clamp(40px, 3vw + 26px, 68px); }
+.cases-kop .tekst-groot { margin-top: 18px; max-width: 48ch; }
+.cases-lijst { padding-top: 56px; }
+.volgende-case { display: grid; gap: 24px; }
+.volgende-case .tekst-groot { margin-top: 14px; max-width: 42ch; }
+@media (min-width: 900px) {
+  .cases-kop { padding-top: 64px; }
+  .cases-lijst .functie + .functie { margin-top: 120px; }
+  .volgende-case { grid-template-columns: minmax(0, 1fr) minmax(0, 480px); gap: 80px; align-items: center; }
+}
+
+/* Maatwerk */
+.maatwerk-rij { display: grid; gap: 40px; }
+.maatwerk-hero h1 { font-size: clamp(40px, 2.4vw + 28px, 62px); }
+.maatwerk-hero h1 span { display: inline; }
+.maatwerk-intro .tekst-groot { margin: 24px 0 28px; max-width: 46ch; }
+.maatwerk-beeld { position: relative; height: 420px; margin: 0; }
+.maatwerk-foto { border-radius: var(--pio-r-beeld); object-fit: cover; object-position: 40% 60%; }
+.maatwerk-melding { position: absolute; left: 12px; bottom: -28px; display: flex; align-items: center; gap: 12px; padding: 14px 16px; font-size: 13px; transform: rotate(-2deg); }
+.maatwerk-melding div { display: grid; gap: 2px; }
+.maatwerk-melding b { color: var(--pio-groen); font-size: 14px; }
+.maatwerk-melding span:not(.mock-melding-stip) { color: var(--pio-zacht); }
+.maatwerk-hero + .sectie { margin-top: 56px; }
+.herkenning { display: grid; gap: 16px; }
+.herkenning li { padding: 24px; border-radius: var(--pio-r-beeld); background: var(--pio-wit); }
+.herkenning p { margin-top: 8px; }
+.maatwerk-prijzen { display: grid; gap: 16px; margin-top: 36px; }
+.maatwerk-prijzen-rest { display: grid; gap: 16px; align-content: start; }
+.maatwerk-prijzen-rest .prijzen-voorwaarden { margin-top: 0; }
+.maatwerk-prijzen-rest .prijzen-voorwaarden a { color: var(--pio-groen); font-weight: 600; }
+@media (min-width: 900px) {
+  .maatwerk-rij { grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: 64px; align-items: center; }
+  .maatwerk-beeld { height: 560px; }
+  .maatwerk-melding { left: -40px; bottom: 48px; padding: 16px 20px; }
+  .maatwerk-hero + .sectie { margin-top: 96px; }
+  .herkenning { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .herkenning li { padding: 28px; }
+  .maatwerk-prijzen { grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 24px; margin-top: 44px; }
+}
 
 /* Formulier: fouten en valkuil */
 .veld-fout { margin-top: 2px; font-size: 14px; color: #a3322a; }

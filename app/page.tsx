@@ -1,23 +1,20 @@
 import Image from "next/image";
 import ribbelglas from "@/public/beeld/ribbelglas.jpg";
 import { Navigatie, Voettekst } from "./_componenten/kader";
-import { Knop, Plus, Vinkje } from "./_componenten/merk";
+import { Knop } from "./_componenten/merk";
 import { Functies } from "./_secties/Functies";
 import { GsmBalk } from "./_secties/GsmBalk";
 import { Overname } from "./_secties/Overname";
+import { Lancering, PakketKaart } from "./_secties/Pakket";
 import { PakketTabel } from "./_secties/PakketTabel";
+import { Slot } from "./_secties/Slot";
 import { Vergelijking } from "./_secties/Vergelijking";
+import { Vragen } from "./_secties/Vragen";
+import { Werkwijze } from "./_secties/Werkwijze";
 import { Zekerheden } from "./_secties/Zekerheden";
-import { contact, inclBtw, laagstePrijs, pakketten, volgendeVrijeWeek } from "@/lib/gegevens";
+import { contact, laagstePrijs, pakketten } from "@/lib/gegevens";
 
-
-const stappen = [
-  ["Vertel ons over je zaak.", "Een kort formulier. We bekijken je aanvraag en laten binnen één werkdag weten of we een voorbeeld maken."],
-  ["Bekijk je gratis voorbeeld.", "Een werkende pagina van jouw zaak. We plannen je voorbeeld en geven je een concrete leverdatum."],
-  ["Tevreden? Dan werken we hem af.", "Wanneer je informatie binnen is en de inhoud goedgekeurd, staat je website na ongeveer twee weken online."],
-];
-
-const vragen = [
+const vragen: [string, string][] = [
   ["Zit ik meteen ergens aan vast?", "Nee. Het voorbeeld is gratis. Pas wanneer je beslist om verder te gaan, start het abonnement."],
   ["Hoe lang loopt het abonnement?", "Twaalf maanden. Daarna kan je maandelijks opzeggen. Liever in één keer betalen? Dan koop je je site meteen, of neem je hem later over aan de vooraf bekende overnameprijs."],
   ["Wat moet ik zelf aanleveren?", "Je logo, foto’s van je werk, je diensten en je werkgebied. Dat gaat via één formulier. Wij maken er duidelijke teksten van."],
@@ -111,26 +108,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="sectie" id="werkwijze" aria-labelledby="werkwijze-titel">
-          <div className="wrap">
-            <h2 id="werkwijze-titel" className="titel sectie-kop">
-              Eerst zien. Dan beslissen.
-            </h2>
-            <ol className="stappen">
-              {stappen.map(([titel, tekst], i) => (
-                <li key={titel}>
-                  <span className="stap-nr" aria-hidden="true">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="subtitel">{titel}</h3>
-                    <p className="zacht">{tekst}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
+        <Werkwijze />
 
         <Vergelijking />
 
@@ -142,43 +120,14 @@ export default function Home() {
             <p className="tekst-groot zacht prijzen-intro">Ontwerp, bouw, hosting en onderhoud zitten in elk pakket. Niets vooraf.</p>
             <ul className="pakketten">
               {pakketten.map((p) => (
-                <li key={p.naam} className={p.uitgelicht ? "pakket pakket--uitgelicht" : "pakket"}>
-                  <div className="pakket-kop">
-                    <h3 className="subtitel">{p.naam}</h3>
-                    {p.uitgelicht && <span className="pil">Aanbevolen</span>}
-                  </div>
-                  <p className="pakket-zin">{p.zin}</p>
-                  <p className="pakket-prijs">€{p.prijs}</p>
-                  <p className="pakket-btw">
-                    per maand, excl. btw
-                    <br />
-                    {inclBtw(p.prijs)} incl. btw
-                  </p>
-                  <ul className="pakket-inhoud">
-                    {p.inhoud.map((regel) => (
-                      <li key={regel}>
-                        <Vinkje />
-                        {regel}
-                      </li>
-                    ))}
-                  </ul>
-                  <Knop variant={p.uitgelicht ? "wit" : "groen"} className="pakket-knop" />
-                </li>
+                <PakketKaart key={p.naam} pakket={p} />
               ))}
             </ul>
             <p className="prijzen-voorwaarden">Twaalf maanden, daarna maandelijks opzegbaar. Alle prijzen excl. btw.</p>
             <PakketTabel />
             <div className="prijzen-extra">
               <Overname />
-              <div className="lancering">
-                <span className="pil pil--licht">Lanceringsaanbod</span>
-                <h3 className="subtitel">Voor de eerste drie zaken.</h3>
-                <p className="zacht">
-                  Groei aan €79 per maand tijdens je eerste jaar. Daarna €119. In ruil maken we samen een case met foto’s en een
-                  review.
-                </p>
-                <Knop className="lancering-knop" />
-              </div>
+              <Lancering />
             </div>
           </div>
         </section>
@@ -207,36 +156,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="sectie sectie--vlak" id="vragen" aria-labelledby="vragen-titel">
-          <div className="wrap">
-            <h2 id="vragen-titel" className="titel">
-              Wat je vooraf wil weten.
-            </h2>
-            <div className="vragen">
-              {vragen.map(([vraag, antwoord], i) => (
-                <details key={vraag} className="vraag" open={i === 0}>
-                  <summary>
-                    {vraag}
-                    <Plus />
-                  </summary>
-                  <p>{antwoord}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Vragen vragen={vragen} />
 
-        <section className="sectie sectie--groen slot" aria-labelledby="slot-titel" data-einde>
-          <div className="wrap">
-            <h2 id="slot-titel" className="titel">
-              Benieuwd hoe jouw zaak <br className="breed" />
-              eruit kan zien?
-            </h2>
-            <p className="tekst-groot">We maken één voorbeeld per week. Vraag het aan, je beslist pas als je het gezien hebt.</p>
-            <Knop variant="wit" />
-            {volgendeVrijeWeek && <p className="vrije-week">Eerstvolgende vrije plek: {volgendeVrijeWeek}.</p>}
-          </div>
-        </section>
+        <Slot />
       </main>
       <Voettekst />
       <GsmBalk />

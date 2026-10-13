@@ -104,3 +104,9 @@ export const vergelijking: Rij[] = [
   { onderdeel: "Eerst zien voor je beslist", waarden: ["Ja, met een gratis voorbeeld", "Meestal niet", "Je bouwt eerst zelf"] },
   { onderdeel: "Aanpassingen achteraf", waarden: ["Inbegrepen, binnen vijf werkdagen", "Vaak apart te betalen", "Zelf te doen"] },
 ];
+
+export const stappen: [string, string][] = [
+  ["Vertel ons over je zaak.", "Een kort formulier. We bekijken je aanvraag en laten binnen één werkdag weten of we een voorbeeld maken."],
+  ["Bekijk je gratis voorbeeld.", "Een werkende pagina van jouw zaak. We plannen je voorbeeld en geven je een concrete leverdatum."],
+  ["Tevreden? Dan werken we hem af.", "Wanneer je informatie binnen is en de inhoud goedgekeurd, staat je website na ongeveer twee weken online."],
+];

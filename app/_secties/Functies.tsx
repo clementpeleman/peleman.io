@@ -1,17 +1,19 @@
 import Image from "next/image";
 import ribbelglas from "@/public/beeld/ribbelglas.jpg";
+import Link from "next/link";
+import { cases, type Case } from "@/lib/cases";
 import { Vinkje } from "../_componenten/merk";
 
 type Punt = [string, string];
 
-function Punten({ punten }: { punten: Punt[] }) {
+export function Punten({ punten, kop: Kop = "h4" }: { punten: Punt[]; kop?: "h3" | "h4" }) {
   return (
     <ul className="functie-punten">
       {punten.map(([titel, tekst]) => (
         <li key={titel}>
           <Vinkje />
           <div>
-            <h4>{titel}</h4>
+            <Kop className="punt-titel">{titel}</Kop>
             <p>{tekst}</p>
           </div>
         </li>
@@ -20,12 +22,12 @@ function Punten({ punten }: { punten: Punt[] }) {
   );
 }
 
-function Glasvlak({ label, children }: { label: string; children: React.ReactNode }) {
+export function Glasvlak({ label, pil = "Voorbeeld", vol, voorrang, children }: { label: string; pil?: string; vol?: boolean; voorrang?: boolean; children: React.ReactNode }) {
   return (
     <figure className="functie-beeld">
-      <Image className="beeld-glas" src={ribbelglas} alt="" fill quality={55} sizes="(min-width: 900px) 600px, calc(100vw - 36px)" />
-      <span className="pil functie-pil">Voorbeeld</span>
-      <div className="functie-mock" aria-hidden="true">
+      <Image className="beeld-glas" src={ribbelglas} alt="" fill quality={55} priority={voorrang} sizes="(min-width: 900px) 600px, calc(100vw - 36px)" />
+      <span className="pil functie-pil">{pil}</span>
+      <div className={vol ? "functie-mock functie-mock--vol" : "functie-mock"} aria-hidden="true">
         {children}
       </div>
       <figcaption className="verborgen">{label}</figcaption>
@@ -33,7 +35,27 @@ function Glasvlak({ label, children }: { label: string; children: React.ReactNod
   );
 }
 
-function AanvraagMock() {
+// Echte site op desktop, met de gsm-versie ervoor.
+export function CaseBeeld({ item, pil, voorrang }: { item: Case; pil?: string; voorrang?: boolean }) {
+  return (
+    <Glasvlak label={item.alt} pil={pil ?? `${item.soort === "Klant" ? "Case" : "Eigen concept"} · ${item.naam}`} vol voorrang={voorrang}>
+      <div className="case-desktop">
+        <div className="browserbalk">
+          <i />
+          <i />
+          <i />
+          <span>{item.domein}</span>
+        </div>
+        <Image src={item.desktop} alt="" priority={voorrang} sizes="(min-width: 900px) 480px, 80vw" />
+      </div>
+      <div className="case-gsm">
+        <Image src={item.gsm} alt="" sizes="(min-width: 900px) 160px, 28vw" />
+      </div>
+    </Glasvlak>
+  );
+}
+
+export function AanvraagMock() {
   return (
     <div className="mock-gsm">
       <div className="mock-gsm-balk">jouwzaak.be</div>
@@ -63,7 +85,7 @@ function AanvraagMock() {
   );
 }
 
-function OverzichtMock() {
+export function OverzichtMock() {
   const staven = [38, 52, 44, 61, 57, 72, 66, 84];
   return (
     <>
@@ -112,9 +134,7 @@ export function Functies() {
         </h2>
 
         <div className="functie">
-          <Glasvlak label="Voorbeeld van een aanvraagformulier voor maatwerk op een gsm.">
-            <AanvraagMock />
-          </Glasvlak>
+          <CaseBeeld item={cases[0]} />
           <div className="functie-tekst">
             <h3 className="subtitel">Eigen aan jouw zaak.</h3>
             <p className="tekst-groot zacht">
@@ -128,6 +148,9 @@ export function Functies() {
               ]}
             />
             <p className="functie-noot">De functie voor je vak en de reviews zitten in Groei en Pro.</p>
+            <Link href="/cases" className="tekstlink">
+              Bekijk onze cases
+            </Link>
           </div>
         </div>
 
