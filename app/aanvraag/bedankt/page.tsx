@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Navigatie, Voettekst } from "../../_componenten/kader";
 import { Knop } from "../../_componenten/merk";
 import { contact } from "@/lib/gegevens";
+import { Conversie } from "./Conversie";
 
 export const metadata: Metadata = {
   title: "Bedankt voor je aanvraag",
@@ -24,6 +25,7 @@ export default function Bedankt() {
         </div>
       </main>
       <Voettekst />
+      <Conversie />
     </>
   );
 }

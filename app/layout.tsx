@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Meting } from "./_componenten/Meting";
+import { Toestemming } from "./_componenten/Toestemming";
 
 const bricolage = localFont({
   src: [
@@ -29,6 +31,14 @@ export const metadata: Metadata = {
   },
   description:
     "Een website die even goed is als jouw werk. Wij bouwen en onderhouden je website voor een vaste prijs per maand. Eerst zie je een gratis voorbeeld.",
+  alternates: { canonical: "./" },
+  openGraph: {
+    type: "website",
+    locale: "nl_BE",
+    siteName: "peleman.io",
+    url: "./",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {
@@ -38,7 +48,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="nl-BE" className={`${bricolage.variable} ${dmSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Toestemming />
+        <Meting />
+      </body>
     </html>
   );
 }

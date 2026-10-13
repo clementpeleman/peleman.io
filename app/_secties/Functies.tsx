@@ -1,6 +1,6 @@
+import Image from "next/image";
+import ribbelglas from "@/public/beeld/ribbelglas.jpg";
 import { Vinkje } from "../_componenten/merk";
-
-const glas = "https://images.unsplash.com/photo-1652862730507-32988eb23a67?auto=format&fit=crop&q=70&w=1200";
 
 type Punt = [string, string];
 
@@ -23,7 +23,7 @@ function Punten({ punten }: { punten: Punt[] }) {
 function Glasvlak({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <figure className="functie-beeld">
-      <img className="beeld-glas" src={glas} alt="" loading="lazy" />
+      <Image className="beeld-glas" src={ribbelglas} alt="" fill quality={55} sizes="(min-width: 900px) 600px, calc(100vw - 36px)" />
       <span className="pil functie-pil">Voorbeeld</span>
       <div className="functie-mock" aria-hidden="true">
         {children}

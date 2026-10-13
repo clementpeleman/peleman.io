@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { contact } from "@/lib/gegevens";
 import { Knop, Woordmerk } from "./merk";
+import { CookieKnop } from "./Toestemming";
 
 export function Navigatie({ eenvoudig = false }: { eenvoudig?: boolean }) {
   return (
@@ -45,22 +46,23 @@ export function Voettekst() {
             <li><a href={`tel:${contact.telefoon}`}>{contact.telefoonLeesbaar}</a></li>
             <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
             <li>Ondernemingsnummer {contact.ondernemingsnummer}</li>
+            {contact.adres && <li>{contact.adres}</li>}
           </ul>
         </div>
         <nav className="voet-kolom" aria-label="Juridisch">
           <p className="voet-kop">Juridisch</p>
           <ul>
-            <li><Link href="/privacy-policy">Privacy</Link></li>
-            <li><Link href="/terms-and-conditions">Voorwaarden</Link></li>
+            <li><Link href="/voorwaarden">Algemene voorwaarden</Link></li>
+            <li><Link href="/privacy">Privacyverklaring</Link></li>
+            <li><Link href="/cookies">Cookiebeleid</Link></li>
+            <li><CookieKnop /></li>
           </ul>
         </nav>
       </div>
       <div className="wrap voet-onder">
         <p>© {new Date().getFullYear()} peleman.io</p>
       </div>
-      <p className="voet-woordmerk" aria-hidden="true">
-        peleman<span>.io</span>
-      </p>
+      <div className="voet-woordmerk" aria-hidden="true" />
     </footer>
   );
 }

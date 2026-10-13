@@ -99,8 +99,10 @@ br.breed { display: none; }
   min-height: 52px; padding: 14px 24px;
   border-radius: var(--pio-r-knop);
   background: var(--pio-groen); color: var(--pio-wit);
+  border: 0;
   font: 600 15px/1.2 var(--pio-font-body);
   text-decoration: none;
+  cursor: pointer;
   transition: background-color .2s ease;
 }
 .knop:hover { background: var(--pio-groen-hover); }
@@ -374,6 +376,8 @@ br.breed { display: none; }
 .voet a { text-decoration: none; }
 .voet a:hover { color: var(--pio-groen); text-decoration: underline; }
 .voet-onder { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--pio-lijn); font-size: 14px; }
+.voet-woordmerk::before { content: "peleman"; }
+.voet-woordmerk::after { content: ".io"; color: #d3e0d7; }
 .voet-woordmerk {
   margin: 28px 0 -.14em;
   font: 700 clamp(72px, 19vw, 276px)/.8 var(--pio-font-display);
@@ -383,7 +387,6 @@ br.breed { display: none; }
   color: #e3ebe5;
   user-select: none;
 }
-.voet-woordmerk span { color: #d3e0d7; }
 @media (min-width: 900px) {
   .voet-rij { grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: 48px; }
   .voet-merk { grid-column: auto; }
@@ -623,7 +626,7 @@ br.breed { display: none; }
 .aanvraag-intro .tekst-groot { margin-top: 20px; max-width: 42ch; }
 .aanvraag-stappen { display: grid; gap: 14px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--pio-lijn); }
 .aanvraag-stappen li { display: grid; grid-template-columns: 28px 1fr; gap: 8px; color: var(--pio-zacht); }
-.aanvraag-stappen li span { font-family: var(--pio-font-display); font-weight: 600; color: var(--pio-kop-2); }
+.aanvraag-stappen li span { font-family: var(--pio-font-display); font-weight: 600; color: var(--pio-groen); }
 .aanvraag-hulp { margin-top: 28px; font-size: 15px; color: var(--pio-zacht); }
 .aanvraag-hulp a { color: var(--pio-groen); font-weight: 500; }
 @media (min-width: 900px) {
@@ -680,6 +683,70 @@ br.breed { display: none; }
 
 .bedankt { padding-block: 56px var(--pio-sectie); }
 .bedankt .tekst-groot { margin: 20px 0 32px; max-width: 46ch; }
+
+/* Formulier: fouten en valkuil */
+.veld-fout { margin-top: 2px; font-size: 14px; color: #a3322a; }
+.veld [aria-invalid="true"]:not([type="radio"]):not([type="checkbox"]) { border-color: #a3322a; box-shadow: 0 0 0 1px #a3322a; }
+.formulier-melding { padding: 14px 16px; border-radius: var(--pio-r-knop); background: #fbeceb; color: #7d231d; font-size: 15px; }
+.formulier-melding:focus { outline: 3px solid #a3322a; outline-offset: 2px; }
+.valkuil { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.knop:disabled { opacity: .7; cursor: progress; }
+
+/* Knoppen met rand */
+.knop--rand { background: transparent; color: var(--pio-groen); box-shadow: inset 0 0 0 1.5px var(--pio-groen); }
+.knop--rand:hover { background: var(--pio-groengrijs); }
+.voet-knop { padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; }
+.voet-knop:hover { color: var(--pio-groen); text-decoration: underline; }
+
+/* Cookiebanner */
+.toestemming {
+  position: fixed; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 35;
+  display: grid; gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--pio-lijn);
+  border-radius: var(--pio-r-beeld);
+  background: var(--pio-wit);
+  box-shadow: 0 18px 50px #06190e33;
+  font-size: 15px;
+}
+.toestemming h2 { font: 600 19px/1.2 var(--pio-font-display); letter-spacing: -.01em; color: var(--pio-groen); }
+.toestemming p { color: var(--pio-zacht); }
+.toestemming a { color: var(--pio-groen); }
+.toestemming-keuzes { display: grid; gap: 8px; }
+.toestemming-keuzes .keuze { align-items: flex-start; }
+.toestemming-keuzes .keuze input { margin-top: 3px; }
+.toestemming-keuzes b { display: block; color: var(--pio-groen); }
+.toestemming-knoppen { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.toestemming-knoppen .knop { padding-inline: 10px; white-space: nowrap; }
+.toestemming-knoppen .knop--rand { grid-column: 1 / -1; order: 3; }
+@media (min-width: 640px) {
+  .toestemming { left: auto; right: 24px; bottom: 24px; width: 440px; }
+}
+html[data-toestemming-open] .gsm-balk { display: none; }
+
+/* Juridische pagina's */
+.juridisch { padding-block: 40px var(--pio-sectie); }
+.juridisch-rij { display: grid; gap: 32px; }
+.juridisch h1 { font-size: clamp(36px, 2.3vw + 27px, 56px); }
+.juridisch-kop .tekst-groot { margin-top: 16px; max-width: 40ch; }
+.juridisch-datum { margin-top: 16px; font-size: 14px; color: var(--pio-zacht); }
+.juridisch-tekst { max-width: 70ch; }
+.juridisch-tekst h2 { margin: 36px 0 12px; font: 600 22px/1.25 var(--pio-font-display); letter-spacing: -.015em; color: var(--pio-groen); }
+.juridisch-tekst h2:first-child { margin-top: 0; }
+.juridisch-tekst p + p { margin-top: 12px; }
+.juridisch-tekst ul { display: grid; gap: 10px; padding-left: 20px; list-style: disc; }
+.juridisch-tekst li::marker { color: var(--pio-kop-2); }
+.juridisch-tekst a { color: var(--pio-groen); }
+.juridisch-tabel { margin-top: 16px; overflow-x: auto; }
+.juridisch-tabel table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 15px; }
+.juridisch-tabel th, .juridisch-tabel td { padding: 10px 12px 10px 0; text-align: left; vertical-align: top; border-top: 1px solid var(--pio-lijn); }
+.juridisch-tabel thead th { border-top: 0; color: var(--pio-groen); font-weight: 600; }
+mark.invullen { padding: 0 4px; border-radius: 4px; background: #f6e7b8; color: #5c4400; }
+@media (min-width: 900px) {
+  .juridisch { padding-top: 64px; }
+  .juridisch-rij { grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 80px; align-items: start; }
+  .juridisch-kop { position: sticky; top: 112px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

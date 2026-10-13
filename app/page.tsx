@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ribbelglas from "@/public/beeld/ribbelglas.jpg";
 import { Navigatie, Voettekst } from "./_componenten/kader";
 import { Knop, Plus, Vinkje } from "./_componenten/merk";
 import { Functies } from "./_secties/Functies";
@@ -9,7 +10,6 @@ import { Vergelijking } from "./_secties/Vergelijking";
 import { Zekerheden } from "./_secties/Zekerheden";
 import { contact, inclBtw, laagstePrijs, pakketten, volgendeVrijeWeek } from "@/lib/gegevens";
 
-const glas = "https://images.unsplash.com/photo-1652862730507-32988eb23a67?auto=format&fit=crop&q=75";
 
 const stappen = [
   ["Vertel ons over je zaak.", "Een kort formulier. We bekijken je aanvraag en laten binnen één werkdag weten of we een voorbeeld maken."],
@@ -60,14 +60,7 @@ export default function Home() {
               </div>
             </div>
             <figure className="beeld">
-              <img
-                className="beeld-glas"
-                src={`${glas}&w=1400`}
-                srcSet={`${glas}&w=800 800w, ${glas}&w=1400 1400w, ${glas}&w=2000 2000w`}
-                sizes="(min-width: 1304px) 1240px, calc(100vw - 36px)"
-                alt=""
-                fetchPriority="high"
-              />
+              <Image className="beeld-glas" src={ribbelglas} alt="" fill priority quality={55} sizes="(min-width: 1304px) 1240px, calc(100vw - 36px)" />
               <div className="beeld-waas" />
               <p className="beeld-slogan">
                 Goed werk.
@@ -193,7 +186,7 @@ export default function Home() {
         <section className="sectie" aria-labelledby="contact-titel">
           <div className="wrap contact">
             <div className="portret">
-              <img className="portret-glas" src={`${glas}&w=800`} alt="" loading="lazy" />
+              <Image className="portret-glas" src={ribbelglas} alt="" fill quality={55} sizes="(min-width: 900px) 380px, calc(100vw - 36px)" />
               <p className="portret-naam">{contact.naam}</p>
               <p className="portret-rol">Je vaste aanspreekpunt</p>
             </div>

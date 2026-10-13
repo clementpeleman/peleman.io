@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /aanvraag/bedankt
 
 Sitemap: https://peleman.io/sitemap.xml
