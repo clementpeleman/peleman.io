@@ -56,7 +56,3 @@ In productie moet minstens Twenty of SMTP ingesteld zijn. Anders krijgt de bezoe
 ## Hosten
 
 De site wordt zelf gehost op Coolify als gewone Next.js-app (`npm run build`, daarna `npm start`). `sharp` staat in de dependencies voor de beeldoptimalisatie van Next.js.
-
-## Resten van de vorige site
-
-De `route.ts`-bestanden onder `app/about`, `app/contact`, `app/case-studies`, `app/privacy-policy`, `app/terms-and-conditions` en `app/acceptable-use` bevatten nog de HTML van de vorige Framer-site. De doorverwijzingen in `next.config.js` gaan voor, dus deze pagina’s worden niet meer getoond. Hetzelfde geldt voor de mappen `public/assets`, `public/cms`, `public/images`, `public/modules` en `public/sites`. Ze kunnen weg.
