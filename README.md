@@ -1,32 +1,58 @@
-# Next.js project (converted from Framer)
+# peleman.io
 
-Generated from https://quiet-koala-525636.framer.app/. 14 page(s), one App Router route each.
+De site van peleman.io: websites voor zelfstandigen, gebouwd en onderhouden voor een vaste prijs per maand. Gebouwd met Next.js 16 (App Router), React 19 en gewone CSS.
 
-## Run
+## Lokaal draaien
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
-npm run build && npm start
+npm run dev
 ```
 
-## How it works
+De site draait dan op http://localhost:3000. Zonder omgevingsvariabelen werkt alles. Het aanvraagformulier logt de aanvraag dan in de terminal in plaats van ze te versturen, en de cookiebanner en de meting blijven uit.
 
-Each page is a statically-prerendered Next.js **route handler**
-(`app/<route>/route.ts`) serving the page HTML verbatim — including the HTML
-comment markers Framer's runtime uses to hydrate instantly (which is why the
-markup is a string constant rather than JSX: React cannot emit comment nodes,
-and dropping them forces a slow client-side re-render). Framer's runtime
-stays fully intact, so the site renders **identically to the original** —
-full content, animations, interactivity.
+Een productiebuild draai je met `npm run build && npm start`.
 
-On top of that it applies a few fixes: site images are re-encoded to WebP and
-self-hosted under `public/assets/img` (fidelity-safe, and the biggest payload
-win on image-led sites), fonts are self-hosted under `public/assets/fonts`
-with `font-display: swap` forced, the above-the-fold hero image is marked
-`fetchpriority="high"` for a faster LCP, canonical/og:url are repointed to the
-deploy domain (root-relative, upgraded to absolute in the browser so they never
-reference Framer's domain), and Framer's analytics beacon is removed. Pages are
-static and CDN-cacheable, so TTFB stays low.
+## Pagina’s
 
-Deploy to Vercel/Netlify like any Next.js app.
+| Pad | Inhoud |
+| --- | --- |
+| `/` | Homepage van het website-abonnement |
+| `/maatwerk` | Landingspagina voor schrijnwerk, interieurbouw en keukens |
+| `/cases` | H16, LVQ.wine en het eigen concept Tourage |
+| `/aanvraag` | Aanvraagformulier voor het gratis voorbeeld, met `/aanvraag/bedankt` daarna |
+| `/voorwaarden`, `/privacy`, `/cookies` | Juridische pagina’s |
+
+Oude adressen van de vorige site (`/about`, `/contact`, `/case-studies`, …) sturen door via `next.config.js`.
+
+## Waar wat staat
+
+| Map of bestand | Inhoud |
+| --- | --- |
+| `lib/gegevens.ts` | Contactgegevens, pakketten en prijzen, overnameprijs, vergelijkingstabel, stappen en de eerstvolgende vrije week. Prijzen pas je hier aan. |
+| `lib/cases.ts` | De cases en hun screenshots |
+| `app/_secties/` | Onderdelen van de homepage en /maatwerk (functies, werkwijze, pakketten, vragen, …) |
+| `app/_componenten/` | Navigatie en footer (`kader.tsx`), woordmerk en knoppen (`merk.tsx`), het ribbelglas, de cookiebanner en de meting |
+| `app/aanvraag/` | Formulier en serveractie |
+| `lib/formulier.ts`, `lib/aanvraag-server.ts` | Controle van het formulier, opslag in Twenty en de mails |
+| `app/globals.css` | Merktokens en alle stijl |
+| `public/beeld/` | Beelden van de site |
+
+Het ribbelglas is een WebGL-effect van [Paper Shaders](https://shaders.paper.design/fluted-glass) (Apache-2.0). Zonder WebGL blijft de gewone foto staan.
+
+## Omgevingsvariabelen
+
+Kopieer `.env.example` naar `.env.local` en vul in wat je nodig hebt.
+
+| Variabele | Waarvoor |
+| --- | --- |
+| `TWENTY_API_URL`, `TWENTY_API_KEY` | Aanvragen bewaren in Twenty |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM` | Melding van een nieuwe aanvraag en bevestiging aan de aanvrager |
+| `AANVRAAG_NAAR` | Adres dat de melding krijgt (standaard clement@peleman.io) |
+| `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID` | Meting, alleen na toestemming. Leeg betekent geen cookiebanner en geen meting. |
+
+In productie moet minstens Twenty of SMTP ingesteld zijn. Anders krijgt de bezoeker een foutmelding met het telefoonnummer en het e-mailadres.
+
+## Hosten
+
+De site wordt zelf gehost op Coolify als gewone Next.js-app (`npm run build`, daarna `npm start`). `sharp` staat in de dependencies voor de beeldoptimalisatie van Next.js.

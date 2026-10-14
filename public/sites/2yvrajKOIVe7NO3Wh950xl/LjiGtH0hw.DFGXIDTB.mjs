@@ -1,1 +1,0 @@
-import{n as e,r as t,t as n}from"./5XHfiStr-T3VT1p7OzbNXoBFxf_oOwf4SK8PECwjRdA.m5vAUyAF.mjs";t();export{e as __FramerMetadata__,n as default};
