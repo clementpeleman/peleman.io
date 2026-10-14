@@ -219,29 +219,23 @@ br.breed { display: none; }
   border-top: 1px solid var(--pio-lijn);
 }
 
-.waarom { display: grid; gap: 24px; margin-top: 32px; }
-.waarom-zin {
-  font: 600 clamp(26px, .57vw + 23.8px, 32px)/1.15 var(--pio-font-display);
-  letter-spacing: -.025em;
-  color: var(--pio-op-groen-zacht);
-  text-wrap: balance;
-}
-.waarom-tekst { display: grid; gap: 20px; }
-.waarom-tekst p + p { color: var(--pio-op-groen-zacht); }
+/* Titel links, inhoud rechts */
 @media (min-width: 900px) {
-  .waarom { grid-template-columns: minmax(0, 480px) minmax(0, 670px); justify-content: space-between; gap: 90px; margin-top: 44px; }
+  .kolommen { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 80px; align-items: start; }
+  .kolommen > .titel { position: sticky; top: 120px; margin-bottom: 0; }
+  .kolommen > .vragen { margin-top: 0; }
 }
 
 .stappen > li { grid-template-columns: 52px minmax(0, 1fr); gap: 16px; }
 .stappen h3 + p { margin-top: 8px; }
 .stap-nr { font: 600 26px/1.15 var(--pio-font-display); letter-spacing: -.03em; color: var(--pio-kop-2); }
 @media (min-width: 900px) {
-  .stappen > li { grid-template-columns: 100px minmax(0, 1fr); gap: 48px; padding-block: 28px; }
+  .stappen > li { grid-template-columns: 56px minmax(0, 1fr); gap: 24px; padding-block: 28px; }
   .stap-nr { font-size: 32px; line-height: 1; }
 }
 
 /* Prijzen */
-.prijzen-intro { margin-top: 16px; }
+.prijzen-intro { margin-top: 16px; max-width: 62ch; }
 .pakketten { display: grid; gap: 16px; margin-top: 36px; }
 @media (min-width: 900px) { .pakketten { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 44px; } }
 @media (min-width: 1100px) { .pakketten { gap: 32px; } }
@@ -318,26 +312,25 @@ br.breed { display: none; }
 }
 
 /* Vragen */
-.vragen { display: grid; gap: 12px; margin-top: 32px; }
+.vragen { display: grid; margin-top: 32px; border-bottom: 1px solid var(--pio-lijn); }
 @media (min-width: 900px) { .vragen { margin-top: 44px; } }
-.vraag { background: var(--pio-wit); border-radius: var(--pio-r-beeld); }
+.vraag { border-top: 1px solid var(--pio-lijn); }
 .vraag summary {
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  padding: 20px 22px;
+  padding: 20px 0;
   cursor: pointer;
   list-style: none;
   font: 600 clamp(19px, .38vw + 17.5px, 22px)/1.25 var(--pio-font-display);
   letter-spacing: -.02em;
   color: var(--pio-groen);
-  border-radius: var(--pio-r-beeld);
 }
 .vraag summary::-webkit-details-marker { display: none; }
 .vraag summary svg { width: 18px; height: 18px; flex: none; transition: transform .35s var(--pio-ease); }
 .vraag[open] summary svg { transform: rotate(45deg); }
-.vraag p { padding: 0 22px 22px; color: var(--pio-zacht); max-width: 72ch; }
+.vraag p { padding: 0 0 22px; color: var(--pio-zacht); max-width: 72ch; }
 @media (min-width: 900px) {
-  .vraag summary { padding: 24px 28px; }
-  .vraag p { padding: 0 28px 26px; }
+  .vraag summary { padding: 24px 0; }
+  .vraag p { padding-bottom: 26px; }
 }
 
 /* Slot */
@@ -683,8 +676,8 @@ br.breed { display: none; }
 @keyframes glas-in { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .ribbelglas canvas { animation: none; } }
 .maatwerk-hero + .sectie { margin-top: 56px; }
-.herkenning { display: grid; gap: 16px; }
-.herkenning li { padding: 24px; border-radius: var(--pio-r-beeld); background: var(--pio-wit); }
+.herkenning { display: grid; gap: 24px; }
+.herkenning li { padding-top: 20px; border-top: 1px solid var(--pio-lijn); }
 .herkenning p { margin-top: 8px; }
 .maatwerk-prijzen { display: grid; gap: 32px; }
 .maatwerk-prijzen-tekst .tekst-groot { margin-top: 16px; max-width: 44ch; }
@@ -693,8 +686,7 @@ br.breed { display: none; }
   .maatwerk-rij { grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: 64px; align-items: center; }
   .maatwerk-beeld { height: 560px; }
   .maatwerk-hero + .sectie { margin-top: 96px; }
-  .herkenning { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-  .herkenning li { padding: 28px; }
+  .herkenning { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
   .maatwerk-prijzen { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 96px; align-items: center; }
 }
 

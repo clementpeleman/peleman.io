@@ -1,9 +1,9 @@
 import { stappen } from "@/lib/gegevens";
 
-export function Werkwijze({ titel = "Zo gaat het in zijn werk", id = "werkwijze" }: { titel?: string; id?: string }) {
+export function Werkwijze({ titel = "Zo gaat het in zijn werk", id = "werkwijze", lijn = false }: { titel?: string; id?: string; lijn?: boolean }) {
   return (
-    <section className="sectie" id={id} aria-labelledby={`${id}-titel`}>
-      <div className="wrap">
+    <section className={lijn ? "sectie sectie--lijn" : "sectie"} id={id} aria-labelledby={`${id}-titel`}>
+      <div className="wrap kolommen">
         <h2 id={`${id}-titel`} className="titel sectie-kop">
           {titel}
         </h2>

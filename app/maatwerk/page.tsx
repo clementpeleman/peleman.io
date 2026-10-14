@@ -69,7 +69,7 @@ export default function Maatwerk() {
           </div>
         </section>
 
-        <section className="sectie sectie--vlak" aria-labelledby="herkenning-titel">
+        <section className="sectie sectie--lijn" aria-labelledby="herkenning-titel">
           <div className="wrap">
             <h2 id="herkenning-titel" className="titel sectie-kop">
               Herken je dit?

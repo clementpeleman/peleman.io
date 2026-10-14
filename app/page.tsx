@@ -81,24 +81,7 @@ export default function Home() {
 
         <Functies />
 
-        <section className="sectie sectie--groen" aria-labelledby="waarom-titel">
-          <div className="wrap">
-            <h2 id="waarom-titel" className="titel">
-              Hoe dat kan voor een vaste prijs
-            </h2>
-            <div className="waarom">
-              <p className="waarom-zin">We beginnen niet telkens van nul.</p>
-              <div className="waarom-tekst">
-                <p className="tekst-groot">
-                  We vertrekken van een basis die goed werkt en steken onze tijd in wat jouw zaak eigen maakt. Zo krijg je een
-                  verzorgde website voor een vaste prijs per maand.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <Werkwijze />
+        <Werkwijze lijn />
 
         <Vergelijking />
 
@@ -107,7 +90,10 @@ export default function Home() {
             <h2 id="prijzen-titel" className="titel">
               Eén vaste prijs per maand
             </h2>
-            <p className="tekst-groot zacht prijzen-intro">Ontwerp, bouw, hosting en onderhoud zitten in elk pakket, en je betaalt niets vooraf.</p>
+            <p className="tekst-groot zacht prijzen-intro">
+              We vertrekken van een basis die goed werkt en steken onze tijd in wat jouw zaak eigen maakt. Daarom kan het voor een
+              vaste prijs: ontwerp, bouw, hosting en onderhoud zitten in elk pakket, en je betaalt niets vooraf.
+            </p>
             <ul className="pakketten">
               {pakketten.map((p) => (
                 <PakketKaart key={p.naam} pakket={p} />
