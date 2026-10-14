@@ -354,8 +354,7 @@ br.breed { display: none; }
 
 /* Slot */
 .slot .tekst-groot { margin: 20px 0 32px; color: var(--pio-op-groen-zacht); max-width: 56ch; }
-.vrije-week { margin-top: 18px; font-size: 15px; color: var(--pio-op-groen-zacht); display: flex; align-items: center; gap: 10px; }
-.vrije-week::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #8fd1a8; flex: none; }
+.vrije-week { margin-top: 18px; font-size: 15px; color: var(--pio-op-groen-zacht); }
 
 /* Voettekst */
 .voet { padding-top: 56px; font-size: 15px; color: var(--pio-zacht); overflow: hidden; }
@@ -434,8 +433,7 @@ br.breed { display: none; }
   width: 256px; padding: 8px 10px 10px;
   border-radius: 32px;
   background: #fff;
-  box-shadow: 0 30px 70px #06190e66;
-  transform: rotate(-2deg);
+  box-shadow: 0 16px 40px #06190e40;
   color: #222;
 }
 .mock-gsm-balk { padding: 6px 0 10px; text-align: center; font: 500 10px/1 var(--pio-font-body); color: #6b6f6a; }
@@ -460,34 +458,14 @@ br.breed { display: none; }
 .mock-fotos span { display: grid; place-items: center; border: 1.5px dashed #c8c8c3; font-size: 18px; color: #8a8a85; }
 .mock-knop { margin-top: 6px; padding: 11px; border-radius: 8px; background: #1f1f1f; color: #fff; text-align: center; font-size: 12px; font-weight: 600; }
 
-.functie--om .functie-mock { width: min(340px, 82%); }
-.mock-kaart { border-radius: 14px; background: var(--pio-wit); box-shadow: 0 30px 70px #06190e66; color: var(--pio-tekst); }
-.mock-overzicht { display: grid; gap: 8px; padding: 20px; }
-.mock-overzicht .mock-kop { font: 600 17px/1.2 var(--pio-font-display); letter-spacing: -.02em; color: var(--pio-groen); }
-.mock-sub { margin-top: -6px; font-size: 11px; color: var(--pio-zacht); }
-.mock-overzicht .mock-label { color: var(--pio-zacht); }
-.mock-staven { display: flex; align-items: flex-end; gap: 6px; height: 72px; padding-bottom: 2px; border-bottom: 1px solid var(--pio-lijn); }
-.mock-staven i { flex: 1; border-radius: 4px 4px 0 0; background: #cfddd4; }
-.mock-staven i:last-child { background: var(--pio-groen); }
-.mock-regel { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 8px; font-size: 12px; }
-.mock-regel b { font-weight: 600; color: var(--pio-groen); }
-.mock-voortgang { height: 6px; border-radius: 99px; background: var(--pio-groengrijs); overflow: hidden; }
-.mock-voortgang i { display: block; height: 100%; border-radius: inherit; background: var(--pio-groen); }
-.mock-regel .mock-sterren { color: #b98a2f; letter-spacing: 1px; }
-.mock-melding {
-  position: absolute; right: -12px; bottom: -40px;
-  display: flex; align-items: center; gap: 10px;
-  padding: 12px 14px;
-  font-size: 12px;
-  transform: rotate(2deg);
-}
-.mock-melding div { display: grid; }
-.mock-melding b { color: var(--pio-groen); }
-.mock-melding span { font-size: 11px; color: var(--pio-zacht); }
-.mock-melding-stip { flex: none; width: 10px; height: 10px; border-radius: 50%; background: #3fae6e; box-shadow: 0 0 0 4px #3fae6e26; }
+.functie--om .functie-mock { width: min(380px, 86%); }
+.mock-mail { border-radius: 12px; background: var(--pio-wit); box-shadow: 0 16px 40px #06190e40; color: var(--pio-tekst); font-size: 13.5px; line-height: 1.55; }
+.mock-mail-kop { display: grid; gap: 4px; padding: 14px 18px; border-bottom: 1px solid var(--pio-lijn); font-size: 12.5px; }
+.mock-mail-kop span { display: inline-block; width: 82px; color: var(--pio-zacht); }
+.mock-mail-tekst { display: grid; gap: 10px; padding: 16px 18px 20px; }
+.mock-mail-tekst b { font-weight: 600; color: var(--pio-groen); }
 @media (min-width: 900px) {
   .mock-gsm { width: 284px; }
-  .mock-melding { right: -44px; }
 }
 
 /* Vergelijking en tabellen */
@@ -736,10 +714,6 @@ br.breed { display: none; }
 .ribbelglas canvas { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; animation: glas-in .6s var(--pio-ease) both; }
 @keyframes glas-in { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .ribbelglas canvas { animation: none; } }
-.maatwerk-melding { position: absolute; left: 12px; bottom: -28px; display: flex; align-items: center; gap: 12px; padding: 14px 16px; font-size: 13px; transform: rotate(-2deg); }
-.maatwerk-melding div { display: grid; gap: 2px; }
-.maatwerk-melding b { color: var(--pio-groen); font-size: 14px; }
-.maatwerk-melding span:not(.mock-melding-stip) { color: var(--pio-zacht); }
 .maatwerk-hero + .sectie { margin-top: 56px; }
 .herkenning { display: grid; gap: 16px; }
 .herkenning li { padding: 24px; border-radius: var(--pio-r-beeld); background: var(--pio-wit); }
@@ -750,7 +724,6 @@ br.breed { display: none; }
 @media (min-width: 900px) {
   .maatwerk-rij { grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: 64px; align-items: center; }
   .maatwerk-beeld { height: 560px; }
-  .maatwerk-melding { left: -40px; bottom: 48px; padding: 16px 20px; }
   .maatwerk-hero + .sectie { margin-top: 96px; }
   .herkenning { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
   .herkenning li { padding: 28px; }

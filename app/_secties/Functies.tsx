@@ -85,41 +85,35 @@ export function AanvraagMock() {
   );
 }
 
-export function OverzichtMock() {
-  const staven = [38, 52, 44, 61, 57, 72, 66, 84];
+// Het maandoverzicht zoals de klant het krijgt: een korte mail, geen grafieken (doc 13, M13).
+export function MaandMail() {
+  const vorige = new Date();
+  vorige.setDate(0);
+  const maand = vorige.toLocaleDateString("nl-BE", { month: "long" });
   return (
-    <>
-      <div className="mock-kaart mock-overzicht">
-        <p className="mock-kop">Maandoverzicht</p>
-        <p className="mock-sub">jouwzaak.be</p>
-        <p className="mock-label">Bezoek</p>
-        <div className="mock-staven">
-          {staven.map((h, i) => (
-            <i key={i} style={{ height: `${h}%` }} />
-          ))}
-        </div>
-        <div className="mock-regel">
-          <span>Aanpassingen</span>
-          <b>2 van 5 gebruikt</b>
-        </div>
-        <div className="mock-voortgang"><i style={{ width: "40%" }} /></div>
-        <div className="mock-regel">
-          <span>Nieuwe review op Google</span>
-          <b className="mock-sterren">★★★★★</b>
-        </div>
-        <div className="mock-regel">
-          <span>Updates en back-ups</span>
-          <b className="mock-ok">In orde</b>
-        </div>
+    <div className="mock-mail">
+      <div className="mock-mail-kop">
+        <p>
+          <span>Van</span>Clément, peleman.io
+        </p>
+        <p>
+          <span>Onderwerp</span>Je website in {maand}
+        </p>
       </div>
-      <div className="mock-kaart mock-melding">
-        <span className="mock-melding-stip" />
-        <div>
-          <b>Aanpassing klaar</b>
-          <span>Nieuwe realisatie staat online</span>
-        </div>
+      <div className="mock-mail-tekst">
+        <p>Dag An,</p>
+        <p>
+          <b>Wat we deden:</b> twee nieuwe realisaties op je site gezet en de updates gedaan.
+        </p>
+        <p>
+          <b>Je site:</b> online, back-up gemaakt op {vorige.getDate()} {maand}.
+        </p>
+        <p>
+          <b>Tip:</b> vraag een tevreden klant om een review op Google.
+        </p>
+        <p>Clément, peleman.io</p>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -153,8 +147,8 @@ export function Functies() {
         </div>
 
         <div className="functie functie--om">
-          <Glasvlak label="Voorbeeld van een maandoverzicht met bezoek, aanpassingen en een nieuwe review.">
-            <OverzichtMock />
+          <Glasvlak label="Voorbeeld van het maandoverzicht: een korte mail met wat we deden en hoe je site het doet.">
+            <MaandMail />
           </Glasvlak>
           <div className="functie-tekst">
             <h3 className="subtitel">Wij houden je site bij</h3>

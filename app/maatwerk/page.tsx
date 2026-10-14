@@ -65,14 +65,6 @@ export default function Maatwerk() {
                 sizes="(min-width: 900px) 560px, calc(100vw - 36px)"
                 marges={{ marginRight: 0.6 }}
               />
-              <div className="mock-kaart maatwerk-melding" aria-hidden="true">
-                <span className="mock-melding-stip" />
-                <div>
-                  <b>Nieuwe aanvraag</b>
-                  <span>Keuken op maat · Gent</span>
-                  <span>Budget €10.000 – €20.000 · 3 foto’s</span>
-                </div>
-              </div>
             </figure>
           </div>
         </section>
