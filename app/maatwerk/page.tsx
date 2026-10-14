@@ -61,7 +61,7 @@ export default function Maatwerk() {
                 className="maatwerk-foto"
                 src={schaaf}
                 alt="Handen van een schrijnwerker die een houten plank schaaft."
-                priority
+                preload
                 sizes="(min-width: 900px) 560px, calc(100vw - 36px)"
                 marges={{ marginRight: 0.6 }}
               />

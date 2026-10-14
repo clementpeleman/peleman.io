@@ -47,7 +47,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="nl-BE" className={`${bricolage.variable} ${dmSans.variable}`}>
+    <html lang="nl-BE" data-scroll-behavior="smooth" className={`${bricolage.variable} ${dmSans.variable}`}>
       <body>
         {children}
         <Toestemming />

@@ -25,7 +25,7 @@ export function Punten({ punten, kop: Kop = "h4" }: { punten: Punt[]; kop?: "h3"
 export function Glasvlak({ label, pil = "Voorbeeld", vol, voorrang, groot, children }: { label: string; pil?: string; vol?: boolean; voorrang?: boolean; groot?: boolean; children: React.ReactNode }) {
   return (
     <figure className={groot ? "functie-beeld functie-beeld--groot" : "functie-beeld"}>
-      <Image className="beeld-glas" src={ribbelglas} alt="" fill quality={55} priority={voorrang} sizes={groot ? "(min-width: 1304px) 1240px, calc(100vw - 36px)" : "(min-width: 900px) 600px, calc(100vw - 36px)"} />
+      <Image className="beeld-glas" src={ribbelglas} alt="" fill quality={55} preload={voorrang} sizes={groot ? "(min-width: 1304px) 1240px, calc(100vw - 36px)" : "(min-width: 900px) 600px, calc(100vw - 36px)"} />
       <span className="pil functie-pil">{pil}</span>
       <div className={vol ? "functie-mock functie-mock--vol" : "functie-mock"} aria-hidden="true">
         {children}
@@ -46,7 +46,7 @@ export function CaseBeeld({ item, pil, voorrang, groot }: { item: Case; pil?: st
           <i />
           <span>{item.domein}</span>
         </div>
-        <Image src={item.desktop} alt="" priority={voorrang} sizes={groot ? "(min-width: 1304px) 900px, 86vw" : "(min-width: 900px) 480px, 80vw"} />
+        <Image src={item.desktop} alt="" loading={voorrang ? "eager" : undefined} sizes={groot ? "(min-width: 1304px) 900px, 86vw" : "(min-width: 900px) 480px, 80vw"} />
       </div>
       <div className="case-gsm">
         <Image src={item.gsm} alt="" sizes={groot ? "(min-width: 1304px) 240px, 30vw" : "(min-width: 900px) 160px, 28vw"} />

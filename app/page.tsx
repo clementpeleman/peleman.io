@@ -57,7 +57,7 @@ export default function Home() {
               </div>
             </div>
             <figure className="beeld">
-              <Image className="beeld-glas" src={ribbelglas} alt="" fill priority quality={55} sizes="(min-width: 1304px) 1240px, calc(100vw - 36px)" />
+              <Image className="beeld-glas" src={ribbelglas} alt="" fill preload quality={55} sizes="(min-width: 1304px) 1240px, calc(100vw - 36px)" />
               <div className="beeld-waas" />
               <p className="beeld-slogan">
                 Goed werk.
@@ -77,7 +77,7 @@ export default function Home() {
                   height={968}
                   sizes="(min-width: 1100px) 520px, (min-width: 640px) 52vw, 84vw"
                   alt="De website van H16, bouwcoördinatie en projectontwikkeling, met foto’s van twee realisaties."
-                  priority
+                  loading="eager"
                 />
               </div>
             </figure>

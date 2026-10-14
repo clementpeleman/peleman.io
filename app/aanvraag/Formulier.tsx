@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState, useEffect, useRef, useState } from "react";
+import { useFormStatus } from "react-dom";
 import { Pijl } from "../_componenten/merk";
 import { leesBron } from "@/lib/bron";
 import { beroepen, doelen, type FormStatus } from "@/lib/formulier";
@@ -27,7 +27,7 @@ function Fout({ veld, tekst }: { veld: string; tekst?: string }) {
 }
 
 export function Formulier() {
-  const [status, actie] = useFormState<FormStatus, FormData>(vraagVoorbeeldAan, {});
+  const [status, actie] = useActionState<FormStatus, FormData>(vraagVoorbeeldAan, {});
   const [geladen, setGeladen] = useState("");
   const [bron, setBron] = useState<Record<string, string>>({});
   const formulier = useRef<HTMLFormElement>(null);
