@@ -239,7 +239,7 @@ br.breed { display: none; }
   text-wrap: balance;
 }
 .waarom-tekst { display: grid; gap: 20px; }
-.waarom-tekst p:last-child { color: var(--pio-op-groen-zacht); }
+.waarom-tekst p + p { color: var(--pio-op-groen-zacht); }
 @media (min-width: 900px) {
   .waarom { grid-template-columns: minmax(0, 480px) minmax(0, 670px); justify-content: space-between; gap: 90px; margin-top: 44px; }
 }

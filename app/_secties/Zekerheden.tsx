@@ -1,9 +1,9 @@
 import { IcoonEuro, IcoonOog, IcoonPersoon, IcoonSleutel } from "../_componenten/merk";
 
 const zekerheden = [
-  { icoon: <IcoonEuro />, titel: "€0 vooraf", tekst: "Geen opstartkost. Eén vaste prijs per maand." },
-  { icoon: <IcoonOog />, titel: "Eerst een gratis voorbeeld", tekst: "Je beslist pas als je het gezien hebt." },
-  { icoon: <IcoonPersoon />, titel: "Eén vast aanspreekpunt", tekst: "Je weet wie je belt of mailt." },
+  { icoon: <IcoonEuro />, titel: "€0 vooraf", tekst: "Geen opstartkost. Je betaalt een vaste prijs per maand." },
+  { icoon: <IcoonOog />, titel: "Eerst een gratis voorbeeld", tekst: "Ga je niet verder, dan betaal je niets." },
+  { icoon: <IcoonPersoon />, titel: "Eén vast aanspreekpunt", tekst: "Je belt en mailt altijd met dezelfde persoon." },
   { icoon: <IcoonSleutel />, titel: "Je domein blijft van jou", tekst: "Net als je teksten en je foto’s." },
 ];
 

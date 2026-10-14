@@ -47,7 +47,7 @@ export const pakketten: Pakket[] = [
   {
     naam: "Pro",
     prijs: 189,
-    zin: "Meer diensten. Meer mogelijkheden.",
+    zin: "Voor wie meer diensten of gemeenten wil tonen.",
     inhoud: [
       "Tot twaalf pagina’s",
       "Alles uit Groei",
@@ -97,16 +97,16 @@ export const inElkPakket =
 export const alternatieven = ["peleman.io", "Laten maken", "Zelf doen"] as const;
 
 export const vergelijking: Rij[] = [
-  { onderdeel: "Vooraf", waarden: ["€0", "Ongeveer €1.500 – €3.500", "€0"] },
-  { onderdeel: "Per maand", waarden: [`Vanaf €${laagstePrijs}, alles inbegrepen`, "Ongeveer €40 – €170 voor onderhoud", "Ongeveer €4 – €40 voor het platform"] },
-  { onderdeel: "Wie doet het werk", waarden: ["Wij, op maat van je zaak", "Een bureau of freelancer", "Jij"] },
+  { onderdeel: "Vooraf", waarden: ["€0", "Ongeveer €1.500 tot €3.500", "€0"] },
+  { onderdeel: "Per maand", waarden: [`Vanaf €${laagstePrijs}, alles inbegrepen`, "Ongeveer €40 tot €170 voor onderhoud", "Ongeveer €4 tot €40 voor het platform"] },
+  { onderdeel: "Wie doet het werk", waarden: ["Wij", "Een bureau of freelancer", "Jij"] },
   { onderdeel: "Hoe het eruitziet", waarden: ["Verzorgd, met een functie voor je vak", "Afhankelijk van de maker", "Zoals je het zelf kan"] },
   { onderdeel: "Eerst zien voor je beslist", waarden: ["Ja, met een gratis voorbeeld", "Meestal niet", "Je bouwt eerst zelf"] },
   { onderdeel: "Aanpassingen achteraf", waarden: ["Inbegrepen, binnen vijf werkdagen", "Vaak apart te betalen", "Zelf te doen"] },
 ];
 
 export const stappen: [string, string][] = [
-  ["Vertel ons over je zaak.", "Een kort formulier. We bekijken je aanvraag en laten binnen één werkdag weten of we een voorbeeld maken."],
-  ["Bekijk je gratis voorbeeld.", "Een werkende pagina van jouw zaak. We plannen je voorbeeld en geven je een concrete leverdatum."],
-  ["Tevreden? Dan werken we hem af.", "Wanneer je informatie binnen is en de inhoud goedgekeurd, staat je website na ongeveer twee weken online."],
+  ["Vertel ons over je zaak", "Je vult een kort formulier in. Binnen één werkdag laten we weten of we een voorbeeld maken."],
+  ["Bekijk je gratis voorbeeld", "We plannen je voorbeeld in en zeggen je wanneer het klaar is. Je krijgt een werkende pagina van jouw zaak."],
+  ["Bevalt het, dan werken we je site af", "Zodra we alles van je hebben en jij de inhoud goedkeurt, staat je site na ongeveer twee weken online."],
 ];

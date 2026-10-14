@@ -26,8 +26,8 @@ const dmSans = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://peleman.io"),
   title: {
-    default: "peleman.io — Websites voor zelfstandigen",
-    template: "%s — peleman.io",
+    default: "peleman.io | Websites voor zelfstandigen",
+    template: "%s | peleman.io",
   },
   description:
     "Een website die even goed is als jouw werk. Wij bouwen en onderhouden je website voor een vaste prijs per maand. Eerst zie je een gratis voorbeeld.",

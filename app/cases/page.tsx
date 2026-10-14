@@ -18,9 +18,9 @@ export default function Cases() {
         <section className="cases-kop" aria-labelledby="cases-titel">
           <div className="wrap">
             <p className="bovenregel">Cases</p>
-            <h1 id="cases-titel">Werk dat we maakten.</h1>
+            <h1 id="cases-titel">Werk dat we maakten</h1>
             <p className="tekst-groot zacht">
-              Echte sites, van dichtbij: wat de zaak doet, wat de site regelt, en hoe ze eruitziet op desktop en gsm.
+              Per site lees je wat de zaak doet en wat we bouwden. De beelden tonen de site op desktop en op gsm.
             </p>
           </div>
         </section>

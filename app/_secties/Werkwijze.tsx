@@ -1,6 +1,6 @@
 import { stappen } from "@/lib/gegevens";
 
-export function Werkwijze({ titel = "Eerst zien. Dan beslissen.", id = "werkwijze" }: { titel?: string; id?: string }) {
+export function Werkwijze({ titel = "Zo gaat het in zijn werk", id = "werkwijze" }: { titel?: string; id?: string }) {
   return (
     <section className="sectie" id={id} aria-labelledby={`${id}-titel`}>
       <div className="wrap">

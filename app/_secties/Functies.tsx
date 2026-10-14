@@ -128,23 +128,21 @@ export function Functies() {
     <section className="sectie" aria-labelledby="aanbod-titel">
       <div className="wrap">
         <h2 id="aanbod-titel" className="titel sectie-kop">
-          Jouw zaak in beeld.
-          <br />
-          De rest geregeld.
+          Een site over jouw zaak, die wij bijhouden
         </h2>
 
         <div className="functie">
           <CaseBeeld item={lvq} />
           <div className="functie-tekst">
-            <h3 className="subtitel">Eigen aan jouw zaak.</h3>
+            <h3 className="subtitel">Eigen aan jouw zaak</h3>
             <p className="tekst-groot zacht">
-              Je werk, je diensten en je regio. Duidelijke teksten en echte foto’s, goed leesbaar op je gsm.
+              We tonen wat je doet en waar je werkt, met duidelijke teksten en echte foto’s. Alles leest ook goed op je gsm.
             </p>
             <Punten
               punten={[
                 ["Een functie voor jouw vak", "Bijvoorbeeld een aanvraag met soort project, budget en foto’s."],
-                ["Je Google-profiel in orde", "Zodat je zaak ook buiten je site goed gevonden wordt."],
-                ["Reviews op je site", "Met een kant-en-klaar reviewverzoek voor je klanten."],
+                ["Je Google-profiel in orde", "Dan vinden mensen je ook buiten je site, bijvoorbeeld in Google Maps."],
+                ["Reviews op je site", "Je krijgt een kant-en-klaar bericht om je klanten om een review te vragen."],
               ]}
             />
             <p className="functie-noot">De functie voor je vak en de reviews zitten in Groei en Pro.</p>
@@ -159,7 +157,7 @@ export function Functies() {
             <OverzichtMock />
           </Glasvlak>
           <div className="functie-tekst">
-            <h3 className="subtitel">Een site die bijgehouden wordt.</h3>
+            <h3 className="subtitel">Wij houden je site bij</h3>
             <p className="tekst-groot zacht">Een nieuwe realisatie of andere openingsuren? Geef ze door, wij zetten ze erop.</p>
             <Punten
               punten={[

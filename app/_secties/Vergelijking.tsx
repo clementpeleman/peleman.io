@@ -8,7 +8,7 @@ export function Vergelijking() {
           Laten maken, zelf doen of een abonnement?
         </h2>
         <p className="tekst-groot zacht vergelijking-intro">
-          Drie manieren om aan een goede website te komen. Elk heeft zijn plaats; dit is waar wij het verschil maken.
+          Elke manier heeft zijn plaats. Hieronder zie je wat ze kosten en wie het werk doet.
         </p>
         <table className="tabel-stapel vergelijking">
           <thead>

@@ -18,7 +18,7 @@ const vragen: [string, string][] = [
   ["Zit ik meteen ergens aan vast?", "Nee. Het voorbeeld is gratis. Pas wanneer je beslist om verder te gaan, start het abonnement."],
   ["Hoe lang loopt het abonnement?", "Twaalf maanden. Daarna kan je maandelijks opzeggen. Liever in één keer betalen? Dan koop je je site meteen, of neem je hem later over aan de vooraf bekende overnameprijs."],
   ["Wat moet ik zelf aanleveren?", "Je logo, foto’s van je werk, je diensten en je werkgebied. Dat gaat via één formulier. Wij maken er duidelijke teksten van."],
-  ["Ik heb al een website. Kan dat ook?", "Ja. We vertrekken van wat er al staat: je teksten, foto’s en realisaties. Je huidige site blijft online tot de nieuwe klaar is."],
+  ["Ik heb al een website. Kan dat ook?", "Ja. We vertrekken van je huidige teksten en foto’s, en je site blijft online tot de nieuwe klaar is."],
   ["Wat als ik iets wil aanpassen?", "Start bevat drie, Groei vijf en Pro tien aanpassingen per maand. We verwerken ze binnen vijf werkdagen. Een extra aanpassing kost €29, excl. btw."],
   ["Blijft mijn domein van mij?", "Ja. Je domein, je teksten en je foto’s blijven van jou."],
 ];
@@ -43,27 +43,23 @@ export default function Home() {
       <main id="inhoud">
         <section className="hero" aria-labelledby="hero-titel">
           <div className="wrap">
-            <p className="bovenregel">Websites voor zelfstandigen.</p>
+            <p className="bovenregel">Websites voor zelfstandigen</p>
             <h1 id="hero-titel">
               Een website die even goed is <span>als jouw werk.</span>
             </h1>
             <div className="hero-rij">
               <p className="tekst-groot">
-                Wij bouwen en onderhouden je website. Jij houdt je bezig met je zaak. Eerst zie je een gratis voorbeeld.
+                Wij bouwen je website en houden hem daarna bij. Voor je iets beslist, krijg je een gratis voorbeeld te zien.
               </p>
               <div className="hero-actie" data-hero-knop>
                 <Knop />
-                <p className="voorwaarden">Vanaf €{laagstePrijs} per maand, excl. btw. €0 vooraf.</p>
+                <p className="voorwaarden">Vanaf €{laagstePrijs} per maand, excl. btw, zonder kosten vooraf.</p>
               </div>
             </div>
             <figure className="beeld">
               <Image className="beeld-glas" src={ribbelglas} alt="" fill preload quality={55} sizes="(min-width: 1304px) 1240px, calc(100vw - 36px)" />
               <div className="beeld-waas" />
-              <p className="beeld-slogan">
-                Goed werk.
-                <br />
-                Goed in beeld.
-              </p>
+              <p className="beeld-slogan">De site die we voor H16 maakten.</p>
               <div className="beeld-site">
                 <div className="browserbalk" aria-hidden="true">
                   <i />
@@ -91,18 +87,15 @@ export default function Home() {
         <section className="sectie sectie--groen" aria-labelledby="waarom-titel">
           <div className="wrap">
             <h2 id="waarom-titel" className="titel">
-              Een stevige basis.
-              <br />
-              Jouw eigen verhaal.
+              Hoe dat kan voor een vaste prijs
             </h2>
             <div className="waarom">
-              <p className="waarom-zin">Een website maken is een tweede vak. Jij hebt er al één.</p>
+              <p className="waarom-zin">We beginnen niet telkens van nul.</p>
               <div className="waarom-tekst">
                 <p className="tekst-groot">
                   We vertrekken van een basis die goed werkt en steken onze tijd in wat jouw zaak eigen maakt. Zo krijg je een
                   verzorgde website voor een vaste prijs per maand.
                 </p>
-                <p>Je ziet je nieuwe site eerst. Pas als hij je bevalt, werken we hem af. Daarna houden wij hem bij.</p>
               </div>
             </div>
           </div>
@@ -115,15 +108,15 @@ export default function Home() {
         <section className="sectie sectie--vlak" id="prijzen" aria-labelledby="prijzen-titel">
           <div className="wrap">
             <h2 id="prijzen-titel" className="titel">
-              Eén vaste prijs per maand.
+              Eén vaste prijs per maand
             </h2>
-            <p className="tekst-groot zacht prijzen-intro">Ontwerp, bouw, hosting en onderhoud zitten in elk pakket. Niets vooraf.</p>
+            <p className="tekst-groot zacht prijzen-intro">Ontwerp, bouw, hosting en onderhoud zitten in elk pakket, en je betaalt niets vooraf.</p>
             <ul className="pakketten">
               {pakketten.map((p) => (
                 <PakketKaart key={p.naam} pakket={p} />
               ))}
             </ul>
-            <p className="prijzen-voorwaarden">Twaalf maanden, daarna maandelijks opzegbaar. Alle prijzen excl. btw.</p>
+            <p className="prijzen-voorwaarden">Het abonnement loopt twaalf maanden en is daarna maandelijks opzegbaar. Alle prijzen excl. btw.</p>
             <PakketTabel />
             <Overname />
           </div>
@@ -138,11 +131,11 @@ export default function Home() {
             </div>
             <div>
               <h2 id="contact-titel" className="titel">
-                Je weet wie je belt.
+                Je weet wie je belt
               </h2>
               <p className="tekst-groot zacht contact-tekst">
-                Clément maakt je voorbeeld, bouwt je site en houdt hem bij. Een vraag of een nieuwe foto? Je weet bij wie je
-                terechtkan.
+                Clément maakt je voorbeeld en bouwt je site. Ook daarna kan je bij hem terecht, voor een vraag of een nieuwe
+                foto.
               </p>
               <p className="contact-gegevens">
                 <a href={`tel:${contact.telefoon}`}>{contact.telefoonLeesbaar}</a>
