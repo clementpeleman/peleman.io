@@ -4,9 +4,9 @@ export const contact = {
   telefoon: "+32496343936",
   telefoonLeesbaar: "0496 34 39 36",
   ondernemingsnummer: "BE 1037.045.608",
-  // Nog in te vullen: wettelijk verplicht op de site (doc 06, wettelijke vermeldingen).
-  adres: null as string | null,
-  rechtsvorm: null as string | null,
+  // Wettelijk verplicht op de site (doc 06, wettelijke vermeldingen).
+  adres: "Kortrijksepoortstraat 202, 9000 Gent",
+  rechtsvorm: "eenmanszaak",
 };
 
 // Eerstvolgende week met een vrije plek voor een gratis voorbeeld. Op null zetten verbergt de regel.

@@ -4,15 +4,11 @@ import { Navigatie, Voettekst } from "./kader";
 // Concepten, op te maken door Claude en na te lezen door een jurist vóór de livegang (doc 06).
 export const bijgewerkt = "13 oktober 2026";
 
-export function Invullen({ children }: { children: React.ReactNode }) {
-  return <mark className="invullen">{children}</mark>;
-}
-
 export function Onderneming() {
   return (
     <>
-      peleman.io, {contact.rechtsvorm ? `${contact.rechtsvorm} ` : ""}van {contact.naam}, met ondernemingsnummer {contact.ondernemingsnummer}{" "}
-      en adres {contact.adres ?? <Invullen>[adres]</Invullen>}
+      peleman.io, {contact.rechtsvorm} van {contact.naam}, met ondernemingsnummer {contact.ondernemingsnummer}{" "}
+      en adres {contact.adres}
     </>
   );
 }

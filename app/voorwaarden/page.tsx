@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Invullen, JuridischePagina, Onderneming } from "../_componenten/Juridisch";
+import { JuridischePagina, Onderneming } from "../_componenten/Juridisch";
 import { euro, overname, pakketten } from "@/lib/gegevens";
 
 export const metadata: Metadata = {
@@ -41,7 +41,7 @@ export default function Voorwaarden() {
         <li>Het abonnement start op de dag dat we je akkoord schriftelijk of digitaal ontvangen.</li>
         <li>De minimumduur is twaalf maanden. Daarna loopt het abonnement maandelijks verder.</li>
         <li>
-          Na de minimumduur kan je opzeggen per mail, tegen het einde van de lopende maand. <Invullen>[opzegtermijn bevestigen]</Invullen>
+          Na de minimumduur kan je opzeggen per mail, tegen het einde van de lopende maand.
         </li>
         <li>Je kan op elk moment overschakelen naar een ander pakket; de nieuwe prijs geldt vanaf de volgende maand.</li>
       </ul>
@@ -153,7 +153,7 @@ export default function Voorwaarden() {
       <h2>15. Toepasselijk recht</h2>
       <p>
         Op deze voorwaarden is Belgisch recht van toepassing. Bij een geschil zoeken we eerst samen een oplossing. Lukt dat niet,
-        dan zijn de rechtbanken van <Invullen>[arrondissement]</Invullen> bevoegd.
+        dan zijn de rechtbanken van de plaats waar wij gevestigd zijn bevoegd.
       </p>
     </JuridischePagina>
   );

@@ -814,7 +814,6 @@ html[data-toestemming-open] .gsm-balk { display: none; }
 .juridisch-tabel table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 15px; }
 .juridisch-tabel th, .juridisch-tabel td { padding: 10px 12px 10px 0; text-align: left; vertical-align: top; border-top: 1px solid var(--pio-lijn); }
 .juridisch-tabel thead th { border-top: 0; color: var(--pio-groen); font-weight: 600; }
-mark.invullen { padding: 0 4px; border-radius: 4px; background: #f6e7b8; color: #5c4400; }
 @media (min-width: 900px) {
   .juridisch { padding-top: 64px; }
   .juridisch-rij { grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 80px; align-items: start; }
