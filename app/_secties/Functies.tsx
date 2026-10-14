@@ -2,7 +2,6 @@ import Image from "next/image";
 import ribbelglas from "@/public/beeld/ribbelglas.jpg";
 import Link from "next/link";
 import { lvq, type Case } from "@/lib/cases";
-import { Vinkje } from "../_componenten/merk";
 
 type Punt = [string, string];
 
@@ -11,11 +10,8 @@ export function Punten({ punten, kop: Kop = "h4" }: { punten: Punt[]; kop?: "h3"
     <ul className="functie-punten">
       {punten.map(([titel, tekst]) => (
         <li key={titel}>
-          <Vinkje />
-          <div>
-            <Kop className="punt-titel">{titel}</Kop>
-            <p>{tekst}</p>
-          </div>
+          <Kop className="punt-titel">{titel}</Kop>
+          <p>{tekst}</p>
         </li>
       ))}
     </ul>
@@ -41,9 +37,6 @@ export function CaseBeeld({ item, pil, voorrang, groot }: { item: Case; pil?: st
     <Glasvlak label={item.alt} pil={pil ?? `${item.soort === "Klant" ? "Case" : "Eigen concept"} · ${item.naam}`} vol voorrang={voorrang} groot={groot}>
       <div className="case-desktop">
         <div className="browserbalk">
-          <i />
-          <i />
-          <i />
           <span>{item.domein}</span>
         </div>
         <Image src={item.desktop} alt="" loading={voorrang ? "eager" : undefined} sizes={groot ? "(min-width: 1304px) 900px, 86vw" : "(min-width: 900px) 480px, 80vw"} />

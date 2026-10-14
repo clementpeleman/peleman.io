@@ -59,12 +59,8 @@ export default function Home() {
             <figure className="beeld">
               <Image className="beeld-glas" src={ribbelglas} alt="" fill preload quality={55} sizes="(min-width: 1304px) 1240px, calc(100vw - 36px)" />
               <div className="beeld-waas" />
-              <p className="beeld-slogan">De site die we voor H16 maakten.</p>
               <div className="beeld-site">
                 <div className="browserbalk" aria-hidden="true">
-                  <i />
-                  <i />
-                  <i />
                   <span>h16.be</span>
                 </div>
                 <Image
@@ -77,6 +73,7 @@ export default function Home() {
                 />
               </div>
             </figure>
+            <p className="beeld-onderschrift">De site die we voor H16 maakten.</p>
           </div>
         </section>
 

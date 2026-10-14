@@ -20,9 +20,9 @@ export default function Aanvraag() {
               Vertel ons over je zaak. We bekijken je aanvraag en laten binnen één werkdag weten of we een voorbeeld maken.
             </p>
             <ol className="aanvraag-stappen">
-              <li><span>01</span>Je vult dit formulier in. Twee minuten.</li>
-              <li><span>02</span>Binnen één werkdag hoor je of we een voorbeeld maken, met een concrete leverdatum.</li>
-              <li><span>03</span>Je bekijkt je voorbeeld en beslist. Het voorbeeld is gratis.</li>
+              <li><span>1</span>Je vult dit formulier in. Dat duurt twee minuten.</li>
+              <li><span>2</span>Binnen één werkdag hoor je of we een voorbeeld maken, met een concrete leverdatum.</li>
+              <li><span>3</span>Je bekijkt je voorbeeld en beslist. Het voorbeeld is gratis.</li>
             </ol>
             <p className="aanvraag-hulp">
               We maken één voorbeeld per week.

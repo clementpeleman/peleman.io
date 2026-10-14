@@ -17,7 +17,6 @@ export default function Cases() {
       <main>
         <section className="cases-kop" aria-labelledby="cases-titel">
           <div className="wrap">
-            <p className="bovenregel">Cases</p>
             <h1 id="cases-titel">Werk dat we maakten</h1>
             <p className="tekst-groot zacht">
               Per site lees je wat de zaak doet en wat we bouwden. De beelden tonen de site op desktop en op gsm.

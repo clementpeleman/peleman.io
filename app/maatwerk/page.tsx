@@ -115,8 +115,7 @@ export default function Maatwerk() {
             <div className="functie functie--om">
               <CaseBeeld item={lvq} />
               <div className="functie-tekst">
-                <span className="pil pil--licht">Case</span>
-                <h2 id="case-titel" className="titel case-naam">
+                <h2 id="case-titel" className="titel">
                   Zo ziet ons werk eruit
                 </h2>
                 <p className="tekst-groot zacht">
