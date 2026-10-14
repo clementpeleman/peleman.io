@@ -26,7 +26,7 @@ function Fout({ veld, tekst }: { veld: string; tekst?: string }) {
   );
 }
 
-export function Formulier() {
+export function Formulier({ beroep }: { beroep?: string }) {
   const [status, actie] = useActionState<FormStatus, FormData>(vraagVoorbeeldAan, {});
   const [geladen, setGeladen] = useState("");
   const [bron, setBron] = useState<Record<string, string>>({});
@@ -61,7 +61,7 @@ export function Formulier() {
       </div>
       <div className="veld">
         <label htmlFor="beroep">Je beroep</label>
-        <select id="beroep" name="beroep" required defaultValue={w?.beroep ?? ""} {...fout("beroep")}>
+        <select id="beroep" name="beroep" required defaultValue={w?.beroep ?? beroep ?? ""} {...fout("beroep")}>
           <option value="" disabled>
             Kies je beroep
           </option>

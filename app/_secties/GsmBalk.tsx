@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Pijl } from "../_componenten/merk";
 
 // Vaste aanvraagknop onderaan op gsm, zichtbaar tussen de hero-knop en het slot van de pagina.
-export function GsmBalk() {
+export function GsmBalk({ href = "/aanvraag" }: { href?: string }) {
   const [heroInBeeld, setHeroInBeeld] = useState(true);
   const [eindeInBeeld, setEindeInBeeld] = useState(false);
 
@@ -38,7 +38,7 @@ export function GsmBalk() {
         Eerst een gratis voorbeeld
         <span>Je beslist daarna</span>
       </p>
-      <Link href="/aanvraag" className="knop knop--klein" tabIndex={zichtbaar ? undefined : -1}>
+      <Link href={href} className="knop knop--klein" tabIndex={zichtbaar ? undefined : -1}>
         Vraag aan
         <Pijl />
       </Link>
