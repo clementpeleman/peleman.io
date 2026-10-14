@@ -3,9 +3,9 @@ import { Knop } from "../_componenten/merk";
 
 const standaardTekst = "We maken één voorbeeld per week. Vraag het aan, het kost je niets.";
 
-type Props = { titel?: string; vervolg?: string; tekst?: string; pil?: string };
+type Props = { titel?: string; vervolg?: string; tekst?: string; pil?: string; knop?: string };
 
-export function Slot({ titel = "Benieuwd hoe jouw zaak", vervolg = "eruit kan zien?", tekst = standaardTekst, pil }: Props) {
+export function Slot({ titel = "Benieuwd hoe jouw zaak", vervolg = "eruit kan zien?", tekst = standaardTekst, pil, knop }: Props) {
   return (
     <section className="sectie sectie--groen slot" aria-labelledby="slot-titel" data-einde>
       <div className="wrap">
@@ -15,7 +15,7 @@ export function Slot({ titel = "Benieuwd hoe jouw zaak", vervolg = "eruit kan zi
           {vervolg}
         </h2>
         <p className="tekst-groot">{tekst}</p>
-        <Knop variant="wit" />
+        <Knop variant="wit" href={knop} />
         {volgendeVrijeWeek && <p className="vrije-week">Eerstvolgende vrije plek: {volgendeVrijeWeek}.</p>}
       </div>
     </section>

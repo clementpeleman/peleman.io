@@ -405,6 +405,7 @@ br.breed { display: none; }
 }
 .mock-gsm-balk { padding: 6px 0 10px; text-align: center; font: 500 10px/1 var(--pio-font-body); color: #6b6f6a; }
 .mock-gsm-inhoud { display: grid; gap: 8px; padding: 18px 16px 16px; border-radius: 22px; background: #f5f5f2; }
+.mock-gsm-veld { display: grid; gap: 8px; }
 .mock-gsm .mock-kop { margin-bottom: 4px; font: 400 21px/1.15 Georgia, "Times New Roman", serif; letter-spacing: -.01em; color: #1f1f1f; }
 .mock-label { margin-top: 4px; font-size: 10.5px; font-weight: 600; color: #5a5a57; }
 .mock-chips { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -676,6 +677,8 @@ br.breed { display: none; }
 @keyframes glas-in { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .ribbelglas canvas { animation: none; } }
 .maatwerk-hero + .sectie { margin-top: 56px; }
+.vak-zonder-beeld .maatwerk-intro { max-width: 820px; }
+@media (min-width: 900px) { .vak-zonder-beeld h1 span { display: block; } }
 .herkenning { display: grid; gap: 24px; }
 .herkenning li { padding-top: 20px; border-top: 1px solid var(--pio-lijn); }
 .herkenning p { margin-top: 8px; }
@@ -686,7 +689,7 @@ br.breed { display: none; }
   .maatwerk-rij { grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: 64px; align-items: center; }
   .maatwerk-beeld { height: 560px; }
   .maatwerk-hero + .sectie { margin-top: 96px; }
-  .herkenning { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+  .herkenning { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px; }
   .maatwerk-prijzen { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 96px; align-items: center; }
 }
 

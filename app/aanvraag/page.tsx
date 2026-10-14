@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Navigatie, Voettekst } from "../_componenten/kader";
 import { contact, volgendeVrijeWeek } from "@/lib/gegevens";
+import { beroepen } from "@/lib/formulier";
 import { Formulier } from "./Formulier";
 
 export const metadata: Metadata = {
@@ -8,7 +9,10 @@ export const metadata: Metadata = {
   description: "Vertel ons over je zaak. We laten binnen één werkdag weten of we een gratis voorbeeld van je website maken.",
 };
 
-export default function Aanvraag() {
+// Een vakpagina kan het beroep al meegeven: /aanvraag?beroep=Tuinaanleg.
+export default async function Aanvraag({ searchParams }: { searchParams: Promise<{ beroep?: string | string[] }> }) {
+  const { beroep } = await searchParams;
+  const gekozen = typeof beroep === "string" && beroepen.includes(beroep) ? beroep : undefined;
   return (
     <>
       <Navigatie eenvoudig />
@@ -31,7 +35,7 @@ export default function Aanvraag() {
             </p>
           </div>
 
-          <Formulier />
+          <Formulier beroep={gekozen} />
         </div>
       </main>
       <Voettekst />

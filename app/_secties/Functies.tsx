@@ -2,6 +2,7 @@ import Image from "next/image";
 import ribbelglas from "@/public/beeld/ribbelglas.jpg";
 import Link from "next/link";
 import { lvq, type Case } from "@/lib/cases";
+import type { AanvraagVoorbeeld } from "@/lib/vakken";
 
 type Punt = [string, string];
 
@@ -48,30 +49,39 @@ export function CaseBeeld({ item, pil, voorrang, groot }: { item: Case; pil?: st
   );
 }
 
-export function AanvraagMock() {
+export function AanvraagMock({ aanvraag }: { aanvraag: AanvraagVoorbeeld }) {
   return (
     <div className="mock-gsm">
       <div className="mock-gsm-balk">jouwzaak.be</div>
       <div className="mock-gsm-inhoud">
-        <p className="mock-kop">Vraag je project aan</p>
-        <p className="mock-label">Wat wil je laten maken?</p>
+        <p className="mock-kop">{aanvraag.kop}</p>
+        <p className="mock-label">{aanvraag.vraag}</p>
         <div className="mock-chips">
-          <span className="is-gekozen">Keuken</span>
-          <span>Kast</span>
-          <span>Trap</span>
-          <span>Iets anders</span>
+          {aanvraag.keuzes.map((keuze, i) => (
+            <span key={keuze} className={i === 0 ? "is-gekozen" : undefined}>
+              {keuze}
+            </span>
+          ))}
         </div>
-        <p className="mock-label">Budget</p>
-        <div className="mock-veld">
-          €10.000 – €20.000
-          <svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
-        </div>
-        <p className="mock-label">Foto’s van de ruimte</p>
-        <div className="mock-fotos">
-          <i />
-          <i />
-          <span>+</span>
-        </div>
+        {aanvraag.velden.map(([label, waarde]) => (
+          <div key={label} className="mock-gsm-veld">
+            <p className="mock-label">{label}</p>
+            <div className="mock-veld">
+              {waarde}
+              <svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </div>
+          </div>
+        ))}
+        {aanvraag.fotos && (
+          <>
+            <p className="mock-label">{aanvraag.fotos}</p>
+            <div className="mock-fotos">
+              <i />
+              <i />
+              <span>+</span>
+            </div>
+          </>
+        )}
         <div className="mock-knop">Verstuur aanvraag</div>
       </div>
     </div>
