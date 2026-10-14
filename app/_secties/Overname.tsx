@@ -16,7 +16,6 @@ export function Overname() {
   return (
     <div className="overname">
       <div className="overname-uitleg">
-        <span className="pil pil--licht">Overnemen</span>
         <h3 className="subtitel">Liever later zelf eigenaar?</h3>
         <p className="zacht">
           Na twaalf maanden kan je je site overnemen. De prijs daalt elke maand dat je klant bent, en ligt vooraf vast.

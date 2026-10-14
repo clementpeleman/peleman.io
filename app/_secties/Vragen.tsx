@@ -1,9 +1,9 @@
 import { Plus } from "../_componenten/merk";
 
-export function Vragen({ vragen, titel = "Wat je vooraf wil weten." }: { vragen: [string, string][]; titel?: string }) {
+export function Vragen({ vragen, titel = "Wat je vooraf wil weten" }: { vragen: [string, string][]; titel?: string }) {
   return (
-    <section className="sectie sectie--vlak" id="vragen" aria-labelledby="vragen-titel">
-      <div className="wrap">
+    <section className="sectie sectie--lijn" id="vragen" aria-labelledby="vragen-titel">
+      <div className="wrap kolommen">
         <h2 id="vragen-titel" className="titel">
           {titel}
         </h2>

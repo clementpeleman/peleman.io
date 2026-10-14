@@ -35,8 +35,8 @@ export function GsmBalk() {
   return (
     <div className="gsm-balk" data-zichtbaar={zichtbaar} aria-hidden={!zichtbaar}>
       <p>
-        Eerst een gratis voorbeeld.
-        <span>Je beslist daarna.</span>
+        Eerst een gratis voorbeeld
+        <span>Je beslist daarna</span>
       </p>
       <Link href="/aanvraag" className="knop knop--klein" tabIndex={zichtbaar ? undefined : -1}>
         Vraag aan

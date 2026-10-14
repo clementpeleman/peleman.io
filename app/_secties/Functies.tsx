@@ -2,7 +2,6 @@ import Image from "next/image";
 import ribbelglas from "@/public/beeld/ribbelglas.jpg";
 import Link from "next/link";
 import { lvq, type Case } from "@/lib/cases";
-import { Vinkje } from "../_componenten/merk";
 
 type Punt = [string, string];
 
@@ -11,11 +10,8 @@ export function Punten({ punten, kop: Kop = "h4" }: { punten: Punt[]; kop?: "h3"
     <ul className="functie-punten">
       {punten.map(([titel, tekst]) => (
         <li key={titel}>
-          <Vinkje />
-          <div>
-            <Kop className="punt-titel">{titel}</Kop>
-            <p>{tekst}</p>
-          </div>
+          <Kop className="punt-titel">{titel}</Kop>
+          <p>{tekst}</p>
         </li>
       ))}
     </ul>
@@ -25,7 +21,7 @@ export function Punten({ punten, kop: Kop = "h4" }: { punten: Punt[]; kop?: "h3"
 export function Glasvlak({ label, pil = "Voorbeeld", vol, voorrang, groot, children }: { label: string; pil?: string; vol?: boolean; voorrang?: boolean; groot?: boolean; children: React.ReactNode }) {
   return (
     <figure className={groot ? "functie-beeld functie-beeld--groot" : "functie-beeld"}>
-      <Image className="beeld-glas" src={ribbelglas} alt="" fill quality={55} priority={voorrang} sizes={groot ? "(min-width: 1304px) 1240px, calc(100vw - 36px)" : "(min-width: 900px) 600px, calc(100vw - 36px)"} />
+      <Image className="beeld-glas" src={ribbelglas} alt="" fill quality={55} preload={voorrang} sizes={groot ? "(min-width: 1304px) 1240px, calc(100vw - 36px)" : "(min-width: 900px) 600px, calc(100vw - 36px)"} />
       <span className="pil functie-pil">{pil}</span>
       <div className={vol ? "functie-mock functie-mock--vol" : "functie-mock"} aria-hidden="true">
         {children}
@@ -41,12 +37,9 @@ export function CaseBeeld({ item, pil, voorrang, groot }: { item: Case; pil?: st
     <Glasvlak label={item.alt} pil={pil ?? `${item.soort === "Klant" ? "Case" : "Eigen concept"} · ${item.naam}`} vol voorrang={voorrang} groot={groot}>
       <div className="case-desktop">
         <div className="browserbalk">
-          <i />
-          <i />
-          <i />
           <span>{item.domein}</span>
         </div>
-        <Image src={item.desktop} alt="" priority={voorrang} sizes={groot ? "(min-width: 1304px) 900px, 86vw" : "(min-width: 900px) 480px, 80vw"} />
+        <Image src={item.desktop} alt="" loading={voorrang ? "eager" : undefined} sizes={groot ? "(min-width: 1304px) 900px, 86vw" : "(min-width: 900px) 480px, 80vw"} />
       </div>
       <div className="case-gsm">
         <Image src={item.gsm} alt="" sizes={groot ? "(min-width: 1304px) 240px, 30vw" : "(min-width: 900px) 160px, 28vw"} />
@@ -85,41 +78,35 @@ export function AanvraagMock() {
   );
 }
 
-export function OverzichtMock() {
-  const staven = [38, 52, 44, 61, 57, 72, 66, 84];
+// Het maandoverzicht zoals de klant het krijgt: een korte mail, geen grafieken (doc 13, M13).
+export function MaandMail() {
+  const vorige = new Date();
+  vorige.setDate(0);
+  const maand = vorige.toLocaleDateString("nl-BE", { month: "long" });
   return (
-    <>
-      <div className="mock-kaart mock-overzicht">
-        <p className="mock-kop">Maandoverzicht</p>
-        <p className="mock-sub">jouwzaak.be</p>
-        <p className="mock-label">Bezoek</p>
-        <div className="mock-staven">
-          {staven.map((h, i) => (
-            <i key={i} style={{ height: `${h}%` }} />
-          ))}
-        </div>
-        <div className="mock-regel">
-          <span>Aanpassingen</span>
-          <b>2 van 5 gebruikt</b>
-        </div>
-        <div className="mock-voortgang"><i style={{ width: "40%" }} /></div>
-        <div className="mock-regel">
-          <span>Nieuwe review op Google</span>
-          <b className="mock-sterren">★★★★★</b>
-        </div>
-        <div className="mock-regel">
-          <span>Updates en back-ups</span>
-          <b className="mock-ok">In orde</b>
-        </div>
+    <div className="mock-mail">
+      <div className="mock-mail-kop">
+        <p>
+          <span>Van</span>Clément, peleman.io
+        </p>
+        <p>
+          <span>Onderwerp</span>Je website in {maand}
+        </p>
       </div>
-      <div className="mock-kaart mock-melding">
-        <span className="mock-melding-stip" />
-        <div>
-          <b>Aanpassing klaar</b>
-          <span>Nieuwe realisatie staat online</span>
-        </div>
+      <div className="mock-mail-tekst">
+        <p>Dag An,</p>
+        <p>
+          <b>Wat we deden:</b> twee nieuwe realisaties op je site gezet en de updates gedaan.
+        </p>
+        <p>
+          <b>Je site:</b> online, back-up gemaakt op {vorige.getDate()} {maand}.
+        </p>
+        <p>
+          <b>Tip:</b> vraag een tevreden klant om een review op Google.
+        </p>
+        <p>Clément, peleman.io</p>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -128,23 +115,21 @@ export function Functies() {
     <section className="sectie" aria-labelledby="aanbod-titel">
       <div className="wrap">
         <h2 id="aanbod-titel" className="titel sectie-kop">
-          Jouw zaak in beeld.
-          <br />
-          De rest geregeld.
+          Een site over jouw zaak, die wij bijhouden
         </h2>
 
         <div className="functie">
           <CaseBeeld item={lvq} />
           <div className="functie-tekst">
-            <h3 className="subtitel">Eigen aan jouw zaak.</h3>
+            <h3 className="subtitel">Eigen aan jouw zaak</h3>
             <p className="tekst-groot zacht">
-              Je werk, je diensten en je regio. Duidelijke teksten en echte foto’s, goed leesbaar op je gsm.
+              We tonen wat je doet en waar je werkt, met duidelijke teksten en echte foto’s. Alles leest ook goed op je gsm.
             </p>
             <Punten
               punten={[
                 ["Een functie voor jouw vak", "Bijvoorbeeld een aanvraag met soort project, budget en foto’s."],
-                ["Je Google-profiel in orde", "Zodat je zaak ook buiten je site goed gevonden wordt."],
-                ["Reviews op je site", "Met een kant-en-klaar reviewverzoek voor je klanten."],
+                ["Je Google-profiel in orde", "Dan vinden mensen je ook buiten je site, bijvoorbeeld in Google Maps."],
+                ["Reviews op je site", "Je krijgt een kant-en-klaar bericht om je klanten om een review te vragen."],
               ]}
             />
             <p className="functie-noot">De functie voor je vak en de reviews zitten in Groei en Pro.</p>
@@ -155,11 +140,11 @@ export function Functies() {
         </div>
 
         <div className="functie functie--om">
-          <Glasvlak label="Voorbeeld van een maandoverzicht met bezoek, aanpassingen en een nieuwe review.">
-            <OverzichtMock />
+          <Glasvlak label="Voorbeeld van het maandoverzicht: een korte mail met wat we deden en hoe je site het doet.">
+            <MaandMail />
           </Glasvlak>
           <div className="functie-tekst">
-            <h3 className="subtitel">Een site die bijgehouden wordt.</h3>
+            <h3 className="subtitel">Wij houden je site bij</h3>
             <p className="tekst-groot zacht">Een nieuwe realisatie of andere openingsuren? Geef ze door, wij zetten ze erop.</p>
             <Punten
               punten={[

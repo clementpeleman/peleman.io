@@ -70,7 +70,6 @@ export function Voettekst() {
       <div className="wrap voet-onder">
         <p>© {new Date().getFullYear()} peleman.io</p>
       </div>
-      <div className="voet-woordmerk" aria-hidden="true" />
     </footer>
   );
 }

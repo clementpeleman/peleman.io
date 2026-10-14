@@ -44,9 +44,9 @@ export const lvq: Case = {
   wie: "Le Vin Quotidien, wijnimporteur in Oosterzele",
   intro: "Le Vin Quotidien importeert wijn van kleine Franse domeinen en organiseert proeverijen en events.",
   punten: [
-    ["Een eigen, rustige stijl", "Passend bij wijnen van kleine domeinen, met foto’s die sfeer geven."],
+    ["Een eigen, rustige stijl", "Met foto’s die sfeer geven. Dat past bij wijnen van kleine domeinen."],
     ["Een webshop met filters", "Wit, rood en mousserend, zodat klanten snel vinden wat ze zoeken."],
-    ["Even sterk op gsm", "Met het adres en de contactgegevens meteen in beeld."],
+    ["Even sterk op gsm", "Op gsm staan het adres en de contactgegevens meteen in beeld."],
   ],
   url: "https://lvq.wine",
   domein: "lvq.wine",
@@ -60,11 +60,11 @@ const tourage: Case = {
   soort: "Eigen concept",
   wie: "Eén dossier voor pech in het buitenland",
   intro:
-    "Bij een panne over de grens kijken vijf partijen naar dezelfde wagen. Tourage brengt ze samen in één dossier; de landingspagina legt dat idee uit.",
+    "Bij een panne over de grens kijken vijf partijen naar dezelfde wagen. Tourage brengt ze samen in één dossier. De landingspagina legt dat idee uit.",
   punten: [
-    ["Eén verhaal, stap voor stap", "Een scrollverhaal volgt één panne, van melding tot thuiskomst."],
-    ["Een kaart die meteen uitlegt", "Route en status in één beeld, zonder lange uitleg."],
-    ["Eén duidelijke volgende stap", "Alles leidt naar één vraag: start een pilot."],
+    ["Een panne als verhaal", "Je scrolt mee met één panne, van de melding tot de thuiskomst."],
+    ["Een kaart die uitlegt", "Route en status staan samen in één beeld."],
+    ["Eén volgende stap", "Alles leidt naar dezelfde vraag: start een pilot."],
   ],
   noot: "Tourage is een eigen concept, geen klant.",
   url: "https://tourage.peleman.io",

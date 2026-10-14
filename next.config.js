@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Next 16 laat standaard alleen kwaliteit 75 toe; het ribbelglas gebruikt 55.
+  images: { qualities: [55, 75] },
   // Pagina's van de vorige site. Tijdelijk (307) waar later een eigen pagina komt, permanent waar die vervangen is.
   async redirects() {
     return [

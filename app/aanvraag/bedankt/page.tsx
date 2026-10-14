@@ -15,7 +15,7 @@ export default function Bedankt() {
       <Navigatie eenvoudig />
       <main className="bedankt">
         <div className="wrap">
-          <h1>Bedankt voor je aanvraag.</h1>
+          <h1>Bedankt voor je aanvraag</h1>
           <p className="tekst-groot zacht">
             We bekijken ze en laten je binnen één werkdag weten of we een voorbeeld maken. Een vraag tussendoor? Bel{" "}
             <a href={`tel:${contact.telefoon}`}>{contact.telefoonLeesbaar}</a> of mail{" "}

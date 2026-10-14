@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { laagstePrijs } from "@/lib/gegevens";
 
-export const alt = "peleman.io — Een website die even goed is als jouw werk.";
+export const alt = "peleman.io: een website die even goed is als jouw werk.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -40,7 +40,7 @@ export default async function Deelbeeld() {
             <span style={{ color: "#9fbcae" }}>als jouw werk.</span>
           </div>
           <div style={{ display: "flex", fontFamily: "DM Sans", fontSize: 28, color: "#c9d9d1" }}>
-            Websites voor zelfstandigen · Eerst een gratis voorbeeld · Vanaf €{laagstePrijs} per maand
+            Eerst een gratis voorbeeld, daarna vanaf €{laagstePrijs} per maand
           </div>
         </div>
       </div>

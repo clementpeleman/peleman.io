@@ -24,12 +24,12 @@ type Props = {
   src: StaticImageData;
   alt: string;
   sizes: string;
-  priority?: boolean;
+  preload?: boolean;
   marges?: Marges;
   className?: string;
 };
 
-export function RibbelglasFoto({ src, alt, sizes, priority, marges = {}, className }: Props) {
+export function RibbelglasFoto({ src, alt, sizes, preload, marges = {}, className }: Props) {
   const vak = useRef<HTMLDivElement>(null);
   const [live, setLive] = useState(false);
 
@@ -57,10 +57,7 @@ export function RibbelglasFoto({ src, alt, sizes, priority, marges = {}, classNa
           });
         }
         await wachtOpRust();
-        const glas = await import(
-          /* webpackExports: ["ShaderMount", "flutedGlassFragmentShader", "GlassDistortionShapes", "GlassGridShapes", "getShaderColorFromString", "ShaderFitOptions"] */
-          "@paper-design/shaders"
-        );
+        const glas = await import("@/lib/ribbelglas-shader");
         if (gestopt) return;
         mount = new glas.ShaderMount(
           el,
@@ -120,7 +117,7 @@ export function RibbelglasFoto({ src, alt, sizes, priority, marges = {}, classNa
 
   return (
     <div ref={vak} className={["ribbelglas", live && "is-live", className].filter(Boolean).join(" ")}>
-      <Image src={src} alt={alt} fill sizes={sizes} priority={priority} />
+      <Image src={src} alt={alt} fill sizes={sizes} preload={preload} />
     </div>
   );
 }
