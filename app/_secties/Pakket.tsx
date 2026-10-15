@@ -18,8 +18,7 @@ export function PakketKaart({ pakket: p, als = "li" }: { pakket: Pakket; als?: "
       </p>
       {p.uitgelicht && (
         <p className="pakket-lancering">
-          <b>Lanceringsaanbod</b> De eerste drie zaken betalen het eerste jaar €79 per maand, in ruil voor een case met foto’s en
-          een review.
+          <b>Lanceringsaanbod</b> Voor de eerste drie zaken €79 per maand in het eerste jaar, in ruil voor een case.
         </p>
       )}
       <ul className="pakket-inhoud">

@@ -12,7 +12,7 @@ export function Punten({ punten, kop: Kop = "h4" }: { punten: Punt[]; kop?: "h3"
       {punten.map(([titel, tekst]) => (
         <li key={titel}>
           <Kop className="punt-titel">{titel}</Kop>
-          <p>{tekst}</p>
+          {tekst && <p>{tekst}</p>}
         </li>
       ))}
     </ul>
@@ -21,7 +21,7 @@ export function Punten({ punten, kop: Kop = "h4" }: { punten: Punt[]; kop?: "h3"
 
 export function Glasvlak({ label, pil = "Voorbeeld", vol, voorrang, groot, children }: { label: string; pil?: string; vol?: boolean; voorrang?: boolean; groot?: boolean; children: React.ReactNode }) {
   return (
-    <figure className={groot ? "functie-beeld functie-beeld--groot" : "functie-beeld"}>
+    <figure className={groot ? "functie-beeld functie-beeld--groot" : "functie-beeld"} data-beweeg="">
       <Image className="beeld-glas" src={ribbelglas} alt="" fill quality={55} preload={voorrang} sizes={groot ? "(min-width: 1304px) 1240px, calc(100vw - 36px)" : "(min-width: 900px) 600px, calc(100vw - 36px)"} />
       <span className="pil functie-pil">{pil}</span>
       <div className={vol ? "functie-mock functie-mock--vol" : "functie-mock"} aria-hidden="true">
@@ -88,33 +88,49 @@ export function AanvraagMock({ aanvraag }: { aanvraag: AanvraagVoorbeeld }) {
   );
 }
 
-// Het maandoverzicht zoals de klant het krijgt: een korte mail, geen grafieken (doc 13, M13).
+// Het maandoverzicht zoals de klant het krijgt: een gewone mail van Clément, geen grafieken (doc 13, M13).
 export function MaandMail() {
-  const vorige = new Date();
-  vorige.setDate(0);
+  const nu = new Date();
+  const vorige = new Date(nu.getFullYear(), nu.getMonth(), 0);
   const maand = vorige.toLocaleDateString("nl-BE", { month: "long" });
+  const verstuurd = new Date(nu.getFullYear(), nu.getMonth(), 1).toLocaleDateString("nl-BE", { day: "numeric", month: "short" });
   return (
     <div className="mock-mail">
-      <div className="mock-mail-kop">
-        <p>
-          <span>Van</span>Clément, peleman.io
-        </p>
-        <p>
-          <span>Onderwerp</span>Je website in {maand}
-        </p>
+      <p className="mock-mail-onderwerp">Je website in {maand}</p>
+      <div className="mock-mail-van">
+        <i>C</i>
+        <div>
+          <p>
+            <b>Clément van peleman.io</b> <span>clement@peleman.io</span>
+          </p>
+          <p className="mock-mail-aan">aan An</p>
+        </div>
+        <span className="mock-mail-tijd">{verstuurd}</span>
       </div>
       <div className="mock-mail-tekst">
         <p>Dag An,</p>
         <p>
-          <b>Wat we deden:</b> twee nieuwe realisaties op je site gezet en de updates gedaan.
+          <b>Wat we deden:</b> de keuken uit Merelbeke en de trap uit Destelbergen staan nu bij je realisaties. De updates zijn ook
+          gedaan.
         </p>
         <p>
           <b>Je site:</b> online, back-up gemaakt op {vorige.getDate()} {maand}.
         </p>
         <p>
-          <b>Tip:</b> vraag een tevreden klant om een review op Google.
+          <b>Tip:</b> die keuken is een mooi project om een review voor te vragen.
         </p>
-        <p>Clément, peleman.io</p>
+        <p>
+          Groeten,
+          <br />
+          Clément
+        </p>
+      </div>
+      <div className="mock-mail-acties">
+        <span>
+          <svg viewBox="0 0 16 16"><path d="M6.5 4 2.5 8l4 4M3 8h6.5a4 4 0 0 1 4 4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          Beantwoorden
+        </span>
+        <span>Doorsturen</span>
       </div>
     </div>
   );
@@ -133,16 +149,16 @@ export function Functies() {
           <div className="functie-tekst">
             <h3 className="subtitel">Eigen aan jouw zaak</h3>
             <p className="tekst-groot zacht">
-              We tonen wat je doet en waar je werkt, met duidelijke teksten en echte foto’s. Alles leest ook goed op je gsm.
+              We tonen wat je doet en waar je werkt, met duidelijke teksten en echte foto’s.
             </p>
             <Punten
               punten={[
-                ["Een functie voor jouw vak", "Bijvoorbeeld een aanvraag met soort project, budget en foto’s."],
-                ["Je Google-profiel in orde", "Dan vinden mensen je ook buiten je site, bijvoorbeeld in Google Maps."],
-                ["Reviews op je site", "Je krijgt een kant-en-klaar bericht om je klanten om een review te vragen."],
+                ["Een aanvraag op maat van je vak", ""],
+                ["Je Google-profiel in orde", ""],
+                ["Reviews op je site", ""],
               ]}
             />
-            <p className="functie-noot">De functie voor je vak en de reviews zitten in Groei en Pro.</p>
+            <p className="functie-noot">De aanvraag op maat en de reviews zitten in Groei en Pro.</p>
             <Link href="/cases" className="tekstlink">
               Bekijk onze cases
             </Link>
@@ -158,9 +174,8 @@ export function Functies() {
             <p className="tekst-groot zacht">Een nieuwe realisatie of andere openingsuren? Geef ze door, wij zetten ze erop.</p>
             <Punten
               punten={[
-                ["Altijd bijgewerkt", "Hosting, beveiliging, back-ups en updates zitten erin."],
-                ["Aanpassingen binnen vijf werkdagen", "Drie, vijf of tien per maand, afhankelijk van je pakket."],
-                ["Een kort maandoverzicht", "Wat er op je site gebeurde, in Groei en Pro."],
+                ["Aanpassingen binnen vijf werkdagen", ""],
+                ["Een kort maandoverzicht per mail", ""],
               ]}
             />
           </div>

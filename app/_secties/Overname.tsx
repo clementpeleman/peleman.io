@@ -18,12 +18,12 @@ export function Overname() {
       <div className="overname-uitleg">
         <h3 className="subtitel">Liever later zelf eigenaar?</h3>
         <p className="zacht">
-          Na twaalf maanden kan je je site overnemen. De prijs daalt elke maand dat je klant bent, en ligt vooraf vast.
+          Na twaalf maanden kan je je site overnemen, aan een prijs die elke maand daalt.
         </p>
       </div>
 
       <div className="overname-reken">
-        <fieldset className="overname-keuze">
+        <fieldset className="overname-keuze" style={{ "--keuze": Math.max(0, pakketten.findIndex((p) => p.naam === naam)) } as React.CSSProperties}>
           <legend className="verborgen">Pakket</legend>
           {pakketten.map((p) => (
             <label key={p.naam} className={p.naam === naam ? "is-gekozen" : undefined}>

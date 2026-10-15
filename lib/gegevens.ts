@@ -10,7 +10,7 @@ export const contact = {
 };
 
 // Eerstvolgende week met een vrije plek voor een gratis voorbeeld. Op null zetten verbergt de regel.
-export const volgendeVrijeWeek: string | null = "week van 26 oktober";
+export const volgendeVrijeWeek: string | null = null;
 
 export type Pakket = {
   naam: string;
@@ -100,13 +100,13 @@ export const vergelijking: Rij[] = [
   { onderdeel: "Vooraf", waarden: ["€0", "Ongeveer €1.500 tot €3.500", "€0"] },
   { onderdeel: "Per maand", waarden: [`Vanaf €${laagstePrijs}, alles inbegrepen`, "Ongeveer €40 tot €170 voor onderhoud", "Ongeveer €4 tot €40 voor het platform"] },
   { onderdeel: "Wie doet het werk", waarden: ["Wij", "Een bureau of freelancer", "Jij"] },
-  { onderdeel: "Hoe het eruitziet", waarden: ["Verzorgd, met een functie voor je vak", "Afhankelijk van de maker", "Zoals je het zelf kan"] },
-  { onderdeel: "Eerst zien voor je beslist", waarden: ["Ja, met een gratis voorbeeld", "Meestal niet", "Je bouwt eerst zelf"] },
   { onderdeel: "Aanpassingen achteraf", waarden: ["Inbegrepen, binnen vijf werkdagen", "Vaak apart te betalen", "Zelf te doen"] },
 ];
 
+// Werkwijze als tijdlijn: wanneer, en wat er dan gebeurt.
 export const stappen: [string, string][] = [
-  ["Vertel ons over je zaak", "Je vult een kort formulier in. Binnen één werkdag laten we weten of we een voorbeeld maken."],
-  ["Bekijk je gratis voorbeeld", "We plannen je voorbeeld in en zeggen je wanneer het klaar is. Je krijgt een werkende pagina van jouw zaak."],
-  ["Bevalt het, dan werken we je site af", "Zodra we alles van je hebben en jij de inhoud goedkeurt, staat je site na ongeveer twee weken online."],
+  ["Vandaag", "Je vraagt een gratis voorbeeld aan"],
+  ["Binnen één werkdag", "Je hoort of we een voorbeeld maken"],
+  ["Op de afgesproken datum", "Je bekijkt je voorbeeld"],
+  ["Zo’n twee weken na je akkoord", "Je site staat online"],
 ];

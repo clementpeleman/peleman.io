@@ -4,12 +4,9 @@ export function Vergelijking() {
   return (
     <section className="sectie sectie--lijn" aria-labelledby="vergelijking-titel">
       <div className="wrap">
-        <h2 id="vergelijking-titel" className="titel">
+        <h2 id="vergelijking-titel" className="titel sectie-kop">
           Laten maken, zelf doen of een abonnement?
         </h2>
-        <p className="tekst-groot zacht vergelijking-intro">
-          Elke manier heeft zijn plaats. Hieronder zie je wat ze kosten en wie het werk doet.
-        </p>
         <table className="tabel-stapel vergelijking">
           <thead>
             <tr>

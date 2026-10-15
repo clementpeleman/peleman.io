@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Beweging } from "./_componenten/Beweging";
 import { Meting } from "./_componenten/Meting";
 import { Toestemming } from "./_componenten/Toestemming";
 
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="nl-BE" data-scroll-behavior="smooth" className={`${bricolage.variable} ${dmSans.variable}`}>
       <body>
         {children}
+        <Beweging />
         <Toestemming />
         <Meting />
       </body>

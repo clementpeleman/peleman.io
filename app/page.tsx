@@ -8,6 +8,7 @@ import { Overname } from "./_secties/Overname";
 import { PakketKaart } from "./_secties/Pakket";
 import { PakketTabel } from "./_secties/PakketTabel";
 import { Slot } from "./_secties/Slot";
+import { Techniek } from "./_secties/Techniek";
 import { Vergelijking } from "./_secties/Vergelijking";
 import { Vragen } from "./_secties/Vragen";
 import { Werkwijze } from "./_secties/Werkwijze";
@@ -19,8 +20,6 @@ const vragen: [string, string][] = [
   ["Hoe lang loopt het abonnement?", "Twaalf maanden. Daarna kan je maandelijks opzeggen. Liever in één keer betalen? Dan koop je je site meteen, of neem je hem later over aan de vooraf bekende overnameprijs."],
   ["Wat moet ik zelf aanleveren?", "Je logo, foto’s van je werk, je diensten en je werkgebied. Dat gaat via één formulier. Wij maken er duidelijke teksten van."],
   ["Ik heb al een website. Kan dat ook?", "Ja. We vertrekken van je huidige teksten en foto’s, en je site blijft online tot de nieuwe klaar is."],
-  ["Wat als ik iets wil aanpassen?", "Start bevat drie, Groei vijf en Pro tien aanpassingen per maand. We verwerken ze binnen vijf werkdagen. Een extra aanpassing kost €29, excl. btw."],
-  ["Blijft mijn domein van mij?", "Ja. Je domein, je teksten en je foto’s blijven van jou."],
 ];
 
 const schema = {
@@ -81,6 +80,8 @@ export default function Home() {
 
         <Functies />
 
+        <Techniek />
+
         <Werkwijze lijn />
 
         <Vergelijking />
@@ -90,10 +91,7 @@ export default function Home() {
             <h2 id="prijzen-titel" className="titel">
               Eén vaste prijs per maand
             </h2>
-            <p className="tekst-groot zacht prijzen-intro">
-              We vertrekken van een basis die goed werkt en steken onze tijd in wat jouw zaak eigen maakt. Daarom kan het voor een
-              vaste prijs: ontwerp, bouw, hosting en onderhoud zitten in elk pakket, en je betaalt niets vooraf.
-            </p>
+            <p className="tekst-groot zacht prijzen-intro">Ontwerp, bouw, hosting en onderhoud zitten erin. Je betaalt niets vooraf.</p>
             <ul className="pakketten">
               {pakketten.map((p) => (
                 <PakketKaart key={p.naam} pakket={p} />
