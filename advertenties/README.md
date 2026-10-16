@@ -12,6 +12,7 @@ npm install
 npm run schermen   # echte schermen vastleggen zoals op een gsm (gebruikt Google Chrome)
 npm run controle   # teksten nakijken
 npm run beelden    # alles renderen naar uit/, met uit/overzicht.html
+npm run publiceer  # goedgekeurde beelden naar public/advertenties/<campagne>/ voor de Meta-connector
 ```
 
 `npm run schermen` haalt ook het echte aanvraagformulier op. Laat de site daarvoor draaien op poort 3100 (`npm run build && npm start -- -p 3100` in de root), of geef een ander adres mee met `SITE=…`.
@@ -30,7 +31,7 @@ Het overzicht toont elke advertentie zoals in de feed, met de 9:16-versie ernaas
 | `src/merk.tsx`, `src/merk.css` | Woordmerk, kop, knop, lijst, kader en de veilige zone. Haalt `app/globals.css` en de letters van de site binnen. |
 | `src/Ribbelglas.tsx` | Het glas, met de merkinstelling uit `lib/ribbelglas-shader.ts` |
 | `src/Gsm.tsx` | Gsm en desktopscherm, met de schermafdrukken uit `public/beeld/cases` |
-| `scripts/` | `schermen`, `controle` en `beelden` |
+| `scripts/` | `schermen`, `controle`, `beelden` en `publiceer` |
 | `uit/` | Renders en overzicht (niet in git) |
 
 Prijzen komen uit `lib/gegevens.ts`, zodat een advertentie nooit een andere prijs toont dan de site.

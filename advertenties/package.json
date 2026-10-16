@@ -6,7 +6,8 @@
     "studio": "remotion studio src/index.ts",
     "schermen": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/schermen.ts",
     "controle": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/controle.ts",
-    "beelden": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/beelden.ts"
+    "beelden": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/beelden.ts",
+    "publiceer": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/publiceer.ts"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.532",
