@@ -22,10 +22,10 @@ function Glas({ ad, formaat, veiligeZone }: BeeldProps) {
     <Kader achtergrond={groen} formaat={formaat} veiligeZone={veiligeZone}>
       <Ribbelglas src={scherm.desktop!} uitsnede={scherm.fotos} style={verhaal ? { left: 0, right: 0, top: grens, bottom: 0 } : { left: 0, right: 0, top: 0, height: grens }} />
       {verhaal ? (
-        <GsmMetScherm scherm={ad.scherm!} breedte={560} style={{ left: 260, top: grens + 130 }} />
+        <GsmMetScherm scherm={ad.scherm2 ?? ad.scherm!} breedte={560} style={{ left: 260, top: grens + 130 }} />
       ) : (
         <div style={{ position: "absolute", left: 0, right: 0, top: 0, height: grens, overflow: "hidden" }}>
-          <GsmMetScherm scherm={ad.scherm!} breedte={420} style={{ left: 330, top: 110 }} />
+          <GsmMetScherm scherm={ad.scherm2 ?? ad.scherm!} breedte={420} style={{ left: 330, top: 110 }} />
         </div>
       )}
       <div
@@ -48,11 +48,11 @@ function Glas({ ad, formaat, veiligeZone }: BeeldProps) {
   );
 }
 
-// Een echte site op een rechte gsm.
+// Een echte site op een rechte gsm. Met een tweede scherm staan er twee: dat tweede iets kleiner en erachter.
 function GsmBeeld({ ad, formaat, veiligeZone }: BeeldProps) {
   const v = vlak(formaat);
   const verhaal = formaat === "verhaal";
-  const breedte = verhaal ? 640 : 540;
+  const breedte = verhaal ? 600 : 500;
   return (
     <Kader achtergrond="var(--pio-wit)" formaat={formaat} veiligeZone={veiligeZone}>
       <div style={{ position: "absolute", left: v.left, right: v.right, top: v.top, display: "grid", gap: 28 }}>
@@ -61,7 +61,14 @@ function GsmBeeld({ ad, formaat, veiligeZone }: BeeldProps) {
         <p style={{ fontSize: 34, lineHeight: 1.4, color: "var(--pio-zacht)", maxWidth: 780 }}>{ad.beeld.tekst}</p>
       </div>
       <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: verhaal ? 980 : 640, background: groengrijs }} />
-      <GsmMetScherm scherm={ad.scherm!} breedte={breedte} style={{ left: (1080 - breedte) / 2, top: verhaal ? 860 : 580 }} />
+      {ad.scherm2 ? (
+        <>
+          <GsmMetScherm scherm={ad.scherm2} breedte={breedte * 0.86} style={{ left: verhaal ? 90 : 110, top: verhaal ? 820 : 560 }} />
+          <GsmMetScherm scherm={ad.scherm!} breedte={breedte} style={{ left: verhaal ? 420 : 470, top: verhaal ? 900 : 620 }} />
+        </>
+      ) : (
+        <GsmMetScherm scherm={ad.scherm!} breedte={breedte} style={{ left: (1080 - breedte) / 2, top: verhaal ? 860 : 580 }} />
+      )}
     </Kader>
   );
 }

@@ -16,6 +16,8 @@ type Opname = { adres: string; volledig: boolean; voorbereiden?: (pagina: Page) 
 const opnames: Record<Scherm, Opname> = {
   // Over de hele lengte, voor de schermvideo.
   h16: { adres: "https://h16.be", volledig: true },
+  // Een projectpagina met echte realisaties, zodat niet alleen de homepage in beeld komt.
+  "h16-project": { adres: "https://h16.be/realisaties/annonciadenstraat-21-stoppelstraat-6", volledig: true },
   lvq: { adres: "https://lvq.wine", volledig: true },
   tourage: { adres: "https://tourage.peleman.io", volledig: true },
   // De echte vraag uit het formulier, met twee keuzes aangevinkt. Er wordt niets verstuurd.

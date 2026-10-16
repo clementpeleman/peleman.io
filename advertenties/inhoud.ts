@@ -18,7 +18,7 @@ export type Sjabloon = "glas" | "gsm" | "prijs" | "aanvraag" | "scherm" | "stapp
 
 // Echte schermen die in beeld mogen: sites van klanten en eigen werk, en het aanvraagformulier van peleman.io.
 // Namen nooit in de tekst; Tourage krijgt in beeld altijd ‘eigen concept’.
-export type Scherm = "h16" | "lvq" | "tourage" | "aanvraag";
+export type Scherm = "h16" | "h16-project" | "lvq" | "tourage" | "aanvraag";
 
 export type Kaart = { kop: string; nummer?: number; titel: [string, string?]; tekst?: string };
 
@@ -29,7 +29,10 @@ export type Advertentie = {
   formaten: Formaat[];
   // Wat in het beeld staat.
   beeld: { kop?: [string, string]; tekst?: string; pil?: string; lijst?: string[]; voetnoot?: string; zinnen?: string[]; slot?: string };
+  // Het echte scherm in beeld. Een tweede scherm is de gsm vooraan bij ‘glas’, de gsm erachter bij ‘gsm’,
+  // en de pagina waar de schermvideo naartoe gaat.
   scherm?: Scherm;
+  scherm2?: Scherm;
   kaarten?: Kaart[];
   // Wat Meta rond het beeld toont.
   hoofdtekst: string;
@@ -63,6 +66,7 @@ export const advertenties: Advertentie[] = [
     formaten: ["staand", "verhaal"],
     beeld: { kop: ["Een website die even goed is", "als jouw werk."] },
     scherm: "h16",
+    scherm2: "h16-project",
     hoofdtekst:
       "Wij maken en onderhouden websites voor zelfstandigen. Je begint met een gratis voorbeeld van je eigen zaak, en pas daarna beslis je.",
     kop: "Eerst een gratis voorbeeld",
@@ -75,7 +79,8 @@ export const advertenties: Advertentie[] = [
     sjabloon: "gsm",
     formaten: ["staand", "verhaal"],
     beeld: { kop: ["Zie eerst hoe jouw zaak", "online kan staan."], tekst: "Een gratis voorbeeld, binnen vijf werkdagen na onze bevestiging." },
-    scherm: "h16",
+    scherm: "h16-project",
+    scherm2: "h16",
     hoofdtekst:
       "Benieuwd hoe jouw werk online kan staan? Vraag een gratis voorbeeld aan. Binnen vijf werkdagen na onze bevestiging zie je een werkende pagina van je eigen zaak.",
     kop: "Je eigen site, eerst gratis bekijken",
@@ -159,6 +164,7 @@ export const advertenties: Advertentie[] = [
       slot: "Vraag je gratis voorbeeld aan.",
     },
     scherm: "h16",
+    scherm2: "h16-project",
     hoofdtekst:
       "Zo kan jouw werk online staan. We maken eerst een gratis voorbeeld van je eigen zaak. Daarna betaal je een vast bedrag per maand, met alles inbegrepen.",
     kop: "Zie hoe jouw site kan worden",
