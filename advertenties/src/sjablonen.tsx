@@ -212,12 +212,16 @@ export const sjablonen: Partial<Record<Sjabloon, ComponentType<BeeldProps>>> = {
   lancering: Lancering,
 };
 
-// Profielbeeld voor Instagram en Facebook: het woordmerk op groen. Instagram knipt het rond.
+// Profielbeeld voor Instagram en Facebook: de p uit het woordmerk, in dezelfde letter. Het hele woordmerk is op die
+// grootte niet te lezen, en de naam staat er toch naast. Iets naar boven geschoven, omdat de staart van de p het
+// zwaartepunt naar onder trekt.
 export function Profielbeeld() {
   return (
     <Kader achtergrond={groen}>
       <AbsoluteFill style={{ display: "grid", placeItems: "center" }}>
-        <Woordmerk op="donker" grootte={168} />
+        <span className="woordmerk" style={{ fontSize: 700, lineHeight: 1, letterSpacing: 0, color: "var(--pio-wit)", transform: "translate(-1%, -13%)" }}>
+          p
+        </span>
       </AbsoluteFill>
     </Kader>
   );
