@@ -1,0 +1,13 @@
+/* Kleuren, letters en klassen van de site, plus de letterbestanden. Op de site laadt next/font ze. */
+@import "../../app/globals.css";
+
+@font-face { font-family: "Bricolage Grotesque"; font-weight: 600; font-display: block; src: url("../../app/fonts/bricolage-grotesque-600.woff") format("woff"); }
+@font-face { font-family: "Bricolage Grotesque"; font-weight: 700; font-display: block; src: url("../../app/fonts/bricolage-grotesque-700.woff") format("woff"); }
+@font-face { font-family: "DM Sans"; font-weight: 400; font-display: block; src: url("../../app/fonts/dm-sans-400.woff") format("woff"); }
+@font-face { font-family: "DM Sans"; font-weight: 500; font-display: block; src: url("../../app/fonts/dm-sans-500.woff") format("woff"); }
+@font-face { font-family: "DM Sans"; font-weight: 600; font-display: block; src: url("../../app/fonts/dm-sans-600.woff") format("woff"); }
+
+:root {
+  --font-bricolage: "Bricolage Grotesque";
+  --font-dm-sans: "DM Sans";
+}

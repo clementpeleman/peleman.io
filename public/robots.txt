@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /aanvraag/bedankt
+Disallow: /advertenties/
 
 Sitemap: https://peleman.io/sitemap.xml
