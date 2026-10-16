@@ -40,7 +40,7 @@ Prijzen komen uit `lib/gegevens.ts`, zodat een advertentie nooit een andere prij
 
 - Alleen echt beeld: echte sites en schermen, het ribbelglas, geen AI-beeld, geen nagemaakte schermen en geen verzonnen klanten.
 - Het ribbelglas hoort over foto’s, niet over tekst. Over tekst wordt het rommelig.
-- Namen van cases niet in de tekst; in een scherm mogen ze zichtbaar zijn. Tourage krijgt in beeld altijd ‘eigen concept’. H16 hoort niet in advertenties.
+- Namen van cases niet in de tekst; in een scherm mogen ze zichtbaar zijn. Tourage krijgt in beeld altijd ‘eigen concept’. H16 mag sinds 16 oktober in beeld in advertenties.
 - Teksten volgen de merkstem: ‘wij’, ‘je’, kort, mild, geen uitroeptekens of gedachtestreepjes, prijzen met ‘excl. btw’. `npm run controle` kijkt dat na.
 - Bij 9:16 blijft tekst uit de bovenste 14% en de onderste 35%: daar liggen de knoppen van Meta.
 - In Meta staat alles eerst op pauze. Aanzetten doet Clément zelf.

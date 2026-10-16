@@ -24,7 +24,7 @@ const verboden = [
   "state of the art", "gegarandeerd", "garantie", "laatste kans", "nummer één", "meer klanten",
   // ‘wij’ en ‘je’, nooit ‘ik’ of ‘u’.
   "ik", "mijn", "u", "uw", "ge",
-  // Cases: namen nooit in de tekst. H16 hoort niet in advertenties.
+  // Cases: namen nooit in de tekst; in beeld mogen ze zichtbaar zijn.
   "h16", "h16.be", "lvq", "lvq.wine", "le vin quotidien", "tourage",
 ];
 
