@@ -1,0 +1,25 @@
+{
+  "name": "peleman-advertenties",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "schermen": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/schermen.ts",
+    "controle": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/controle.ts",
+    "beelden": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/beelden.ts"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.532",
+    "@remotion/cli": "4.0.532",
+    "@remotion/renderer": "4.0.532",
+    "playwright": "1.63.0",
+    "react": "19.2.9",
+    "react-dom": "19.2.9",
+    "remotion": "4.0.532"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19.3.0",
+    "typescript": "5.9.3"
+  }
+}

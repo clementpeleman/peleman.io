@@ -37,6 +37,7 @@ Oude adressen van de vorige site (`/about`, `/contact`, `/case-studies`, …) st
 | `lib/formulier.ts`, `lib/aanvraag-server.ts` | Controle van het formulier, opslag in Twenty en de mails |
 | `app/globals.css` | Merktokens en alle stijl |
 | `public/beeld/` | Beelden van de site |
+| `advertenties/` | Advertentiestudio voor Meta, met een eigen `package.json`. Zie [advertenties/README.md](advertenties/README.md). |
 
 Het ribbelglas is een WebGL-effect van [Paper Shaders](https://shaders.paper.design/fluted-glass) (Apache-2.0). Zonder WebGL blijft de gewone foto staan.
 

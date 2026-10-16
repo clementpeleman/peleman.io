@@ -22,3 +22,8 @@ next-env.d.ts
 # lokale werkmappen
 /docs
 /.playwright-mcp
+
+# advertentiestudio: pakketten, schermafdrukken en renders
+/advertenties/node_modules
+/advertenties/publiek/schermen
+/advertenties/uit

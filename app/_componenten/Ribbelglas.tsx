@@ -2,24 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image, { type StaticImageData } from "next/image";
+import type { Marges } from "@/lib/ribbelglas-shader";
 
-// Ribbelglas van peleman.io (Paper Shaders 0.0.81, Apache-2.0), met de merkinstelling uit merkboek/glas.js.
+// Ribbelglas van peleman.io (Paper Shaders 0.0.81, Apache-2.0). De merkinstelling staat in lib/ribbelglas-shader.ts.
 // Per beeld verschillen alleen de marges: daar blijft de foto scherp.
-const merkinstelling = {
-  shape: "lines",
-  distortionShape: "prism",
-  size: 0.56,
-  distortion: 0.62,
-  shadows: 0.32,
-  colorShadow: "#133D2C",
-  highlights: 0.12,
-  colorHighlight: "#FFFFFF",
-  edges: 0.25,
-  blur: 0,
-} as const;
-
-type Marges = { marginLeft?: number; marginRight?: number; marginTop?: number; marginBottom?: number };
-
 type Props = {
   src: StaticImageData;
   alt: string;
@@ -62,38 +48,7 @@ export function RibbelglasFoto({ src, alt, sizes, preload, marges = {}, classNam
         mount = new glas.ShaderMount(
           el,
           glas.flutedGlassFragmentShader,
-          {
-            u_image: img,
-            u_colorBack: glas.getShaderColorFromString("#00000000"),
-            u_colorShadow: glas.getShaderColorFromString(merkinstelling.colorShadow),
-            u_colorHighlight: glas.getShaderColorFromString(merkinstelling.colorHighlight),
-            u_shadows: merkinstelling.shadows,
-            u_size: merkinstelling.size,
-            u_angle: 0,
-            u_distortion: merkinstelling.distortion,
-            u_shift: 0,
-            u_blur: merkinstelling.blur,
-            u_edges: merkinstelling.edges,
-            u_stretch: 0,
-            u_distortionShape: glas.GlassDistortionShapes[merkinstelling.distortionShape],
-            u_highlights: merkinstelling.highlights,
-            u_shape: glas.GlassGridShapes[merkinstelling.shape],
-            u_marginLeft: marges.marginLeft ?? 0,
-            u_marginRight: marges.marginRight ?? 0,
-            u_marginTop: marges.marginTop ?? 0,
-            u_marginBottom: marges.marginBottom ?? 0,
-            u_grainMixer: 0,
-            u_grainOverlay: 0,
-            u_fit: glas.ShaderFitOptions.cover,
-            u_scale: 1,
-            u_rotation: 0,
-            u_offsetX: 0,
-            u_offsetY: 0,
-            u_originX: 0.5,
-            u_originY: 0.5,
-            u_worldWidth: 0,
-            u_worldHeight: 0,
-          },
+          glas.ribbelglasUniforms(img, marges),
           undefined,
           0,
           0,
