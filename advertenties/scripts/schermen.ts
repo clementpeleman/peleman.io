@@ -15,6 +15,7 @@ type Opname = { adres: string; volledig: boolean; voorbereiden?: (pagina: Page) 
 
 const opnames: Record<Scherm, Opname> = {
   // Over de hele lengte, voor de schermvideo.
+  h16: { adres: "https://h16.be", volledig: true },
   lvq: { adres: "https://lvq.wine", volledig: true },
   tourage: { adres: "https://tourage.peleman.io", volledig: true },
   // De echte vraag uit het formulier, met twee keuzes aangevinkt. Er wordt niets verstuurd.
@@ -22,6 +23,8 @@ const opnames: Record<Scherm, Opname> = {
     adres: `${site}/aanvraag`,
     volledig: false,
     voorbereiden: async (pagina) => {
+      // De cookiebanner van de eigen site wegklikken, met de keuze die het minst meet.
+      await pagina.getByRole("button", { name: "Alles weigeren" }).click({ timeout: 3000 }).catch(() => {});
       await pagina.getByText("Beter tonen wat ik doe").click();
       await pagina.getByText("Betere aanvragen, met de juiste info").click();
       const vraag = pagina.getByText("Wat moet je website beter doen?");
@@ -45,6 +48,13 @@ for (const [naam, opname] of Object.entries(opnames)) {
         await new Promise((klaar) => setTimeout(klaar, 150));
       }
       window.scrollTo(0, 0);
+      // Vaste en klevende balken horen bovenaan de pagina, niet waar het scrollen toevallig stopte.
+      for (const el of document.querySelectorAll<HTMLElement>("body *")) {
+        const positie = getComputedStyle(el).position;
+        // Klevend neemt plaats in de pagina in: dan relatief. Vast neemt geen plaats in: dan absoluut.
+        if (positie === "sticky") el.style.position = "relative";
+        if (positie === "fixed") el.style.position = "absolute";
+      }
     });
   }
   await opname.voorbereiden?.(pagina);

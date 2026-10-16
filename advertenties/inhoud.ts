@@ -18,7 +18,7 @@ export type Sjabloon = "glas" | "gsm" | "prijs" | "aanvraag" | "scherm" | "stapp
 
 // Echte schermen die in beeld mogen: sites van klanten en eigen werk, en het aanvraagformulier van peleman.io.
 // Namen nooit in de tekst; Tourage krijgt in beeld altijd ‘eigen concept’.
-export type Scherm = "lvq" | "tourage" | "aanvraag";
+export type Scherm = "h16" | "lvq" | "tourage" | "aanvraag";
 
 export type Kaart = { kop: string; nummer?: number; titel: [string, string?]; tekst?: string };
 
@@ -62,7 +62,7 @@ export const advertenties: Advertentie[] = [
     sjabloon: "glas",
     formaten: ["staand", "verhaal"],
     beeld: { kop: ["Een website die even goed is", "als jouw werk."] },
-    scherm: "lvq",
+    scherm: "h16",
     hoofdtekst:
       "Wij maken en onderhouden websites voor zelfstandigen. Je begint met een gratis voorbeeld van je eigen zaak, en pas daarna beslis je.",
     kop: "Eerst een gratis voorbeeld",
@@ -75,7 +75,7 @@ export const advertenties: Advertentie[] = [
     sjabloon: "gsm",
     formaten: ["staand", "verhaal"],
     beeld: { kop: ["Zie eerst hoe jouw zaak", "online kan staan."], tekst: "Een gratis voorbeeld, binnen vijf werkdagen na onze bevestiging." },
-    scherm: "lvq",
+    scherm: "h16",
     hoofdtekst:
       "Benieuwd hoe jouw werk online kan staan? Vraag een gratis voorbeeld aan. Binnen vijf werkdagen na onze bevestiging zie je een werkende pagina van je eigen zaak.",
     kop: "Je eigen site, eerst gratis bekijken",
@@ -119,7 +119,7 @@ export const advertenties: Advertentie[] = [
     sjabloon: "scherm",
     formaten: ["staand", "verhaal"],
     beeld: { kop: ["Staat je website nog niet", "op het niveau van je werk?"] },
-    scherm: "lvq",
+    scherm: "h16",
     hoofdtekst:
       "Staat je website nog niet op het niveau van je werk? Dan zetten we dat recht. Wij bouwen je site en houden ze bij, voor een vast bedrag per maand. Eerst zie je een gratis voorbeeld.",
     kop: "Een site die bij je werk past",
@@ -143,7 +143,7 @@ export const advertenties: Advertentie[] = [
       },
       { kop: "Online na zo’n twee weken", nummer: 3, titel: ["Je beslist"], tekst: "Ga je verder, dan staat je site zo’n twee weken later online." },
     ],
-    scherm: "lvq",
+    scherm: "h16",
     hoofdtekst: "Een nieuwe website in drie stappen, met eerst een gratis voorbeeld van je eigen zaak.",
     kop: "Zo werkt het",
     beschrijving: "Websites voor zelfstandigen",
@@ -158,7 +158,7 @@ export const advertenties: Advertentie[] = [
       zinnen: ["Zo kan jouw werk online staan.", "Eerst zie je een gratis voorbeeld van je eigen zaak.", "Daarna een vast bedrag per maand, alles inbegrepen."],
       slot: "Vraag je gratis voorbeeld aan.",
     },
-    scherm: "lvq",
+    scherm: "h16",
     hoofdtekst:
       "Zo kan jouw werk online staan. We maken eerst een gratis voorbeeld van je eigen zaak. Daarna betaal je een vast bedrag per maand, met alles inbegrepen.",
     kop: "Zie hoe jouw site kan worden",

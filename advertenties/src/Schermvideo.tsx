@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AbsoluteFill, continueRender, delayRender, Easing, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import type { Advertentie } from "../inhoud.ts";
-import { Gsm } from "./Gsm";
+import { Gsm, schermen } from "./Gsm";
 import { Kader, OP_GROEN_ZACHT, Woordmerk, vlak } from "./merk";
 
 export const fps = 30;
@@ -32,8 +32,8 @@ export function Schermvideo({ ad, veiligeZone }: { ad: Advertentie; veiligeZone?
   const schermBreedte = breedte - 2 * rand;
   const schermHoogte = (schermBreedte * 1688) / 780;
   const beeldHoogte = hoogte ? (hoogte * schermBreedte) / 780 : schermHoogte;
-  // Niet de hele pagina: de bovenkant en een stuk inhoud, zodat het rustig blijft. Bij LVQ stopt het zo vóór de wijnwinkel.
-  const afstand = Math.max(0, Math.min(beeldHoogte - schermHoogte, schermHoogte * 1.15));
+  // Niet de hele pagina: de bovenkant en een stuk inhoud, zodat het rustig blijft (zie `video` in Gsm.tsx).
+  const afstand = Math.max(0, Math.min(beeldHoogte - schermHoogte, schermHoogte * (schermen[ad.scherm!].video ?? 1.5)));
   const scroll = interpolate(frame, [50, slotStart - 20], [0, afstand], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",

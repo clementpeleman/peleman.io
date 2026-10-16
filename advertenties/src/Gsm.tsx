@@ -1,5 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import { Img, staticFile } from "remotion";
+import h16Desktop from "../../public/beeld/cases/h16-desktop.jpg";
+import h16Gsm from "../../public/beeld/cases/h16-gsm.jpg";
 import lvqDesktop from "../../public/beeld/cases/lvq-desktop.jpg";
 import lvqGsm from "../../public/beeld/cases/lvq-gsm.jpg";
 import tourageDesktop from "../../public/beeld/cases/tourage-desktop.jpg";
@@ -10,10 +12,12 @@ import type { Uitsnede } from "./Ribbelglas";
 
 // Schermafdrukken uit lib/cases.ts (gsm 780×1688, desktop 2000×1250). `fotos` is het deel van het
 // desktopscherm met alleen foto's: daar mag het ribbelglas over. Het aanvraagformulier komt uit `npm run schermen`.
-type SchermBeelden = { beeld: string; desktop?: string; fotos?: Uitsnede; eigenConcept: boolean };
+// `video` is hoeveel gsm-schermen de schermvideo naar onder scrolt: tot waar de pagina nog mooi is.
+type SchermBeelden = { beeld: string; desktop?: string; fotos?: Uitsnede; video?: number; eigenConcept: boolean };
 
 export const schermen: Record<Scherm, SchermBeelden> = {
-  lvq: { beeld: lvqGsm, desktop: lvqDesktop, fotos: { x: 0.04, y: 0.66, breedte: 0.92, hoogte: 0.34 }, eigenConcept: false },
+  h16: { beeld: h16Gsm, desktop: h16Desktop, fotos: { x: 0.1, y: 0.5, breedte: 0.46, hoogte: 0.5 }, video: 2, eigenConcept: false },
+  lvq: { beeld: lvqGsm, desktop: lvqDesktop, fotos: { x: 0.04, y: 0.66, breedte: 0.92, hoogte: 0.34 }, video: 1.15, eigenConcept: false },
   tourage: { beeld: tourageGsm, desktop: tourageDesktop, fotos: { x: 0.48, y: 0.22, breedte: 0.45, hoogte: 0.46 }, eigenConcept: true },
   aanvraag: { beeld: staticFile("schermen/aanvraag.png"), eigenConcept: false },
 };
