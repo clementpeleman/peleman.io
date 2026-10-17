@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { bundle } from "@remotion/bundler";
 import { getCompositions, getVideoMetadata, renderMedia, renderStill } from "@remotion/renderer";
 import { advertenties, bestemming, campagne, formaten, knoppen, url, type Advertentie } from "../inhoud.ts";
+import { postId, posts } from "../posts.ts";
 import { webpackOverride } from "../webpack.ts";
 
 const map = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -53,6 +54,15 @@ for (const a of afmetingen) {
 }
 
 await writeFile(path.join(uit, "overzicht.html"), overzicht());
+// Bijschriften om te kopiëren, in de volgorde van plaatsen.
+await writeFile(
+  path.join(uit, "berichten.txt"),
+  posts
+    .slice()
+    .sort((a, b) => a.volgorde - b.volgorde)
+    .map((p) => `${p.volgorde}. ${postId(p)}.png\n\n${p.bijschrift}\n`)
+    .join("\n------------------------------\n\n"),
+);
 console.log(`\nOverzicht: ${path.relative(process.cwd(), path.join(uit, "overzicht.html"))}`);
 process.exitCode = fout ? 1 : 0;
 
@@ -145,6 +155,10 @@ label { display: inline-flex; gap: 8px; align-items: center; font-weight: 600; c
 .zone { display: none; position: absolute; inset: 0; border: solid rgba(220,38,38,.35); border-width: 14% 7% 35% 7%; border-width: calc(240px * 16 / 9 * .14) calc(240px * .07) calc(240px * 16 / 9 * .35); }
 body.met-zone .zone { display: block; }
 .extra { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+.bijschriften { flex: 1; min-width: 280px; margin: 0; padding-left: 20px; display: grid; gap: 16px; }
+.bijschriften li { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: start; }
+.bijschriften img { width: 72px; border-radius: 4px; }
+.bijschriften p { margin: 0; font-size: 13px; }
 .extra img { display: block; max-width: 100%; border-radius: 8px; }
 .extra .rond { width: 160px; border-radius: 50%; }
 </style>
@@ -159,6 +173,17 @@ body.met-zone .zone { display: block; }
     <label><input type="checkbox" onchange="document.body.classList.toggle('met-zone', this.checked)"> Veilige zone tonen</label>
   </div>
   ${advertenties.map(kaart).join("")}
+  <section class="advertentie">
+    <header class="info"><h2>Instagram: startraster</h2><p>Negen gewone berichten. Plaats ze van 1 tot 9; het laatste komt linksboven. Het raster toont ze als 3:4. Bijschriften staan ook in berichten.txt.</p></header>
+    <div class="rij" style="margin-top:20px">
+      <img src="berichten-raster.png" alt="" style="width:min(420px,100%);border-radius:8px">
+      <ol class="bijschriften">${posts
+        .slice()
+        .sort((a, b) => a.volgorde - b.volgorde)
+        .map((p) => `<li><a href="${postId(p)}.png"><img src="${postId(p)}.png" alt=""></a><p>${html(p.bijschrift).replace(/\n/g, "<br>")}</p></li>`)
+        .join("")}</ol>
+    </div>
+  </section>
   <section class="advertentie">
     <header class="info"><h2>Profiel</h2><p>Profielbeeld voor Instagram en Facebook, omslag voor de Facebook-pagina.</p></header>
     <div class="extra" style="margin-top:20px"><img class="rond" src="profielbeeld.png" alt=""><img src="omslag-facebook.png" alt="" style="width:min(640px,100%)"></div>

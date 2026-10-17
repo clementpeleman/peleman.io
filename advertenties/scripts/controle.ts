@@ -1,6 +1,7 @@
 // Kijkt elke advertentie na op lengtes van Meta, de merkstem (docs/brand/website-abonnement/11-merkstem.md)
 // en de afspraken over cases. Fouten stoppen met code 1; ‘nakijken’ is een woord dat soms mag.
-import { advertenties, type Advertentie } from "../inhoud.ts";
+import { advertenties, type Advertentie, type Beeldinhoud } from "../inhoud.ts";
+import { posts } from "../posts.ts";
 
 type Melding = { id: string; veld: string; soort: "fout" | "nakijken"; tekst: string };
 
@@ -35,12 +36,11 @@ function woord(tekst: string, w: string) {
   return new RegExp(`(^|[^\\p{L}\\p{N}])${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|[^\\p{L}\\p{N}])`, "iu").test(tekst);
 }
 
-function velden(a: Advertentie): [string, string][] {
-  const lijst: [string, string][] = [
-    ["hoofdtekst", a.hoofdtekst],
-    ["kop", a.kop],
-    ["beschrijving", a.beschrijving],
-  ];
+function velden(a: Beeldinhoud & Partial<Advertentie> & { bijschrift?: string }): [string, string][] {
+  const lijst: [string, string][] = [];
+  if (a.hoofdtekst) lijst.push(["hoofdtekst", a.hoofdtekst], ["kop", a.kop!], ["beschrijving", a.beschrijving!]);
+  // Een bijschrift is lopende tekst met witregels en hashtags; die tellen niet als woorden of dubbele spaties.
+  if (a.bijschrift) lijst.push(["bijschrift", a.bijschrift.replace(/\n+/g, " ").replace(/#\S+/g, "").trim()]);
   const b = a.beeld;
   if (b.kop) lijst.push(["beeld.kop", b.kop.join(" ")]);
   for (const [naam, waarde] of [["beeld.tekst", b.tekst], ["beeld.pil", b.pil], ["beeld.voetnoot", b.voetnoot], ["beeld.slot", b.slot]] as const) {
@@ -97,9 +97,21 @@ for (const a of advertenties) {
   }
 }
 
+for (const p of posts) {
+  const m = (veld: string, soort: Melding["soort"], tekst: string) => meldingen.push({ id: `post-${p.volgorde}`, veld, soort, tekst });
+  if (p.bijschrift.length > 2200) m("bijschrift", "fout", `${p.bijschrift.length} tekens, Instagram toont hooguit 2200`);
+  const hashtags = p.bijschrift.match(/#\S+/g) ?? [];
+  if (hashtags.length > 5) m("bijschrift", "nakijken", `${hashtags.length} hashtags; hou het bij vijf`);
+  for (const [veld, tekst] of velden(p)) {
+    for (const [patroon, wat] of tekens) if (patroon.test(tekst)) m(veld, "fout", wat);
+    for (const w of verboden) if (woord(tekst, w)) m(veld, "fout", `‘${w}’ hoort niet in een bericht`);
+    if (/€\s?\d/.test(tekst) && !/btw/.test(tekst) && veld !== "beeld.kop") m(veld, "fout", "prijs zonder ‘excl. btw’");
+  }
+}
+
 const fouten = meldingen.filter((x) => x.soort === "fout");
 for (const x of meldingen) console.log(`${x.soort === "fout" ? "FOUT    " : "nakijken"}  ${x.id.padEnd(18)} ${x.veld.padEnd(16)} ${x.tekst}`);
-console.log(`\n${advertenties.length} advertenties, ${fouten.length} fouten, ${meldingen.length - fouten.length} om na te kijken.`);
+console.log(`\n${advertenties.length} advertenties en ${posts.length} berichten, ${fouten.length} fouten, ${meldingen.length - fouten.length} om na te kijken.`);
 for (const a of advertenties) {
   const zichtbaar = a.hoofdtekst.length > 125 ? `${a.hoofdtekst.slice(0, 125).trimEnd()}… (meer)` : a.hoofdtekst;
   console.log(`\n${a.id}\n  voor ‘meer’: ${zichtbaar}`);

@@ -1,7 +1,8 @@
 import { Composition, Folder, Still } from "remotion";
 import { advertenties, formaten } from "../inhoud.ts";
+import { postId, posts } from "../posts.ts";
 import { Schermvideo, fps, videoDuur } from "./Schermvideo";
-import { Omslag, Profielbeeld, Stappen, sjablonen } from "./sjablonen";
+import { Omslag, Profielbeeld, Raster, Stappen, sjablonen } from "./sjablonen";
 
 // Eén compositie per advertentie en formaat. De id wordt de bestandsnaam in uit/.
 export function Root() {
@@ -44,6 +45,19 @@ export function Root() {
             ))}
         </Folder>
       ))}
+      <Folder name="berichten">
+        {posts.map((p) => (
+          <Still
+            key={p.id}
+            id={postId(p)}
+            component={sjablonen[p.sjabloon]!}
+            width={formaten.staand.breedte}
+            height={formaten.staand.hoogte}
+            defaultProps={{ ad: p, formaat: "staand" as const, veiligeZone: false }}
+          />
+        ))}
+        <Still id="berichten-raster" component={Raster} width={1080} height={1437} />
+      </Folder>
       <Folder name="profiel">
         <Still id="profielbeeld" component={Profielbeeld} width={1080} height={1080} />
         <Still id="omslag-facebook" component={Omslag} width={1640} height={624} />

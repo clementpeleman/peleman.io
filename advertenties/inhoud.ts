@@ -14,7 +14,7 @@ export const formaten: Record<Formaat, { breedte: number; hoogte: number; naam: 
 export const knoppen = { LEARN_MORE: "Meer informatie", GET_QUOTE: "Offerte aanvragen" } as const;
 export type Knop = keyof typeof knoppen;
 
-export type Sjabloon = "glas" | "gsm" | "prijs" | "aanvraag" | "scherm" | "stappen" | "schermvideo" | "lancering";
+export type Sjabloon = "glas" | "gsm" | "prijs" | "aanvraag" | "scherm" | "stappen" | "schermvideo" | "lancering" | "tekst" | "lijst";
 
 // Echte schermen die in beeld mogen: sites van klanten en eigen werk, en het aanvraagformulier van peleman.io.
 // Namen nooit in de tekst; Tourage krijgt in beeld altijd ‘eigen concept’.
@@ -22,18 +22,23 @@ export type Scherm = "h16" | "h16-project" | "lvq" | "tourage" | "aanvraag";
 
 export type Kaart = { kop: string; nummer?: number; titel: [string, string?]; tekst?: string };
 
-export type Advertentie = {
+// Wat in het beeld staat. Gedeeld door advertenties en gewone berichten (posts.ts).
+export type Beeldinhoud = {
   id: string;
-  hoek: string;
   sjabloon: Sjabloon;
-  formaten: Formaat[];
-  // Wat in het beeld staat.
   beeld: { kop?: [string, string]; tekst?: string; pil?: string; lijst?: string[]; voetnoot?: string; zinnen?: string[]; slot?: string };
   // Het echte scherm in beeld. Een tweede scherm is de gsm vooraan bij ‘glas’, de gsm erachter bij ‘gsm’,
   // en de pagina waar de schermvideo naartoe gaat.
   scherm?: Scherm;
   scherm2?: Scherm;
   kaarten?: Kaart[];
+  // Een knop ‘Gratis voorbeeld’ onderaan het beeld. Niet in gewone berichten: daar kan niemand op klikken.
+  knopInBeeld?: boolean;
+};
+
+export type Advertentie = Beeldinhoud & {
+  hoek: string;
+  formaten: Formaat[];
   // Wat Meta rond het beeld toont.
   hoofdtekst: string;
   kop: string;
