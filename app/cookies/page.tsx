@@ -33,6 +33,11 @@ export default function Cookies() {
         maanden lang, zodat we het niet bij elke pagina opnieuw vragen.
       </p>
       <p>
+        <strong>Zonder cookies</strong> tellen we bezoeken met Umami, op onze eigen server. Umami plaatst niets op je toestel en slaat
+        je IP-adres niet op. We zien alleen geteld bezoek: welke pagina’s gelezen worden, van welke site je kwam, welk soort
+        toestel en uit welk land.
+      </p>
+      <p>
         <strong>Met je toestemming</strong> gebruiken we Google Analytics om te zien welke pagina’s bezocht worden, en de Meta-pixel
         om te zien welke advertenties tot een aanvraag leiden.
         {!meetActief && " Op dit moment staan die nog niet aan."}

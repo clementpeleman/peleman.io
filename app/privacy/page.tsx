@@ -37,7 +37,8 @@ export default function Privacy() {
         </li>
         <li>
           <strong>Als je onze site bezoekt:</strong> technische gegevens die nodig zijn om de site te tonen, zoals je IP-adres in de
-          logboeken van onze hosting. Meetgegevens via cookies alleen met je toestemming; zie ons <Link href="/cookies">cookiebeleid</Link>.
+          logboeken van onze hosting. We tellen bezoeken met Umami, op onze eigen server: zonder cookies en zonder je IP-adres
+          op te slaan. Meetgegevens via cookies alleen met je toestemming; zie ons <Link href="/cookies">cookiebeleid</Link>.
         </li>
       </ul>
 
@@ -47,6 +48,7 @@ export default function Privacy() {
         <li>Je website bouwen, onderhouden en factureren: om onze overeenkomst uit te voeren.</li>
         <li>Facturen en boekhouding bewaren: omdat de wet dat vraagt.</li>
         <li>De site veilig houden en spam weren: ons gerechtvaardigd belang.</li>
+        <li>Bezoek tellen met Umami, zonder cookies: ons gerechtvaardigd belang, om te weten welke pagina’s gelezen worden.</li>
         <li>Bezoek meten en advertenties verbeteren: alleen met je toestemming, die je altijd kan intrekken.</li>
       </ul>
 
