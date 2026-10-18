@@ -1,11 +1,7 @@
-# Meta haalt de advertentiebeelden in /advertenties/ op voor de advertenties. Google blijft daar buiten.
-User-agent: facebookexternalhit
-Allow: /
-Disallow: /aanvraag/bedankt
-
+# /advertenties/ staat open, zodat Meta de advertentiebeelden kan ophalen. Een X-Robots-Tag-header (next.config.js)
+# houdt ze uit de zoekresultaten.
 User-agent: *
 Allow: /
 Disallow: /aanvraag/bedankt
-Disallow: /advertenties/
 
 Sitemap: https://peleman.io/sitemap.xml
