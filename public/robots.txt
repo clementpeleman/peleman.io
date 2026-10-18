@@ -1,3 +1,8 @@
+# Meta haalt de advertentiebeelden in /advertenties/ op voor de advertenties. Google blijft daar buiten.
+User-agent: facebookexternalhit
+Allow: /
+Disallow: /aanvraag/bedankt
+
 User-agent: *
 Allow: /
 Disallow: /aanvraag/bedankt
