@@ -3,6 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   // Next 16 laat standaard alleen kwaliteit 75 toe; het ribbelglas gebruikt 55.
   images: { qualities: [55, 75] },
+  // De advertentiebeelden moeten ophaalbaar zijn voor Meta, maar horen niet in de zoekresultaten van Google.
+  async headers() {
+    return [{ source: "/advertenties/:pad*", headers: [{ key: "X-Robots-Tag", value: "noindex" }] }];
+  },
   // Pagina's van de vorige site. Tijdelijk (307) waar later een eigen pagina komt, permanent waar die vervangen is.
   async redirects() {
     return [
