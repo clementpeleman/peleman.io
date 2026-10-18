@@ -193,4 +193,47 @@ export const advertenties: Advertentie[] = [
     beschrijving: "Voor de eerste drie zaken",
     knop: "LEARN_MORE",
   },
+  // Ronde 2 (18 oktober): uiterlijk als bewijs, en wat een zelfstandige elders niet krijgt.
+  {
+    id: "wat-je-krijgt",
+    hoek: "Wat je krijgt voor de laagste prijs",
+    sjabloon: "lijst",
+    formaten: ["staand", "verhaal"],
+    beeld: {
+      pil: "Alles inbegrepen, excl. btw",
+      kop: ["Wat je krijgt", `voor €${laagstePrijs} per maand.`],
+      lijst: ["Ontwerp en bouw", "Hosting en updates", "Elke maand aanpassingen", "Je domein op jouw naam", "Eén vast aanspreekpunt"],
+    },
+    hoofdtekst: `Vanaf €${laagstePrijs} per maand, excl. btw, maken en onderhouden wij je website. Geen bedrag vooraf, en je ziet je eigen site eerst gratis.`,
+    kop: `Alles inbegrepen, vanaf €${laagstePrijs} per maand`,
+    beschrijving: "Prijzen excl. btw",
+    knop: "LEARN_MORE",
+  },
+  {
+    id: "eerste-indruk",
+    hoek: "Online maak je de eerste indruk",
+    sjabloon: "gsm",
+    formaten: ["staand", "verhaal"],
+    beeld: { kop: ["Online maak je", "de eerste indruk."], tekst: "Wij zorgen dat die meteen klopt. Je ziet je eigen site eerst gratis." },
+    scherm: "h16",
+    scherm2: "h16-project",
+    hoofdtekst:
+      "Voor veel klanten is je website de eerste kennismaking met je zaak. Wij zorgen dat die meteen toont wat je kan. Je ziet je eigen site eerst gratis, en pas daarna beslis je.",
+    kop: "Een eerste indruk die klopt",
+    beschrijving: "Gratis voorbeeld eerst",
+    knop: "LEARN_MORE",
+  },
+  {
+    id: "aanpassing",
+    hoek: "Een aanpassing staat binnen vijf werkdagen online, altijd via dezelfde persoon",
+    sjabloon: "tekst",
+    formaten: ["staand", "verhaal"],
+    beeld: { kop: ["Je site aanpassen?", "Binnen vijf werkdagen online."], tekst: "Altijd via dezelfde persoon, inbegrepen in je maandprijs." },
+    scherm: "h16",
+    hoofdtekst:
+      "Wij maken en onderhouden je website. Wil je iets aanpassen, dan mail of bel je altijd dezelfde persoon, en staat het binnen vijf werkdagen online. Dat zit in je maandprijs. Je begint met een gratis voorbeeld.",
+    kop: "Aanpassingen inbegrepen",
+    beschrijving: "Eén vast aanspreekpunt",
+    knop: "LEARN_MORE",
+  },
 ];

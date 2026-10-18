@@ -26,6 +26,10 @@ export default function Privacy() {
           bezocht en de site die naar ons verwees.
         </li>
         <li>
+          <strong>Als je een voorbeeld aanvraagt via een formulier in een advertentie op Facebook of Instagram:</strong> dezelfde
+          gegevens, die je zelf in het formulier invult. Meta bezorgt ze ons, en verwerkt ze daarvoor ook zelf.
+        </li>
+        <li>
           <strong>Als je ons mailt of belt:</strong> wat je ons zelf meedeelt.
         </li>
         <li>
@@ -57,7 +61,8 @@ export default function Privacy() {
       <p>
         We verkopen je gegevens nooit. We werken met een paar dienstverleners die gegevens alleen in onze opdracht verwerken: onze
         hostingpartner, onze e-mailprovider, Twenty voor ons klantenbeheer en, alleen met je toestemming, Google (Analytics) en
-        Meta (advertenties). Met wie dat nodig is, sluiten we een verwerkersovereenkomst.
+        Meta (advertenties). Vraag je een voorbeeld aan via een formulier van Meta, dan loopt je aanvraag ook via Meta. Met wie dat
+        nodig is, sluiten we een verwerkersovereenkomst.
       </p>
       <p>
         Google en Meta kunnen gegevens buiten de Europese Economische Ruimte verwerken, onder meer in de Verenigde Staten. Dat
