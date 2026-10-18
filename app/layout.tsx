@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 import { Beweging } from "./_componenten/Beweging";
 import { Meting } from "./_componenten/Meting";
@@ -54,6 +55,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Beweging />
         <Toestemming />
         <Meting />
+        {/* Umami op analytics.peleman.io: zonder cookies. Alleen in productie, zodat lokale bezoeken niet meetellen. */}
+        {process.env.NODE_ENV === "production" && (
+          <Script defer src="https://analytics.peleman.io/script.js" data-website-id="9c2f83d8-3c33-480b-b81d-d048f3332b8c" />
+        )}
       </body>
     </html>
   );
