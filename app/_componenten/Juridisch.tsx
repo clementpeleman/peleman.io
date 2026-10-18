@@ -2,7 +2,7 @@ import { contact } from "@/lib/gegevens";
 import { Navigatie, Voettekst } from "./kader";
 
 // Concepten, op te maken door Claude en na te lezen door een jurist vóór de livegang (doc 06).
-export const bijgewerkt = "13 oktober 2026";
+export const bijgewerkt = "18 oktober 2026";
 
 export function Onderneming() {
   return (

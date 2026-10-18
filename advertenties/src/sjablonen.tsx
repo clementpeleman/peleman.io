@@ -1,12 +1,13 @@
 import type { ComponentType } from "react";
 import { AbsoluteFill, Img } from "remotion";
 import ribbelglasFoto from "../../public/beeld/ribbelglas.jpg";
-import type { Advertentie, Formaat, Sjabloon } from "../inhoud.ts";
+import type { Beeldinhoud, Formaat, Sjabloon } from "../inhoud.ts";
+import { posts } from "../posts.ts";
 import { Desktop, GsmMetScherm, schermen } from "./Gsm";
 import { Kader, Kop, Lijst, OP_GROEN_ZACHT, Pil, Voet, Woordmerk, vlak } from "./merk";
 import { Ribbelglas } from "./Ribbelglas";
 
-export type BeeldProps = { ad: Advertentie; formaat: Formaat; veiligeZone?: boolean };
+export type BeeldProps = { ad: Beeldinhoud; formaat: Formaat; veiligeZone?: boolean };
 
 const groen = "var(--pio-groen)";
 const groengrijs = "var(--pio-groengrijs)";
@@ -42,7 +43,7 @@ function Glas({ ad, formaat, veiligeZone }: BeeldProps) {
       >
         {verhaal && <Woordmerk op="donker" />}
         <Kop regels={ad.beeld.kop!} op="donker" grootte={verhaal ? 92 : 80} />
-        {!verhaal && <Voet op="donker" />}
+        {!verhaal && <Voet op="donker" knop={ad.knopInBeeld !== false} />}
       </div>
     </Kader>
   );
@@ -104,7 +105,7 @@ function Prijs({ ad, formaat, veiligeZone }: BeeldProps) {
           <p style={{ marginTop: 6, fontSize: 30, color: OP_GROEN_ZACHT }}>{ad.beeld.voetnoot}</p>
         </div>
         <Lijst regels={ad.beeld.lijst!} op="donker" grootte={38} />
-        {!verhaal && <Voet op="donker" />}
+        {!verhaal && <Voet op="donker" knop={ad.knopInBeeld !== false} />}
       </div>
     </Kader>
   );
@@ -164,14 +165,14 @@ function Lancering({ ad, formaat, veiligeZone }: BeeldProps) {
             <p style={{ fontSize: 26, color: OP_GROEN_ZACHT }}>{ad.beeld.voetnoot}</p>
           </div>
         </div>
-        {!verhaal && <Voet />}
+        {!verhaal && <Voet knop={ad.knopInBeeld !== false} />}
       </div>
     </Kader>
   );
 }
 
 // Carrousel: één kaart per stap, 1:1.
-export function Stappen({ ad, kaart: index, veiligeZone }: { ad: Advertentie; kaart: number; veiligeZone?: boolean }) {
+export function Stappen({ ad, kaart: index, veiligeZone }: { ad: Beeldinhoud; kaart: number; veiligeZone?: boolean }) {
   const v = vlak("vierkant");
   const kaart = ad.kaarten![index];
   const totaal = ad.kaarten!.filter((k) => k.nummer).length;
@@ -210,6 +211,51 @@ export function Stappen({ ad, kaart: index, veiligeZone }: { ad: Advertentie; ka
   );
 }
 
+// Een uitspraak op groen, met ribbelglas ernaast: over de foto's van een echte site, of de foto van het ribbelglas zelf.
+function Tekst({ ad, formaat, veiligeZone }: BeeldProps) {
+  const v = vlak(formaat);
+  const s = ad.scherm ? schermen[ad.scherm] : null;
+  return (
+    <Kader achtergrond={groen} formaat={formaat} veiligeZone={veiligeZone}>
+      {s?.desktop ? (
+        <Ribbelglas src={s.desktop} uitsnede={s.fotos} style={{ top: 0, bottom: 0, right: 0, width: 560 }} />
+      ) : (
+        <Img src={ribbelglasFoto} style={{ position: "absolute", top: 0, right: 0, height: "100%", width: 640, objectFit: "cover" }} />
+      )}
+      <AbsoluteFill style={{ background: "linear-gradient(90deg, #133d2c 48%, rgba(19,61,44,0.05))" }} />
+      <div style={{ position: "absolute", inset: `${v.top}px ${v.right}px ${v.bottom}px ${v.left}px`, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        <Woordmerk op="donker" />
+        <div>
+          <Kop regels={ad.beeld.kop!} op="donker" grootte={100} style={{ maxWidth: 760 }} />
+          {ad.beeld.tekst && <p style={{ marginTop: 36, fontSize: 36, lineHeight: 1.4, color: "var(--pio-op-groen-zacht)", maxWidth: 640 }}>{ad.beeld.tekst}</p>}
+        </div>
+        <span />
+      </div>
+    </Kader>
+  );
+}
+
+// Wat erin zit, als lijst op groen, met de foto van het ribbelglas onderaan.
+function Lijstbeeld({ ad, formaat, veiligeZone }: BeeldProps) {
+  const v = vlak(formaat);
+  return (
+    <Kader achtergrond={groen} formaat={formaat} veiligeZone={veiligeZone}>
+      <Img src={ribbelglasFoto} style={{ position: "absolute", left: 0, right: 0, bottom: 0, width: "100%", height: "46%", objectFit: "cover", objectPosition: "50% 60%" }} />
+      <AbsoluteFill style={{ background: "linear-gradient(180deg, #133d2c 58%, rgba(19,61,44,0.25))" }} />
+      <div style={{ position: "absolute", inset: `${v.top}px ${v.right}px ${v.bottom}px ${v.left}px`, display: "flex", flexDirection: "column" }}>
+        <Woordmerk op="donker" />
+        <div style={{ marginTop: 64 }}>
+          <Pil op="donker">{ad.beeld.pil}</Pil>
+          <Kop regels={ad.beeld.kop!} op="donker" grootte={92} style={{ marginTop: 32 }} />
+        </div>
+        <div style={{ marginTop: 56 }}>
+          <Lijst regels={ad.beeld.lijst!} op="donker" grootte={40} />
+        </div>
+      </div>
+    </Kader>
+  );
+}
+
 export const sjablonen: Partial<Record<Sjabloon, ComponentType<BeeldProps>>> = {
   glas: Glas,
   gsm: GsmBeeld,
@@ -217,6 +263,8 @@ export const sjablonen: Partial<Record<Sjabloon, ComponentType<BeeldProps>>> = {
   aanvraag: Aanvraag,
   scherm: Scherm,
   lancering: Lancering,
+  tekst: Tekst,
+  lijst: Lijstbeeld,
 };
 
 // Profielbeeld voor Instagram en Facebook: de p uit het woordmerk, in dezelfde letter. Het hele woordmerk is op die
@@ -247,3 +295,26 @@ export function Omslag() {
   );
 }
 
+
+// Zo ziet het profiel eruit: Instagram toont berichten in het raster als 3:4 en knipt een 4:5-bericht links en rechts bij.
+// Het laatste bericht staat linksboven.
+export function Raster() {
+  const tegel = { breedte: 358, hoogte: 477 };
+  const schaal = tegel.hoogte / 1350;
+  const opschuiven = (1080 * schaal - tegel.breedte) / 2;
+  const volgorde = [...posts].sort((a, b) => b.volgorde - a.volgorde);
+  return (
+    <AbsoluteFill style={{ background: "#ffffff", display: "grid", gridTemplateColumns: `repeat(3, ${tegel.breedte}px)`, gridAutoRows: `${tegel.hoogte}px`, gap: 3 }}>
+      {volgorde.map((p) => {
+        const Sjabloon = sjablonen[p.sjabloon]!;
+        return (
+          <div key={p.id} style={{ position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", width: 1080, height: 1350, left: -opschuiven, transform: `scale(${schaal})`, transformOrigin: "0 0" }}>
+              <Sjabloon ad={p} formaat="staand" />
+            </div>
+          </div>
+        );
+      })}
+    </AbsoluteFill>
+  );
+}

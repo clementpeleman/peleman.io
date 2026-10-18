@@ -26,7 +26,8 @@ Het overzicht toont elke advertentie zoals in de feed, met de 9:16-versie ernaas
 | Bestand | Inhoud |
 | --- | --- |
 | `inhoud.ts` | Alle advertenties: hoek, sjabloon, formaten, tekst in en rond het beeld, knop. De id is ook de `utm_content`. Campagne en bestemming staan bovenaan. |
-| `src/sjablonen.tsx` | De sjablonen: glas, gsm, prijs, aanvraag, scherm, lancering, de carrousel en het profielbeeld en de omslag |
+| `posts.ts` | Gewone Instagram-berichten: het startraster van negen, met bijschriften. Zelfde sjablonen, zonder knop in het beeld. `npm run beelden` maakt ook `uit/berichten-raster.png` (zo ziet het profiel eruit) en `uit/berichten.txt` (bijschriften om te kopiëren). |
+| `src/sjablonen.tsx` | De sjablonen: glas, gsm, prijs, aanvraag, scherm, lancering, tekst, lijst, de carrousel, het raster van berichten, het profielbeeld en de omslag |
 | `src/Schermvideo.tsx` | Video van een echte site die scrolt op een gsm, met ondertitels |
 | `src/merk.tsx`, `src/merk.css` | Woordmerk, kop, knop, lijst, kader en de veilige zone. Haalt `app/globals.css` en de letters van de site binnen. |
 | `src/Ribbelglas.tsx` | Het glas, met de merkinstelling uit `lib/ribbelglas-shader.ts` |

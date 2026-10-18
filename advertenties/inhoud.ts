@@ -14,7 +14,7 @@ export const formaten: Record<Formaat, { breedte: number; hoogte: number; naam: 
 export const knoppen = { LEARN_MORE: "Meer informatie", GET_QUOTE: "Offerte aanvragen" } as const;
 export type Knop = keyof typeof knoppen;
 
-export type Sjabloon = "glas" | "gsm" | "prijs" | "aanvraag" | "scherm" | "stappen" | "schermvideo" | "lancering";
+export type Sjabloon = "glas" | "gsm" | "prijs" | "aanvraag" | "scherm" | "stappen" | "schermvideo" | "lancering" | "tekst" | "lijst";
 
 // Echte schermen die in beeld mogen: sites van klanten en eigen werk, en het aanvraagformulier van peleman.io.
 // Namen nooit in de tekst; Tourage krijgt in beeld altijd ‘eigen concept’.
@@ -22,18 +22,23 @@ export type Scherm = "h16" | "h16-project" | "lvq" | "tourage" | "aanvraag";
 
 export type Kaart = { kop: string; nummer?: number; titel: [string, string?]; tekst?: string };
 
-export type Advertentie = {
+// Wat in het beeld staat. Gedeeld door advertenties en gewone berichten (posts.ts).
+export type Beeldinhoud = {
   id: string;
-  hoek: string;
   sjabloon: Sjabloon;
-  formaten: Formaat[];
-  // Wat in het beeld staat.
   beeld: { kop?: [string, string]; tekst?: string; pil?: string; lijst?: string[]; voetnoot?: string; zinnen?: string[]; slot?: string };
   // Het echte scherm in beeld. Een tweede scherm is de gsm vooraan bij ‘glas’, de gsm erachter bij ‘gsm’,
   // en de pagina waar de schermvideo naartoe gaat.
   scherm?: Scherm;
   scherm2?: Scherm;
   kaarten?: Kaart[];
+  // Een knop ‘Gratis voorbeeld’ onderaan het beeld. Niet in gewone berichten: daar kan niemand op klikken.
+  knopInBeeld?: boolean;
+};
+
+export type Advertentie = Beeldinhoud & {
+  hoek: string;
+  formaten: Formaat[];
   // Wat Meta rond het beeld toont.
   hoofdtekst: string;
   kop: string;
@@ -186,6 +191,49 @@ export const advertenties: Advertentie[] = [
     hoofdtekst: `Voor de eerste drie zaken: ${groei.naam} een jaar lang aan €${lanceringsprijs} per maand in plaats van €${groei.prijs}, excl. btw. In ruil maken we samen een case met foto’s en een review. Je begint met een gratis voorbeeld.`,
     kop: `Eerste jaar ${groei.naam} aan €${lanceringsprijs} per maand`,
     beschrijving: "Voor de eerste drie zaken",
+    knop: "LEARN_MORE",
+  },
+  // Ronde 2 (18 oktober): uiterlijk als bewijs, en wat een zelfstandige elders niet krijgt.
+  {
+    id: "wat-je-krijgt",
+    hoek: "Wat je krijgt voor de laagste prijs",
+    sjabloon: "lijst",
+    formaten: ["staand", "verhaal"],
+    beeld: {
+      pil: "Alles inbegrepen, excl. btw",
+      kop: ["Wat je krijgt", `voor €${laagstePrijs} per maand.`],
+      lijst: ["Ontwerp en bouw", "Hosting en updates", "Elke maand aanpassingen", "Je domein op jouw naam", "Eén vast aanspreekpunt"],
+    },
+    hoofdtekst: `Vanaf €${laagstePrijs} per maand, excl. btw, maken en onderhouden wij je website. Geen bedrag vooraf, en je ziet je eigen site eerst gratis.`,
+    kop: `Alles inbegrepen, vanaf €${laagstePrijs} per maand`,
+    beschrijving: "Prijzen excl. btw",
+    knop: "LEARN_MORE",
+  },
+  {
+    id: "eerste-indruk",
+    hoek: "Online maak je de eerste indruk",
+    sjabloon: "gsm",
+    formaten: ["staand", "verhaal"],
+    beeld: { kop: ["Online maak je", "de eerste indruk."], tekst: "Wij zorgen dat die meteen klopt. Je ziet je eigen site eerst gratis." },
+    scherm: "h16",
+    scherm2: "h16-project",
+    hoofdtekst:
+      "Voor veel klanten is je website de eerste kennismaking met je zaak. Wij zorgen dat die meteen toont wat je kan. Je ziet je eigen site eerst gratis, en pas daarna beslis je.",
+    kop: "Een eerste indruk die klopt",
+    beschrijving: "Gratis voorbeeld eerst",
+    knop: "LEARN_MORE",
+  },
+  {
+    id: "aanpassing",
+    hoek: "Een aanpassing staat binnen vijf werkdagen online, altijd via dezelfde persoon",
+    sjabloon: "tekst",
+    formaten: ["staand", "verhaal"],
+    beeld: { kop: ["Je site aanpassen?", "Binnen vijf werkdagen online."], tekst: "Altijd via dezelfde persoon, inbegrepen in je maandprijs." },
+    scherm: "h16",
+    hoofdtekst:
+      "Wij maken en onderhouden je website. Wil je iets aanpassen, dan mail of bel je altijd dezelfde persoon, en staat het binnen vijf werkdagen online. Dat zit in je maandprijs. Je begint met een gratis voorbeeld.",
+    kop: "Aanpassingen inbegrepen",
+    beschrijving: "Eén vast aanspreekpunt",
     knop: "LEARN_MORE",
   },
 ];
