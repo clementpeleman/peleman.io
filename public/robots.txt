@@ -1,4 +1,4 @@
-# /advertenties/ staat open, zodat Meta de advertentiebeelden kan ophalen. Een X-Robots-Tag-header (next.config.js)
+# /beeld/advertenties/ staat open, zodat Meta de advertentiebeelden kan ophalen. Een X-Robots-Tag-header (next.config.js)
 # houdt ze uit de zoekresultaten.
 User-agent: *
 Allow: /

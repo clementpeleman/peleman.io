@@ -12,7 +12,7 @@ npm install
 npm run schermen   # echte schermen vastleggen zoals op een gsm (gebruikt Google Chrome)
 npm run controle   # teksten nakijken
 npm run beelden    # alles renderen naar uit/, met uit/overzicht.html
-npm run publiceer  # goedgekeurde beelden naar public/advertenties/<campagne>/ voor de Meta-connector
+npm run publiceer  # goedgekeurde beelden naar public/beeld/advertenties/<campagne>/ voor de Meta-connector
 ```
 
 `npm run schermen` haalt ook het echte aanvraagformulier op. Laat de site daarvoor draaien op poort 3100 (`npm run build && npm start -- -p 3100` in de root), of geef een ander adres mee met `SITE=…`.
