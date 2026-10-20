@@ -3,7 +3,7 @@
 FROM node:22-alpine AS pakketten
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN --mount=type=cache,target=/root/.npm npm ci
 
 FROM node:22-alpine AS bouw
 WORKDIR /app
@@ -14,7 +14,8 @@ ARG NEXT_PUBLIC_META_PIXEL_ID
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY --from=pakketten /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+# De buildcache van Next blijft tussen deploys bewaard; zonder die cache doet de server er minuten over.
+RUN --mount=type=cache,target=/app/.next/cache npm run build
 
 FROM node:22-alpine
 WORKDIR /app
