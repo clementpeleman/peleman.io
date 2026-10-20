@@ -1,16 +1,12 @@
 // Velden en controle van het aanvraagformulier (doc 13). Gedeeld door het formulier en de serveractie.
 
-export const beroepen = [
-  "Schrijnwerk of interieurbouw",
-  "Keukens op maat",
-  "Tuinaanleg",
-  "Interieurarchitect",
-  "Feestzaal",
-  "Cateraar",
-  "Advocaat",
-  "Dierenarts",
-  "Ander",
-];
+// Het beroep typt de aanvrager zelf in. Een vakpagina kan het al invullen via ?beroep=.
+export const beroepMax = 60;
+
+export function leesBeroep(waarde: unknown) {
+  const beroep = typeof waarde === "string" ? waarde.trim().slice(0, beroepMax) : "";
+  return beroep.length >= 2 ? beroep : undefined;
+}
 
 export const doelen = [
   "Beter tonen wat ik doe",
@@ -54,7 +50,7 @@ function tekst(gegevens: FormData, sleutel: string, max: number) {
 export function leesAanvraag(gegevens: FormData): { aanvraag?: Aanvraag; status: FormStatus } {
   const waarden: Waarden = {
     zaak: tekst(gegevens, "zaak", 120),
-    beroep: tekst(gegevens, "beroep", 60),
+    beroep: tekst(gegevens, "beroep", beroepMax),
     hoofdberoep: tekst(gegevens, "hoofdberoep", 3),
     gemeente: tekst(gegevens, "gemeente", 80),
     doelen: gegevens.getAll("doel").map(String).filter((d) => doelen.includes(d)),
@@ -66,7 +62,7 @@ export function leesAanvraag(gegevens: FormData): { aanvraag?: Aanvraag; status:
 
   const fouten: FormStatus["fouten"] = {};
   if (waarden.zaak.length < 2) fouten.zaak = "Vul de naam van je zaak in.";
-  if (!beroepen.includes(waarden.beroep)) fouten.beroep = "Kies je beroep.";
+  if (waarden.beroep.length < 2) fouten.beroep = "Vul je beroep in.";
   if (waarden.hoofdberoep !== "ja" && waarden.hoofdberoep !== "nee") fouten.hoofdberoep = "Laat weten of dit je hoofdberoep is.";
   if (waarden.gemeente.length < 2) fouten.gemeente = "Vul je gemeente of regio in.";
   if (waarden.doelen.length === 0) fouten.doel = "Kies minstens één optie.";

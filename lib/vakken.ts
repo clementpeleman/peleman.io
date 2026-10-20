@@ -20,7 +20,7 @@ export type Vak = {
   menu: string;
   titel: string;
   beschrijving: string;
-  // Een waarde uit `beroepen` in lib/formulier.ts: vult het formulier al in.
+  // Vult het beroep in het aanvraagformulier al in.
   beroep?: string;
   bovenregel: string;
   kop: [string, string];
@@ -108,7 +108,7 @@ export const tuinaanleg: Vak = {
   titel: "Website voor tuinaannemers",
   beschrijving:
     "Een website die even goed is als de tuinen die je aanlegt, met je realisaties per soort en een aanvraag met de juiste info. Eerst zie je een gratis voorbeeld.",
-  beroep: "Tuinaanleg",
+  beroep: "Tuinaannemer",
   bovenregel: "Voor tuinaannemers en tuinaanleggers",
   kop: ["Een website die even goed is", "als jouw tuinen."],
   intro:

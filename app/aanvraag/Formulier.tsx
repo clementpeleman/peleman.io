@@ -4,7 +4,7 @@ import { useActionState, useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { Pijl } from "../_componenten/merk";
 import { leesBron } from "@/lib/bron";
-import { beroepen, doelen, type FormStatus } from "@/lib/formulier";
+import { beroepMax, doelen, type FormStatus } from "@/lib/formulier";
 import { vraagVoorbeeldAan } from "./actie";
 
 function Verstuur() {
@@ -61,14 +61,17 @@ export function Formulier({ beroep }: { beroep?: string }) {
       </div>
       <div className="veld">
         <label htmlFor="beroep">Je beroep</label>
-        <select id="beroep" name="beroep" required defaultValue={w?.beroep ?? beroep ?? ""} {...fout("beroep")}>
-          <option value="" disabled>
-            Kies je beroep
-          </option>
-          {beroepen.map((b) => (
-            <option key={b}>{b}</option>
-          ))}
-        </select>
+        <input
+          id="beroep"
+          name="beroep"
+          type="text"
+          autoComplete="organization-title"
+          placeholder="Bijvoorbeeld schrijnwerker of tuinaannemer"
+          required
+          maxLength={beroepMax}
+          defaultValue={w?.beroep ?? beroep ?? ""}
+          {...fout("beroep")}
+        />
         <Fout veld="beroep" tekst={f.beroep} />
       </div>
       <fieldset className="veld" {...(f.hoofdberoep ? { "aria-describedby": "hoofdberoep-fout" } : {})}>
