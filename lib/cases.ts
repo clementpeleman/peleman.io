@@ -19,6 +19,8 @@ export type Case = {
   desktop: StaticImageData;
   gsm: StaticImageData;
   alt: string;
+  // Achtergrond van de statusbalk in de iPhone, gelijk aan de bovenkant van de gsm-screenshot.
+  statusKleur?: string;
 };
 
 const h16: Case = {
@@ -35,6 +37,7 @@ const h16: Case = {
   domein: "h16.be",
   desktop: h16Desktop,
   gsm: h16Gsm,
+  statusKleur: "#f6f7f2",
   alt: "De website van H16 op desktop en gsm, met de titel Bouwcoördinatie en projectontwikkeling en foto’s van realisaties.",
 };
 

@@ -3,6 +3,7 @@ import ribbelglas from "@/public/beeld/ribbelglas.jpg";
 import Link from "next/link";
 import { lvq, type Case } from "@/lib/cases";
 import type { AanvraagVoorbeeld } from "@/lib/vakken";
+import { Iphone } from "../_componenten/Iphone";
 
 type Punt = [string, string];
 
@@ -43,7 +44,7 @@ export function CaseBeeld({ item, pil, voorrang, groot }: { item: Case; pil?: st
         <Image src={item.desktop} alt="" loading={voorrang ? "eager" : undefined} sizes={groot ? "(min-width: 1304px) 900px, 86vw" : "(min-width: 900px) 480px, 80vw"} />
       </div>
       <div className="case-gsm">
-        <Image src={item.gsm} alt="" sizes={groot ? "(min-width: 1304px) 240px, 30vw" : "(min-width: 900px) 160px, 28vw"} />
+        <Iphone src={item.gsm} domein={item.domein} statusKleur={item.statusKleur} sizes={groot ? "(min-width: 1304px) 240px, 30vw" : "(min-width: 900px) 160px, 28vw"} />
       </div>
     </Glasvlak>
   );
