@@ -6,9 +6,9 @@
   --pio-zacht: #5b6e64;
   --pio-kop-2: #6f8a7e;
   --pio-groengrijs: #edf2ee;
-  --pio-wit: #fdfdfc;
+  --pio-wit: #ffffff;
   --pio-lijn: #133d2c24;
-  --pio-op-groen: #fdfdfc;
+  --pio-op-groen: #ffffff;
   --pio-op-groen-zacht: #c9d9d1;
 
   --pio-font-display: var(--font-absans), "Absans", system-ui, sans-serif;
@@ -131,7 +131,7 @@ br.breed { display: none; }
 .kop {
   position: sticky; top: 0; z-index: 20;
   padding-block: 14px;
-  background: #fdfdfcee;
+  background: #ffffffee;
   -webkit-backdrop-filter: saturate(1.4) blur(10px);
   backdrop-filter: saturate(1.4) blur(10px);
   border-bottom: 1px solid var(--pio-lijn);
