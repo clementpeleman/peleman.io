@@ -136,8 +136,8 @@ export function Formulier({ beroep }: { beroep?: string }) {
 
       <Verstuur />
       <p className="formulier-noot">
-        We gebruiken je gegevens alleen om je aanvraag te behandelen. Komt er geen vervolg, dan wissen we ze na zes maanden. Meer in
-        onze <a href="/privacy">privacyverklaring</a>.
+        Ik gebruik je gegevens alleen om je aanvraag te behandelen. Komt er geen vervolg, dan wis ik ze na zes maanden. Meer in
+        de <a href="/privacy">privacyverklaring</a>.
       </p>
     </form>
   );

@@ -48,8 +48,8 @@ export function Toestemming() {
     <section className="toestemming" role="dialog" aria-labelledby="toestemming-titel" aria-describedby="toestemming-tekst">
       <h2 id="toestemming-titel">Cookies</h2>
       <p id="toestemming-tekst">
-        We meten graag hoe bezoekers onze site gebruiken en welke advertenties werken. Daarvoor plaatsen we cookies, maar alleen als
-        jij dat goed vindt. Meer in ons <Link href="/cookies">cookiebeleid</Link>.
+        Ik meet graag hoe bezoekers deze site gebruiken en welke advertenties werken. Daarvoor plaats ik cookies, maar alleen als
+        jij dat goed vindt. Meer in het <Link href="/cookies">cookiebeleid</Link>.
       </p>
 
       {details && (

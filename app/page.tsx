@@ -3,6 +3,7 @@ import Link from "next/link";
 import ribbelglas from "@/public/beeld/ribbelglas.jpg";
 import { Navigatie, Voettekst } from "./_componenten/kader";
 import { Knop, Pijl, Vinkje } from "./_componenten/merk";
+import { Prijzen } from "./_secties/Prijzen";
 import { GsmBalk } from "./_secties/GsmBalk";
 import { Slot } from "./_secties/Slot";
 import { Vragen } from "./_secties/Vragen";
@@ -131,47 +132,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="sectie sectie--vlak" id="prijzen" aria-labelledby="prijzen-titel">
-          <div className="wrap">
-            <h2 id="prijzen-titel" className="titel">
-              Eén prijs, vooraf bekend
-            </h2>
-            <ul className="pakketten pakketten--twee">
-              <li className="pakket">
-                <h3 className="subtitel">De site</h3>
-                <p className="pakket-prijs">
-                  <span className="pakket-vanaf">vanaf</span> {euro(aanbod.site)}
-                </p>
-                <p className="pakket-btw">eenmalig, excl. btw</p>
-                <ul className="pakket-inhoud">
-                  {["De site op maat", "De teksten", "Het gratis voorbeeld", "De lancering"].map((regel) => (
-                    <li key={regel}>
-                      <Vinkje />
-                      {regel}
-                    </li>
-                  ))}
-                </ul>
-                <Knop className="pakket-knop" />
-              </li>
-              <li className="pakket">
-                <h3 className="subtitel">Daarna</h3>
-                <p className="pakket-prijs">€{aanbod.perMaand}</p>
-                <p className="pakket-btw">per maand, excl. btw</p>
-                <ul className="pakket-inhoud">
-                  {aanbod.perMaandInhoud.map((regel) => (
-                    <li key={regel}>
-                      <Vinkje />
-                      {regel}
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            </ul>
-            <p className="prijzen-voorwaarden">
-              Alle prijzen excl. btw. Ik host je site. Wil je later zelf eigenaar worden, dan neem je hem over aan een vooraf afgesproken prijs.
-            </p>
-          </div>
-        </section>
+        <Prijzen />
 
         <section className="sectie" aria-labelledby="maatwerk-titel">
           <div className="wrap kolommen">

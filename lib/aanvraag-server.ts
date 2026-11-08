@@ -124,10 +124,10 @@ export async function mailBevestiging(a: Aanvraag) {
     from: { name: "Clément, peleman.io", address: afzender },
     to: { name: a.naam, address: a.email },
     replyTo: contact.email,
-    subject: "We hebben je aanvraag",
+    subject: "Je aanvraag is goed aangekomen",
     text: [
       `Dag ${voornaam},`,
-      `Bedankt voor je aanvraag voor ${enkeleRegel(a.zaak)}. We bekijken ze en laten je binnen één werkdag weten of we een voorbeeld maken.`,
+      `Bedankt voor je aanvraag voor ${enkeleRegel(a.zaak)}. Ik bekijk ze en laat je binnen één werkdag iets weten, met een datum voor je voorbeeld.`,
       "Clément, peleman.io",
     ].join("\n\n"),
   });

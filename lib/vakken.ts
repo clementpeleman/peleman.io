@@ -2,6 +2,7 @@ import type { StaticImageData } from "next/image";
 import schaaf from "@/public/beeld/maatwerk/schaaf.jpg";
 
 // Landingspagina's per vak (doc 12 en 18). Elke pagina gebruikt dezelfde opbouw uit app/_secties/VakPagina.tsx.
+// Sinds de herpositionering (november 2026) staan ze niet meer in het menu, maar blijven ze bestaan voor Google.
 
 type Punt = [string, string];
 
@@ -22,27 +23,25 @@ export type Vak = {
   beschrijving: string;
   // Vult het beroep in het aanvraagformulier al in.
   beroep?: string;
-  bovenregel: string;
   kop: [string, string];
   intro: string;
   foto?: { src: StaticImageData; alt: string; marges?: { marginLeft?: number; marginRight?: number } };
   herkenning: { titel: string; punten: Punt[] };
-  vak: { titel: string; tekst: string; punten: Punt[]; noot: string; aanvraag: AanvraagVoorbeeld };
+  vak: { titel: string; tekst: string; punten: Punt[]; aanvraag: AanvraagVoorbeeld };
   // Wat na de naam van LVQ.wine komt in het blok met de case.
   caseTekst?: string;
-  prijzen: string;
   vragen: { titel: string; lijst: Punt[] };
   slot: [string, string];
 };
 
-const vastzitten: Punt = ["Zit ik meteen ergens aan vast?", "Nee. Het voorbeeld is gratis. Pas wanneer je beslist om verder te gaan, start het abonnement."];
+const vastzitten: Punt = ["Zit ik vast als ik een voorbeeld vraag?", "Nee. Het voorbeeld is gratis. Pas als je verder wil, krijg je een offerte."];
 const realisatiesToevoegen: Punt = [
   "Kan ik nieuwe realisaties laten toevoegen?",
-  "Ja. Stuur ons de foto’s en een korte uitleg, wij zetten ze erop. Dat telt als een aanpassing uit je pakket.",
+  "Ja. Stuur me de foto’s en een korte uitleg, ik zet ze erop. Dat valt onder de kleine aanpassingen in je maandbedrag.",
 ];
 const personeel: Punt = [
   "Kan ik er ook personeel mee vinden?",
-  "Dat kan, met een pagina over werken bij jouw zaak. Vermeld het in je aanvraag, dan nemen we het mee in je voorbeeld.",
+  "Dat kan, met een pagina over werken bij jouw zaak. Vermeld het in je aanvraag, dan neem ik het mee in je voorbeeld.",
 ];
 
 export const maatwerk: Vak = {
@@ -50,11 +49,10 @@ export const maatwerk: Vak = {
   menu: "Schrijnwerk, interieurbouw en keukens",
   titel: "Website voor schrijnwerkers, interieurbouwers en keukenbouwers",
   beschrijving:
-    "Een website die even goed is als jouw maatwerk: je realisaties per type, een aanvraag met de juiste info en je werkgebied in beeld. Eerst zie je een gratis voorbeeld.",
-  bovenregel: "Voor schrijnwerkers, interieurbouwers en keukenbouwers",
-  kop: ["Een website die even goed is", "als jouw maatwerk."],
+    "Ik maak websites voor schrijnwerkers, interieurbouwers en keukenbouwers: je realisaties per type, een aanvraag met de juiste info en je werkgebied in beeld. Eerst krijg je een gratis voorbeeld.",
+  kop: ["Ik maak websites voor", "schrijnwerkers en keukenbouwers."],
   intro:
-    "Je begint met een gratis voorbeeld. We zetten je realisaties in de kijker en bouwen een aanvraag die meteen de juiste info vraagt. Daarna houden wij je site bij.",
+    "Je begint met een gratis voorbeeld. Ik zet je realisaties in de kijker en bouw een aanvraag die meteen de juiste info vraagt. Daarna hou ik je site bij.",
   foto: { src: schaaf, alt: "Handen van een schrijnwerker die een houten plank schaaft.", marges: { marginRight: 0.6 } },
   herkenning: {
     titel: "Herken je dit?",
@@ -72,7 +70,6 @@ export const maatwerk: Vak = {
       ["Een aanvraag met de juiste info", "Soort project, budget en foto’s van de ruimte, nog voor je belt."],
       ["Je werkgebied en je Google-profiel", "Mensen uit je regio vinden je zo op je site en in Google Maps."],
     ],
-    noot: "De aanvraag op maat van je vak zit in Groei en Pro.",
     aanvraag: {
       label: "Voorbeeld van een aanvraagformulier voor maatwerk op een gsm.",
       kop: "Vraag je project aan",
@@ -82,18 +79,17 @@ export const maatwerk: Vak = {
       fotos: "Foto’s van de ruimte",
     },
   },
-  prijzen: "Voor de meeste makers is Groei de juiste keuze. Ontwerp, bouw, hosting en onderhoud zitten erin, en je betaalt niets vooraf.",
   vragen: {
     titel: "Vragen van makers",
     lijst: [
       realisatiesToevoegen,
       [
         "Komen mijn realisaties per type op de site?",
-        "Ja. Keukens, kasten, trappen of wat je maakt: elk type krijgt een eigen plek. In Groei heb je tot zes pagina’s, in Pro tot twaalf.",
+        "Ja. Keukens, kasten, trappen of wat je maakt: elk type krijgt een eigen pagina.",
       ],
       [
         "Wat als ik weinig goede foto’s heb?",
-        "Dan starten we met wat er is. In je voorbeeld vullen we aan met sfeerfoto’s die duidelijk als voorbeeld gelabeld zijn. Op je echte site komen je eigen foto’s.",
+        "Dan start ik met wat er is. In je voorbeeld vul ik aan met sfeerfoto’s die duidelijk als voorbeeld gelabeld zijn. Op je echte site komen je eigen foto’s.",
       ],
       personeel,
       vastzitten,
@@ -107,12 +103,11 @@ export const tuinaanleg: Vak = {
   menu: "Tuinaanleg",
   titel: "Website voor tuinaannemers",
   beschrijving:
-    "Een website die even goed is als de tuinen die je aanlegt, met je realisaties per soort en een aanvraag met de juiste info. Eerst zie je een gratis voorbeeld.",
+    "Ik maak websites voor tuinaannemers, met je realisaties per soort en een aanvraag met de juiste info. Eerst krijg je een gratis voorbeeld.",
   beroep: "Tuinaannemer",
-  bovenregel: "Voor tuinaannemers en tuinaanleggers",
-  kop: ["Een website die even goed is", "als jouw tuinen."],
+  kop: ["Ik maak websites voor", "tuinaannemers."],
   intro:
-    "Je begint met een gratis voorbeeld. Daarin staan je mooiste tuinen vooraan, met een aanvraag die meteen vraagt wat je wil weten. Daarna houden wij je site bij.",
+    "Je begint met een gratis voorbeeld. Daarin staan je mooiste tuinen vooraan, met een aanvraag die meteen vraagt wat je wil weten. Daarna hou ik je site bij.",
   herkenning: {
     titel: "Klinkt dit bekend?",
     punten: [
@@ -128,9 +123,7 @@ export const tuinaanleg: Vak = {
       ["Je realisaties per soort", "Aanleg, terrassen, beplanting of onderhoud: elk een eigen plek, met je beste foto’s."],
       ["Een aanvraag met de juiste info", "Wat de klant wil, een budget en foto’s van de tuin, nog voor je langsgaat."],
       ["Je werkgebied en je Google-profiel", "Mensen uit je regio vinden je op je site en in Google Maps."],
-      ["Reviews van je klanten", "Je krijgt een kant-en-klaar bericht om klanten na de werken om een review te vragen."],
     ],
-    noot: "De aanvraag op maat van je vak en de reviews zitten in Groei en Pro.",
     aanvraag: {
       label: "Voorbeeld van een aanvraagformulier voor tuinaanleg op een gsm.",
       kop: "Vraag je tuinproject aan",
@@ -140,18 +133,17 @@ export const tuinaanleg: Vak = {
       fotos: "Foto’s van je tuin",
     },
   },
-  prijzen: "Groei past bij de meeste tuinaannemers. Ontwerp, bouw, hosting en onderhoud zitten erin, en je betaalt niets vooraf.",
   vragen: {
     titel: "Vragen van tuinaannemers",
     lijst: [
       realisatiesToevoegen,
       [
         "Ik heb vooral foto’s van tijdens de werken. Kan dat?",
-        "Ja. Een tuin voor en na de werken toont goed wat je doet. Ontbreekt er iets, dan vullen we je voorbeeld aan met sfeerfoto’s die duidelijk als voorbeeld gelabeld zijn.",
+        "Ja. Een tuin voor en na de werken toont goed wat je doet. Ontbreekt er iets, dan vul ik je voorbeeld aan met sfeerfoto’s die duidelijk als voorbeeld gelabeld zijn.",
       ],
       [
         "Kan ik laten weten wanneer ik weer tijd heb?",
-        "Ja. Geef het door, dan zetten we een korte melding op je site, bijvoorbeeld vanaf wanneer je nieuwe projecten aanneemt. Dat telt als een aanpassing.",
+        "Ja. Geef het door, dan zet ik een korte melding op je site, bijvoorbeeld vanaf wanneer je nieuwe projecten aanneemt.",
       ],
       personeel,
       vastzitten,
@@ -165,12 +157,11 @@ export const interieurarchitecten: Vak = {
   menu: "Interieurarchitecten",
   titel: "Website voor interieurarchitecten",
   beschrijving:
-    "Een website die even goed is als jouw ontwerpen, met je projecten groot in beeld. Wij bouwen en onderhouden hem. Eerst zie je een gratis voorbeeld.",
+    "Ik maak websites voor interieurarchitecten, met je projecten groot in beeld. Ik bouw en onderhoud de site. Eerst krijg je een gratis voorbeeld.",
   beroep: "Interieurarchitect",
-  bovenregel: "Voor interieurarchitecten",
-  kop: ["Een website die even goed is", "als jouw ontwerpen."],
+  kop: ["Ik maak websites voor", "interieurarchitecten."],
   intro:
-    "Je begint met een gratis voorbeeld, opgebouwd rond je eigen projecten en je huisstijl. Wij bouwen de site en houden hem daarna bij, zodat jij kan blijven ontwerpen.",
+    "Je begint met een gratis voorbeeld, opgebouwd rond je eigen projecten en je huisstijl. Ik bouw de site en hou hem daarna bij, zodat jij kan blijven ontwerpen.",
   herkenning: {
     titel: "Herken je dit?",
     punten: [
@@ -186,10 +177,9 @@ export const interieurarchitecten: Vak = {
       ["Een aanvraag die vooraf veel vertelt", "Welke ruimte, een budget, een timing en foto’s of plannen."],
       ["Je Google-profiel in orde", "Mensen uit je regio vinden je ook in Google Maps."],
     ],
-    noot: "De aanvraag op maat van je vak zit in Groei en Pro.",
     aanvraag: {
       label: "Voorbeeld van een aanvraagformulier voor een interieurproject op een gsm.",
-      kop: "Vertel ons over je project",
+      kop: "Vertel over je project",
       vraag: "Om welke ruimte gaat het?",
       keuzes: ["Woonkamer", "Keuken", "Badkamer", "Hele woning"],
       velden: [
@@ -199,20 +189,18 @@ export const interieurarchitecten: Vak = {
       fotos: "Foto’s of plannen",
     },
   },
-  prijzen:
-    "Groei is voor de meeste interieurarchitecten genoeg. Werk je in meerdere regio’s of met veel soorten projecten, dan geeft Pro meer ruimte.",
   vragen: {
     titel: "Vragen van interieurarchitecten",
     lijst: [
       [
         "Ik ontwerp zelf. Kan ik meebeslissen over de stijl?",
-        "Ja. Je voorbeeld vertrekt van je eigen projecten en je huisstijl. Daarna bespreken we het samen, en wat je anders wil, nemen we mee.",
+        "Ja. Je voorbeeld vertrekt van je eigen projecten en je huisstijl. Daarna bespreken we het samen, en wat je anders wil, neem ik mee.",
       ],
       [
         "Kan ik ook schetsen, plannen of moodboards tonen?",
-        "Ja. Bij elk project kunnen naast foto’s ook schetsen, plannen of moodboards. Je stuurt ze door, wij zetten ze erop.",
+        "Ja. Bij elk project kunnen naast foto’s ook schetsen, plannen of moodboards. Je stuurt ze door, ik zet ze erop.",
       ],
-      ["Kan ik nieuwe projecten laten toevoegen?", "Ja, dat telt als een aanpassing uit je pakket. In Groei heb je er vijf per maand, in Pro tien."],
+      ["Kan ik nieuwe projecten laten toevoegen?", "Ja. Dat valt onder de kleine aanpassingen in je maandbedrag."],
       vastzitten,
     ],
   },
@@ -224,11 +212,10 @@ export const feest: Vak = {
   menu: "Feestzalen en cateraars",
   titel: "Website voor feestzalen en cateraars",
   beschrijving:
-    "Een website die even goed is als jouw feesten, met je zaal of je formules en een aanvraag met datum en aantal gasten. Eerst zie je een gratis voorbeeld.",
-  bovenregel: "Voor feestzalen en cateraars",
-  kop: ["Een website die even goed is", "als jouw feesten."],
+    "Ik maak websites voor feestzalen en cateraars, met je zaal of je formules en een aanvraag met datum en aantal gasten. Eerst krijg je een gratis voorbeeld.",
+  kop: ["Ik maak websites voor", "feestzalen en cateraars."],
   intro:
-    "Je begint met een gratis voorbeeld. Koppels en bedrijven zien er meteen je zaal of je formules, en de aanvraag vraagt de datum en het aantal gasten. Daarna houden wij je site bij.",
+    "Je begint met een gratis voorbeeld. Koppels en bedrijven zien er meteen je zaal of je formules, en de aanvraag vraagt de datum en het aantal gasten. Daarna hou ik je site bij.",
   herkenning: {
     titel: "Herken je dit?",
     punten: [
@@ -243,11 +230,9 @@ export const feest: Vak = {
       "Wie een feest plant, kiest vaak een jaar op voorhand. Ze willen de zaal of het eten zien, weten hoeveel gasten er kunnen komen en of hun datum vrij is.",
     punten: [
       ["Je zaal of je formules", "Met foto’s, het aantal gasten en wat er inbegrepen is."],
-      ["Je volzette data in beeld", "Geef ze door, wij werken je site bij. Dat telt als een aanpassing."],
+      ["Je volzette data in beeld", "Geef ze door, ik werk je site bij."],
       ["Een aanvraag met datum en aantal gasten", "En het soort feest, zodat je meteen weet of het past."],
-      ["Reviews op je site", "Je krijgt een kant-en-klaar bericht om gasten na hun feest om een review te vragen."],
     ],
-    noot: "De aanvraag op maat van je vak en de reviews zitten in Groei en Pro.",
     aanvraag: {
       label: "Voorbeeld van een aanvraagformulier voor een feest op een gsm.",
       kop: "Vraag je feest aan",
@@ -260,15 +245,14 @@ export const feest: Vak = {
     },
   },
   caseTekst: "Ze organiseren ook proeverijen en events. Hun site toont de wijnen en de sfeer, in een eigen stijl die ook op gsm goed werkt.",
-  prijzen: "Groei past bij de meeste zalen en cateraars. Heb je meerdere zalen of veel formules, dan geeft Pro meer ruimte.",
   vragen: {
     titel: "Vragen van zalen en cateraars",
     lijst: [
       [
         "Kan ik nieuwe menu’s of formules laten zetten?",
-        "Ja. Stuur ons de nieuwe versie, wij zetten ze erop binnen vijf werkdagen. Dat telt als een aanpassing uit je pakket.",
+        "Ja. Stuur me de nieuwe versie, ik zet ze erop binnen vijf werkdagen. Dat valt onder de kleine aanpassingen in je maandbedrag.",
       ],
-      ["Hoe houden we de vrije data bij?", "Je stuurt ons de data die volzet zijn, bijvoorbeeld als korte lijst per maand. Wij werken je site bij."],
+      ["Hoe houden we de vrije data bij?", "Je stuurt me de data die volzet zijn, bijvoorbeeld als korte lijst per maand. Ik werk je site bij."],
       ["Kan ik een brochure of prijslijst aanbieden?", "Ja, als pdf om te downloaden op je site."],
       vastzitten,
     ],
