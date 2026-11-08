@@ -1,17 +1,18 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { laagstePrijs } from "@/lib/gegevens";
+import { aanbod } from "@/lib/gegevens";
 
-export const alt = "peleman.io: een website die even goed is als jouw werk.";
+export const alt = "peleman.io: ik maak websites voor zelfstandigen en kmo's.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Deelbeeld() {
   const map = join(process.cwd(), "app/fonts");
-  const [titel, tekst] = await Promise.all([
-    readFile(join(map, "bricolage-grotesque-600.woff")),
-    readFile(join(map, "dm-sans-500.woff")),
+  // Satori leest geen woff2, daarom de otf-versie van Absans.
+  const [merk, tekst] = await Promise.all([
+    readFile(join(map, "bricolage-grotesque-700.woff")),
+    readFile(join(map, "absans-regular.otf")),
   ]);
 
   return new ImageResponse(
@@ -35,12 +36,12 @@ export default async function Deelbeeld() {
           <div style={{ display: "flex", fontFamily: "Bricolage", fontSize: 40, letterSpacing: -1.5, color: "#fdfdfc" }}>
             peleman<span style={{ color: "#9fbcae" }}>.io</span>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", fontFamily: "Bricolage", fontSize: 82, lineHeight: 1.04, letterSpacing: -3, color: "#fdfdfc" }}>
-            <span>Een website die even goed is</span>
-            <span style={{ color: "#9fbcae" }}>als jouw werk.</span>
+          <div style={{ display: "flex", flexDirection: "column", fontFamily: "Absans", fontSize: 82, lineHeight: 1.04, letterSpacing: -2.5, color: "#fdfdfc" }}>
+            <span>Ik maak websites voor</span>
+            <span style={{ color: "#9fbcae" }}>zelfstandigen en kmo&apos;s.</span>
           </div>
-          <div style={{ display: "flex", fontFamily: "DM Sans", fontSize: 28, color: "#c9d9d1" }}>
-            Eerst een gratis voorbeeld, daarna vanaf €{laagstePrijs} per maand
+          <div style={{ display: "flex", fontFamily: "Absans", fontSize: 28, color: "#c9d9d1" }}>
+            Eerst een gratis voorbeeld. Vanaf €{aanbod.site.toLocaleString("nl-BE")}, daarna €{aanbod.perMaand} per maand.
           </div>
         </div>
       </div>
@@ -48,8 +49,8 @@ export default async function Deelbeeld() {
     {
       ...size,
       fonts: [
-        { name: "Bricolage", data: titel, weight: 600, style: "normal" },
-        { name: "DM Sans", data: tekst, weight: 500, style: "normal" },
+        { name: "Bricolage", data: merk, weight: 700, style: "normal" },
+        { name: "Absans", data: tekst, weight: 400, style: "normal" },
       ],
     },
   );

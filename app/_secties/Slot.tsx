@@ -1,7 +1,7 @@
 import { volgendeVrijeWeek } from "@/lib/gegevens";
 import { Knop } from "../_componenten/merk";
 
-const standaardTekst = "We maken één voorbeeld per week. Vraag het aan, het kost je niets.";
+const standaardTekst = "Je krijgt gratis een voorbeeld van je homepage.";
 
 type Props = { titel?: string; vervolg?: string; tekst?: string; pil?: string; knop?: string };
 

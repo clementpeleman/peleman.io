@@ -15,24 +15,21 @@ const bricolage = localFont({
   display: "swap",
 });
 
-const dmSans = localFont({
-  src: [
-    { path: "./fonts/dm-sans-400.woff", weight: "400" },
-    { path: "./fonts/dm-sans-500.woff", weight: "500" },
-    { path: "./fonts/dm-sans-600.woff", weight: "600" },
-  ],
-  variable: "--font-dm-sans",
+// Absans (Collletttivo, OFL) heeft maar één gewicht. Het bereik 100–900 voorkomt dat de browser een nep-vet maakt.
+const absans = localFont({
+  src: [{ path: "./fonts/absans-regular.woff2", weight: "100 900" }],
+  variable: "--font-absans",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://peleman.io"),
   title: {
-    default: "peleman.io | Websites voor zelfstandigen",
+    default: "peleman.io | Websites voor zelfstandigen en kmo's",
     template: "%s | peleman.io",
   },
   description:
-    "Een website die even goed is als jouw werk. Wij bouwen en onderhouden je website voor een vaste prijs per maand. Eerst zie je een gratis voorbeeld.",
+    "Ik maak websites voor zelfstandigen en kmo's. Voor je iets beslist, krijg je gratis een voorbeeld van je homepage. Vanaf €1.500, daarna €29 per maand.",
   alternates: { canonical: "./" },
   openGraph: {
     type: "website",
@@ -49,7 +46,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="nl-BE" data-scroll-behavior="smooth" className={`${bricolage.variable} ${dmSans.variable}`}>
+    <html lang="nl-BE" data-scroll-behavior="smooth" className={`${bricolage.variable} ${absans.variable}`}>
       <body>
         {children}
         <Beweging />

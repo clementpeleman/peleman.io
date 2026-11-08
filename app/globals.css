@@ -11,8 +11,9 @@
   --pio-op-groen: #fdfdfc;
   --pio-op-groen-zacht: #c9d9d1;
 
-  --pio-font-display: var(--font-bricolage), "Bricolage Grotesque", system-ui, sans-serif;
-  --pio-font-body: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
+  --pio-font-display: var(--font-absans), "Absans", system-ui, sans-serif;
+  --pio-font-body: var(--font-absans), "Absans", system-ui, sans-serif;
+  --pio-font-merk: var(--font-bricolage), "Bricolage Grotesque", system-ui, sans-serif;
 
   --pio-r-knop: 10px;
   --pio-r-beeld: 16px;
@@ -87,7 +88,7 @@ br.breed { display: none; }
 
 /* Woordmerk en knoppen */
 .woordmerk {
-  font: 700 24px/1 var(--pio-font-display);
+  font: 700 24px/1 var(--pio-font-merk);
   letter-spacing: -.04em;
   color: var(--pio-groen);
   text-decoration: none;
@@ -891,3 +892,18 @@ html[data-toestemming-open] .gsm-balk { display: none; }
   .tijdlijn[data-beweeg="in"] li > span { transition: opacity 300ms ease; transition-delay: 0ms; }
   :is(.vraag, .pakkettabel, .overname-tabel)::details-content { transition: none; }
 }
+
+/* Herpositionering (november 2026): vinklijst, werklijst en twee prijskaarten */
+.kolommen > .titel + * { margin-top: 24px; }
+@media (min-width: 900px) { .kolommen > .titel + * { margin-top: 0; } }
+.vinklijst { display: grid; gap: 14px; font-size: clamp(17px, .3vw + 16px, 19px); line-height: 1.5; }
+.vinklijst li { display: flex; gap: 12px; align-items: baseline; }
+.vinklijst svg { width: 16px; height: 16px; flex: none; position: relative; top: 2px; color: var(--pio-groen); }
+.werklijst { display: grid; gap: 32px; }
+.werklijst li { padding-bottom: 32px; border-bottom: 1px solid var(--pio-lijn); }
+.werklijst .zacht { margin-top: 8px; max-width: 56ch; }
+.werklijst .tekstlink { margin-top: 12px; }
+.werklijst-meer { margin-top: 28px; }
+@media (min-width: 900px) { .pakketten--twee { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 880px; } }
+.pakket-vanaf { font-size: 18px; letter-spacing: 0; color: var(--pio-zacht); margin-right: 4px; }
+.maatwerk-knop { margin-top: 24px; }

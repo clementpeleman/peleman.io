@@ -12,6 +12,21 @@ export const contact = {
 // Eerstvolgende week met een vrije plek voor een gratis voorbeeld. Op null zetten verbergt de regel.
 export const volgendeVrijeWeek: string | null = null;
 
+// Het aanbod sinds de herpositionering (november 2026): één site, eenmalig vanaf een bedrag, daarna een vast maandbedrag.
+// Clément host de site; wie later zelf eigenaar wil worden, neemt over aan een vooraf afgesproken prijs.
+export const aanbod = {
+  site: 1500,
+  perMaand: 29,
+  inDeSite: [
+    "Een site op maat, met een pagina per dienst en per gemeente waar je werkt",
+    "Teksten die ik samen met jou schrijf, op basis van wat je echt doet",
+    "Gebouwd om snel te laden en goed te scoren in Google",
+    "Een formulier dat aanvragen rechtstreeks naar je mailbox stuurt",
+  ],
+  perMaandInhoud: ["Hosting, updates en back-ups", "Kleine aanpassingen", "Elke maand een kort rapport: hoe vaak je gevonden werd en hoeveel mensen contact opnamen"],
+};
+
+// De drie pakketten hieronder horen bij het oude abonnement. Ze blijven tot de sectorpagina's en de voorwaarden herschreven zijn.
 export type Pakket = {
   naam: string;
   prijs: number;
@@ -105,8 +120,8 @@ export const vergelijking: Rij[] = [
 
 // Werkwijze als tijdlijn: wanneer, en wat er dan gebeurt.
 export const stappen: [string, string][] = [
-  ["Vandaag", "Je vraagt een gratis voorbeeld aan"],
-  ["Binnen één werkdag", "Je hoort of we een voorbeeld maken"],
-  ["Op de afgesproken datum", "Je bekijkt je voorbeeld"],
-  ["Zo’n twee weken na je akkoord", "Je site staat online"],
+  ["Eerst", "We praten een halfuur over wat je doet, voor wie en waar"],
+  ["Binnen een week", "Je krijgt gratis een voorbeeld van je homepage"],
+  ["Twee à drie weken na je akkoord", "Je site staat online"],
+  ["Daarna", "Ik volg je site op en je krijgt elke maand een kort rapport"],
 ];

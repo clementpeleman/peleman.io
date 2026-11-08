@@ -6,7 +6,7 @@ import { Formulier } from "./Formulier";
 
 export const metadata: Metadata = {
   title: "Gratis voorbeeld aanvragen",
-  description: "Vertel ons over je zaak. We laten binnen één werkdag weten of we een gratis voorbeeld van je website maken.",
+  description: "Vertel me over je zaak. Binnen één werkdag laat ik weten wanneer je een gratis voorbeeld van je homepage krijgt.",
 };
 
 // Een vakpagina kan het beroep al meegeven: /aanvraag?beroep=Tuinaannemer.
@@ -21,15 +21,14 @@ export default async function Aanvraag({ searchParams }: { searchParams: Promise
           <div className="aanvraag-intro">
             <h1>Gratis voorbeeld aanvragen</h1>
             <p className="tekst-groot zacht">
-              Vertel ons over je zaak. We bekijken je aanvraag en laten binnen één werkdag weten of we een voorbeeld maken.
+              Vertel me over je zaak. Ik bekijk je aanvraag en laat binnen één werkdag iets weten.
             </p>
             <ol className="aanvraag-stappen">
               <li><span>1</span>Je vult dit formulier in. Dat duurt twee minuten.</li>
-              <li><span>2</span>Binnen één werkdag hoor je of we een voorbeeld maken, met een concrete leverdatum.</li>
+              <li><span>2</span>Binnen één werkdag hoor je van mij, met een datum voor je voorbeeld.</li>
               <li><span>3</span>Je bekijkt je voorbeeld en beslist. Het voorbeeld is gratis.</li>
             </ol>
             <p className="aanvraag-hulp">
-              We maken één voorbeeld per week.
               {volgendeVrijeWeek && <> Eerstvolgende vrije plek: {volgendeVrijeWeek}.</>} Liever eerst bellen?{" "}
               <a href={`tel:${contact.telefoon}`}>{contact.telefoonLeesbaar}</a>
             </p>
