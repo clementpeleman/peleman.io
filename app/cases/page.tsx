@@ -7,7 +7,7 @@ import { cases } from "@/lib/cases";
 
 export const metadata: Metadata = {
   title: "Cases",
-  description: "Websites die we maakten, van dichtbij: LVQ.wine, wijnimporteur in Oosterzele, en ons eigen concept Tourage.",
+  description: "Websites die ik maakte, van dichtbij: H16, LVQ.wine en mijn eigen concept Tourage.",
 };
 
 export default function Cases() {
@@ -17,9 +17,9 @@ export default function Cases() {
       <main>
         <section className="cases-kop" aria-labelledby="cases-titel">
           <div className="wrap">
-            <h1 id="cases-titel">Werk dat we maakten</h1>
+            <h1 id="cases-titel">Wat ik al maakte</h1>
             <p className="tekst-groot zacht">
-              Per site lees je wat de zaak doet en wat we bouwden. De beelden tonen de site op desktop en op gsm.
+              Per site lees je wat de zaak doet en wat ik bouwde. De beelden tonen de site op desktop en op gsm.
             </p>
           </div>
         </section>
@@ -52,12 +52,7 @@ export default function Cases() {
           </div>
         </section>
 
-        <Slot
-          pil="Lanceringsaanbod"
-          titel="Jouw zaak als"
-          vervolg="volgende case?"
-          tekst="De eerste drie zaken krijgen Groei een jaar lang aan €79 per maand. In ruil maken we samen een case met foto’s en een review."
-        />
+        <Slot titel="Benieuwd hoe je site" vervolg="eruit kan zien?" />
       </main>
       <Voettekst />
     </>

@@ -11,8 +11,9 @@
   --pio-op-groen: #fdfdfc;
   --pio-op-groen-zacht: #c9d9d1;
 
-  --pio-font-display: var(--font-bricolage), "Bricolage Grotesque", system-ui, sans-serif;
-  --pio-font-body: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
+  --pio-font-display: var(--font-absans), "Absans", system-ui, sans-serif;
+  --pio-font-body: var(--font-absans), "Absans", system-ui, sans-serif;
+  --pio-font-merk: var(--font-bricolage), "Bricolage Grotesque", system-ui, sans-serif;
 
   --pio-r-knop: 10px;
   --pio-r-beeld: 16px;
@@ -87,7 +88,7 @@ br.breed { display: none; }
 
 /* Woordmerk en knoppen */
 .woordmerk {
-  font: 700 24px/1 var(--pio-font-display);
+  font: 700 24px/1 var(--pio-font-merk);
   letter-spacing: -.04em;
   color: var(--pio-groen);
   text-decoration: none;
@@ -717,15 +718,76 @@ br.breed { display: none; }
   background: #fff;
   box-shadow: 0 24px 60px #06190e59;
 }
-.case-desktop img, .case-gsm img { display: block; width: 100%; height: auto; }
-.case-gsm {
-  position: absolute; right: 6%; bottom: 7%; width: 27%;
-  padding: 5px;
-  border-radius: 20px;
-  background: #fff;
-  box-shadow: 0 24px 60px #06190e66;
+.case-desktop img { display: block; width: 100%; height: auto; }
+.case-gsm { position: absolute; right: 6%; bottom: 7%; width: 27%; }
+
+/* iPhone-frame rond de gsm-screenshots (Iphone.tsx). 1 pt = 100cqw / 419: scherm 393 pt + 2 × 13 pt rand. */
+.iphone { position: relative; container-type: inline-size; }
+.iphone > * { --u: calc(100cqw / 419); }
+.iphone-body {
+  position: relative;
+  aspect-ratio: 419 / 878;
+  padding: calc(var(--u) * 3);
+  border-radius: calc(var(--u) * 68);
+  background: linear-gradient(140deg, #e4e4e7 0%, #9a9ba0 22%, #d2d3d6 48%, #85868b 74%, #c9cacd 100%);
+  box-shadow: 0 calc(var(--u) * 40) calc(var(--u) * 80) #06190e66, inset 0 0 0 calc(var(--u) * .7) #00000033;
 }
-.case-gsm img { border-radius: 15px; }
+.iphone-glas {
+  height: 100%;
+  padding: calc(var(--u) * 10);
+  border-radius: calc(var(--u) * 65);
+  background: #0b0b0c;
+  box-shadow: inset 0 0 0 calc(var(--u) * 1) #2c2c2d;
+}
+.iphone-scherm { position: relative; height: 100%; overflow: hidden; border-radius: calc(var(--u) * 55); background: var(--status, #fff); }
+/* Zoals Safari: de pagina vervaagt onderaan achter de adresbalk. */
+.iphone-scherm::after {
+  content: ""; position: absolute; inset: auto 0 0; height: calc(var(--u) * 110);
+  background: linear-gradient(to bottom, transparent, var(--status, #fff) 70%);
+}
+.iphone-adres, .iphone-home { z-index: 1; }
+.iphone-status {
+  display: flex; align-items: center; justify-content: space-between;
+  height: calc(var(--u) * 54);
+  padding: calc(var(--u) * 6) calc(var(--u) * 27) 0 calc(var(--u) * 50);
+  color: #000;
+  font: 600 calc(var(--u) * 17)/1 -apple-system, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+  letter-spacing: -.01em;
+}
+.iphone-iconen { display: flex; align-items: center; gap: calc(var(--u) * 6); }
+.iphone-iconen svg { display: block; height: calc(var(--u) * 13); width: auto; }
+.iphone-iconen svg:last-child { height: calc(var(--u) * 13.7); }
+.iphone .iphone-pagina { display: block; width: 100%; height: auto; border-radius: 0; }
+.iphone-eiland {
+  position: absolute; top: calc(var(--u) * 11); left: 50%; translate: -50% 0;
+  width: calc(var(--u) * 126); height: calc(var(--u) * 37);
+  border-radius: 999px; background: #000;
+}
+.iphone-adres {
+  position: absolute; left: calc(var(--u) * 16); right: calc(var(--u) * 16); bottom: calc(var(--u) * 26);
+  display: flex; align-items: center; justify-content: center; gap: calc(var(--u) * 6);
+  height: calc(var(--u) * 46);
+  border-radius: 999px;
+  background: #ffffffe6;
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  box-shadow: 0 calc(var(--u) * 4) calc(var(--u) * 18) #0000001f, inset 0 0 0 calc(var(--u) * .6) #0000000f;
+  color: #000;
+  font: 500 calc(var(--u) * 16)/1 -apple-system, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+}
+.iphone-adres svg { height: calc(var(--u) * 12); width: auto; opacity: .55; }
+.iphone-home {
+  position: absolute; bottom: calc(var(--u) * 8); left: 50%; translate: -50% 0;
+  width: calc(var(--u) * 139); height: calc(var(--u) * 5);
+  border-radius: 999px; background: #000;
+}
+.iphone-knop {
+  position: absolute; width: calc(var(--u) * 4);
+  background: linear-gradient(90deg, #8a8b90, #d2d3d6 60%, #9a9ba0);
+}
+.iphone-knop--actie { left: calc(var(--u) * -2.5); top: calc(var(--u) * 122); height: calc(var(--u) * 34); border-radius: calc(var(--u) * 2) 0 0 calc(var(--u) * 2); }
+.iphone-knop--op { left: calc(var(--u) * -2.5); top: calc(var(--u) * 182); height: calc(var(--u) * 62); border-radius: calc(var(--u) * 2) 0 0 calc(var(--u) * 2); }
+.iphone-knop--neer { left: calc(var(--u) * -2.5); top: calc(var(--u) * 258); height: calc(var(--u) * 62); border-radius: calc(var(--u) * 2) 0 0 calc(var(--u) * 2); }
+.iphone-knop--aan { right: calc(var(--u) * -2.5); top: calc(var(--u) * 206); height: calc(var(--u) * 100); border-radius: 0 calc(var(--u) * 2) calc(var(--u) * 2) 0; }
 .pil--concept { background: transparent; color: var(--pio-zacht); box-shadow: inset 0 0 0 1px var(--pio-kop-2); }
 .case-naam { margin-top: 14px; }
 .case-wie { margin: 6px 0 12px; font-weight: 600; color: var(--pio-groen); }
@@ -745,8 +807,7 @@ br.breed { display: none; }
   .case-groot-tekst { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 80px; margin-top: 40px; }
   .functie-beeld--groot { height: 640px; }
   .functie-beeld--groot .case-desktop { left: 6%; top: 10%; width: 72%; }
-  .functie-beeld--groot .case-gsm { right: 8%; bottom: 8%; width: 19%; padding: 7px; border-radius: 28px; }
-  .functie-beeld--groot .case-gsm img { border-radius: 21px; }
+  .functie-beeld--groot .case-gsm { right: 7%; bottom: 7%; width: 19%; }
 }
 
 /* Maatwerk */
@@ -890,4 +951,41 @@ html[data-toestemming-open] .gsm-balk { display: none; }
   .tijdlijn[data-beweeg="in"] li::before,
   .tijdlijn[data-beweeg="in"] li > span { transition: opacity 300ms ease; transition-delay: 0ms; }
   :is(.vraag, .pakkettabel, .overname-tabel)::details-content { transition: none; }
+}
+
+/* Herpositionering (november 2026): vinklijst, werklijst en twee prijskaarten */
+.kolommen > .titel + * { margin-top: 24px; }
+@media (min-width: 900px) { .kolommen > .titel + * { margin-top: 0; } }
+.vinklijst { display: grid; gap: 14px; font-size: clamp(17px, .3vw + 16px, 19px); line-height: 1.5; }
+.vinklijst li { display: flex; gap: 12px; align-items: baseline; }
+.vinklijst svg { width: 16px; height: 16px; flex: none; position: relative; top: 2px; color: var(--pio-groen); }
+.werklijst { display: grid; gap: 32px; }
+.werklijst li { padding-bottom: 32px; border-bottom: 1px solid var(--pio-lijn); }
+.werklijst .zacht { margin-top: 8px; max-width: 56ch; }
+.werklijst .tekstlink { margin-top: 12px; }
+.werklijst-meer { margin-top: 28px; }
+@media (min-width: 900px) { .pakketten--twee { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 880px; } }
+.pakket-vanaf { font-size: 18px; letter-spacing: 0; color: var(--pio-zacht); margin-right: 4px; }
+.maatwerk-knop { margin-top: 24px; }
+
+/* Beweging uit de animatie-scan (november 2026) */
+/* 1. Cookiebanner: komt rustig van onder in beeld in plaats van plots te verschijnen. */
+.toestemming { transition: opacity 280ms var(--pio-ease-out), transform 280ms var(--pio-ease-out); }
+@starting-style { .toestemming { opacity: 0; transform: translateY(16px); } }
+/* 2. Foutmelding onder een veld schuift kort in; de rode rand kleurt mee. */
+.veld :is(input, select, textarea) { transition: border-color 150ms ease, box-shadow 150ms ease; }
+.veld-fout { animation: fout-in 200ms var(--pio-ease-out) both; }
+@keyframes fout-in { from { opacity: 0; transform: translateY(-4px); } }
+/* 3. Bedanktpagina: een vinkje dat zich tekent. */
+.bedankt-vink { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 24px; border-radius: 50%; background: var(--pio-groengrijs); color: var(--pio-groen); }
+.bedankt-vink svg { width: 26px; height: 26px; }
+.bedankt-vink path { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: vink-teken 400ms var(--pio-ease-out) 150ms forwards; }
+@keyframes vink-teken { to { stroke-dashoffset: 0; } }
+/* 4. Tekstlinks: het pijltje schuift mee zoals bij de knoppen. */
+.tekstlink svg { transition: transform 200ms var(--pio-ease); }
+.tekstlink:hover svg { transform: translate(2px, -2px); }
+@media (prefers-reduced-motion: reduce) {
+  .toestemming, .veld :is(input, select, textarea), .tekstlink svg { transition: none; }
+  .veld-fout { animation: none; }
+  .bedankt-vink path { animation: none; stroke-dashoffset: 0; }
 }

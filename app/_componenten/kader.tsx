@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { contact } from "@/lib/gegevens";
-import { vakken } from "@/lib/vakken";
 import { Knop, Woordmerk } from "./merk";
 import { CookieKnop } from "./Toestemming";
 
@@ -31,16 +30,8 @@ export function Voettekst() {
       <div className="wrap voet-rij">
         <div className="voet-merk">
           <Woordmerk />
-          <p>Een website die even goed is als jouw werk.</p>
+          <p>Websites voor zelfstandigen en kmo’s.</p>
         </div>
-        <nav className="voet-kolom" aria-label="Voor wie">
-          <p className="voet-kop">Voor wie</p>
-          <ul>
-            {vakken.map((v) => (
-              <li key={v.pad}><Link href={v.pad}>{v.menu}</Link></li>
-            ))}
-          </ul>
-        </nav>
         <nav className="voet-kolom" aria-label="Aanbod">
           <p className="voet-kop">Aanbod</p>
           <ul>

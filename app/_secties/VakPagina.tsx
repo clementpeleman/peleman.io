@@ -5,12 +5,12 @@ import { Knop } from "../_componenten/merk";
 import { RibbelglasFoto } from "../_componenten/Ribbelglas";
 import { AanvraagMock, CaseBeeld, Glasvlak, Punten } from "./Functies";
 import { GsmBalk } from "./GsmBalk";
-import { PakketKaart } from "./Pakket";
+import { Prijzen } from "./Prijzen";
 import { Slot } from "./Slot";
 import { Vragen } from "./Vragen";
 import { Werkwijze } from "./Werkwijze";
 import { lvq } from "@/lib/cases";
-import { laagstePrijs, pakketten } from "@/lib/gegevens";
+import { aanbod, euro } from "@/lib/gegevens";
 import type { Vak } from "@/lib/vakken";
 
 export function vakMetadata(vak: Vak): Metadata {
@@ -19,19 +19,19 @@ export function vakMetadata(vak: Vak): Metadata {
 
 // Landingspagina voor één vak. Zonder foto blijft de hero alleen tekst.
 export function VakPagina({ vak }: { vak: Vak }) {
-  const groei = pakketten.find((p) => p.uitgelicht) ?? pakketten[1];
   const aanvraag = vak.beroep ? `/aanvraag?beroep=${encodeURIComponent(vak.beroep)}` : "/aanvraag";
 
   const intro = (
     <div className="maatwerk-intro">
-      <p className="bovenregel">{vak.bovenregel}</p>
       <h1 id="vak-hero-titel">
         {vak.kop[0]} <span>{vak.kop[1]}</span>
       </h1>
       <p className="tekst-groot">{vak.intro}</p>
       <div className="hero-actie" data-hero-knop>
         <Knop href={aanvraag} />
-        <p className="voorwaarden">Vanaf €{laagstePrijs} per maand, excl. btw, zonder kosten vooraf.</p>
+        <p className="voorwaarden">
+          Vanaf {euro(aanbod.site)}, daarna €{aanbod.perMaand} per maand. Excl. btw.
+        </p>
       </div>
     </div>
   );
@@ -88,7 +88,6 @@ export function VakPagina({ vak }: { vak: Vak }) {
                 </h2>
                 <p className="tekst-groot zacht">{vak.vak.tekst}</p>
                 <Punten kop="h3" punten={vak.vak.punten} />
-                <p className="functie-noot">{vak.vak.noot}</p>
               </div>
             </div>
           </div>
@@ -100,12 +99,12 @@ export function VakPagina({ vak }: { vak: Vak }) {
               <CaseBeeld item={lvq} />
               <div className="functie-tekst">
                 <h2 id="case-titel" className="titel">
-                  Zo ziet ons werk eruit
+                  Zo ziet mijn werk eruit
                 </h2>
                 <p className="tekst-groot zacht">
                   {lvq.wie}.{" "}
                   {vak.caseTekst ??
-                    "Een ander vak dan het jouwe, maar we pakten het op dezelfde manier aan. Hun wijnen staan centraal, in een eigen stijl die ook op gsm goed werkt."}
+                    "Een ander vak dan het jouwe, maar ik pakte het op dezelfde manier aan. Hun wijnen staan centraal, in een eigen stijl die ook op gsm goed werkt."}
                 </p>
                 <Link href="/cases" className="tekstlink">
                   Bekijk alle cases
@@ -115,24 +114,9 @@ export function VakPagina({ vak }: { vak: Vak }) {
           </div>
         </section>
 
-        <section className="sectie sectie--vlak" aria-labelledby="prijs-titel">
-          <div className="wrap maatwerk-prijzen">
-            <div className="maatwerk-prijzen-tekst">
-              <h2 id="prijs-titel" className="titel">
-                Eén vaste prijs per maand
-              </h2>
-              <p className="tekst-groot zacht">{vak.prijzen}</p>
-              <p className="prijzen-voorwaarden">
-                Het abonnement loopt twaalf maanden en is daarna maandelijks opzegbaar. Alle prijzen excl. btw.
-                <br />
-                <Link href="/#prijzen">Vergelijk Start, Groei en Pro</Link>
-              </p>
-            </div>
-            <PakketKaart pakket={groei} als="div" />
-          </div>
-        </section>
+        <Prijzen id="prijs" knop={aanvraag} />
 
-        <Werkwijze />
+        <Werkwijze titel="Hoe het gaat" />
 
         <Vragen vragen={vak.vragen.lijst} titel={vak.vragen.titel} />
 

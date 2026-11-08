@@ -1,25 +1,36 @@
 import Image from "next/image";
+import Link from "next/link";
 import ribbelglas from "@/public/beeld/ribbelglas.jpg";
 import { Navigatie, Voettekst } from "./_componenten/kader";
-import { Knop } from "./_componenten/merk";
-import { Functies } from "./_secties/Functies";
+import { Knop, Pijl, Vinkje } from "./_componenten/merk";
+import { Prijzen } from "./_secties/Prijzen";
 import { GsmBalk } from "./_secties/GsmBalk";
-import { Overname } from "./_secties/Overname";
-import { PakketKaart } from "./_secties/Pakket";
-import { PakketTabel } from "./_secties/PakketTabel";
 import { Slot } from "./_secties/Slot";
-import { Techniek } from "./_secties/Techniek";
-import { Vergelijking } from "./_secties/Vergelijking";
 import { Vragen } from "./_secties/Vragen";
 import { Werkwijze } from "./_secties/Werkwijze";
-import { Zekerheden } from "./_secties/Zekerheden";
-import { contact, laagstePrijs, pakketten } from "@/lib/gegevens";
+import { aanbod, contact, euro } from "@/lib/gegevens";
 
 const vragen: [string, string][] = [
-  ["Zit ik meteen ergens aan vast?", "Nee. Het voorbeeld is gratis. Pas wanneer je beslist om verder te gaan, start het abonnement."],
-  ["Hoe lang loopt het abonnement?", "Twaalf maanden. Daarna kan je maandelijks opzeggen. Liever in één keer betalen? Dan koop je je site meteen, of neem je hem later over aan de vooraf bekende overnameprijs."],
-  ["Wat moet ik zelf aanleveren?", "Je logo, foto’s van je werk, je diensten en je werkgebied. Dat gaat via één formulier. Wij maken er duidelijke teksten van."],
-  ["Ik heb al een website. Kan dat ook?", "Ja. We vertrekken van je huidige teksten en foto’s, en je site blijft online tot de nieuwe klaar is."],
+  ["Zit ik vast als ik een voorbeeld vraag?", "Nee. Het voorbeeld is gratis. Pas als je verder wil, krijg je een offerte."],
+  ["Wat moet ik zelf aanleveren?", "Je logo, foto’s van je werk en een lijst van wat je doet en waar. Heb je al een huisstijl, dan bouw ik daarop verder."],
+  ["Ik heb al een website. Kan dat ook?", "Ja. Ik vertrek van wat er staat, en je oude links blijven werken, zodat je niet terugvalt in Google."],
+  ["Hoe snel sta ik bovenaan in Google?", "Dat kan niemand eerlijk beloven. Een nieuwe site heeft een paar maanden nodig. Het maandrapport toont hoe het evolueert."],
+  ["Gebruik je AI?", "Waar het tijd bespaart, ja. Daardoor kan ik goedkoper werken dan een bureau. Je teksten schrijf ik met jou, niet met een generator."],
+];
+
+const werk = [
+  {
+    naam: "H16",
+    wat: "Bouwcoördinatie en projectontwikkeling in Oosterzele. De huisstijl kwam van een ontwerpbureau, de foto’s van hun eigen projecten. Ik bouwde de site errond.",
+    url: "https://h16.be",
+    domein: "h16.be",
+  },
+  {
+    naam: "LVQ.wine",
+    wat: "Een wijnbedrijf. De site moest de kwaliteit en de sfeer van het bedrijf uitstralen.",
+    url: "https://lvq.wine",
+    domein: "lvq.wine",
+  },
 ];
 
 const schema = {
@@ -27,7 +38,7 @@ const schema = {
   "@type": "ProfessionalService",
   name: "peleman.io",
   url: "https://peleman.io",
-  description: "Websites voor zelfstandigen, gebouwd en onderhouden voor een vaste prijs per maand.",
+  description: "Websites voor zelfstandigen en kmo's. Eerst een gratis voorbeeld, daarna een site op maat.",
   email: contact.email,
   telephone: contact.telefoon,
   vatID: contact.ondernemingsnummer.replace(/[ .]/g, ""),
@@ -42,17 +53,18 @@ export default function Home() {
       <main id="inhoud">
         <section className="hero" aria-labelledby="hero-titel">
           <div className="wrap">
-            <p className="bovenregel">Websites voor zelfstandigen</p>
             <h1 id="hero-titel">
-              Een website die even goed is <span>als jouw werk.</span>
+              Ik maak websites voor <span>zelfstandigen en kmo’s.</span>
             </h1>
             <div className="hero-rij">
               <p className="tekst-groot">
-                Wij bouwen je website en houden hem daarna bij. Voor je iets beslist, krijg je een gratis voorbeeld te zien.
+                Ik bouw websites voor zaken die online gevonden willen worden. Voor je iets beslist, maak ik gratis een voorbeeld van je homepage.
               </p>
               <div className="hero-actie" data-hero-knop>
                 <Knop />
-                <p className="voorwaarden">Vanaf €{laagstePrijs} per maand, excl. btw, zonder kosten vooraf.</p>
+                <p className="voorwaarden">
+                  Vanaf {euro(aanbod.site)}, daarna €{aanbod.perMaand} per maand. Excl. btw.
+                </p>
               </div>
             </div>
             <figure className="beeld">
@@ -72,51 +84,84 @@ export default function Home() {
                 />
               </div>
             </figure>
-            <p className="beeld-onderschrift">De site die we voor H16 maakten.</p>
+            <p className="beeld-onderschrift">De site die ik voor H16 maakte.</p>
           </div>
         </section>
 
-        <Zekerheden />
-
-        <Functies />
-
-        <Techniek />
-
-        <Werkwijze lijn />
-
-        <Vergelijking />
-
-        <section className="sectie sectie--vlak" id="prijzen" aria-labelledby="prijzen-titel">
-          <div className="wrap">
-            <h2 id="prijzen-titel" className="titel">
-              Eén vaste prijs per maand
+        <section className="sectie sectie--lijn" aria-labelledby="krijgt-titel">
+          <div className="wrap kolommen">
+            <h2 id="krijgt-titel" className="titel">
+              Wat je krijgt
             </h2>
-            <p className="tekst-groot zacht prijzen-intro">Ontwerp, bouw, hosting en onderhoud zitten erin. Je betaalt niets vooraf.</p>
-            <ul className="pakketten">
-              {pakketten.map((p) => (
-                <PakketKaart key={p.naam} pakket={p} />
+            <ul className="vinklijst">
+              {[...aanbod.inDeSite, aanbod.perMaandInhoud[2]].map((regel) => (
+                <li key={regel}>
+                  <Vinkje />
+                  {regel}
+                </li>
               ))}
             </ul>
-            <p className="prijzen-voorwaarden">Het abonnement loopt twaalf maanden en is daarna maandelijks opzegbaar. Alle prijzen excl. btw.</p>
-            <PakketTabel />
-            <Overname />
           </div>
         </section>
 
-        <section className="sectie" aria-labelledby="contact-titel">
+        <Werkwijze titel="Hoe het gaat" lijn />
+
+        <section className="sectie sectie--lijn" aria-labelledby="werk-titel">
+          <div className="wrap kolommen">
+            <h2 id="werk-titel" className="titel">
+              Wat ik al maakte
+            </h2>
+            <div>
+              <ul className="werklijst">
+                {werk.map((w) => (
+                  <li key={w.naam}>
+                    <h3 className="subtitel">{w.naam}</h3>
+                    <p className="zacht">{w.wat}</p>
+                    <a className="tekstlink" href={w.url} target="_blank" rel="noopener">
+                      Bekijk {w.domein}
+                      <Pijl />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <Link className="tekstlink werklijst-meer" href="/cases">
+                Bekijk alle cases
+                <Pijl />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <Prijzen />
+
+        <section className="sectie" aria-labelledby="maatwerk-titel">
+          <div className="wrap kolommen">
+            <h2 id="maatwerk-titel" className="titel">
+              Ook voor maatwerk
+            </h2>
+            <div>
+              <p className="tekst-groot zacht">
+                Loopt er in je zaak iets met de hand dat sneller kan? Offertes die je telkens opnieuw typt, gegevens die je van het ene programma in het andere overzet. Daar bouw ik ook kleine tools voor.
+              </p>
+              <Knop variant="rand" className="maatwerk-knop" href={`mailto:${contact.email}?subject=Maatwerk`}>
+                Vertel me wat er wringt
+              </Knop>
+            </div>
+          </div>
+        </section>
+
+        <section className="sectie sectie--lijn" aria-labelledby="contact-titel">
           <div className="wrap contact">
             <div className="portret">
               <Image className="portret-glas" src={ribbelglas} alt="" fill quality={55} sizes="(min-width: 900px) 380px, calc(100vw - 36px)" />
               <p className="portret-naam">{contact.naam}</p>
-              <p className="portret-rol">Je vaste aanspreekpunt</p>
             </div>
             <div>
               <h2 id="contact-titel" className="titel">
-                Je weet wie je belt
+                Wie je site bouwt
               </h2>
               <p className="tekst-groot zacht contact-tekst">
-                Clément maakt je voorbeeld en bouwt je site. Ook daarna kan je bij hem terecht, voor een vraag of een nieuwe
-                foto.
+                Ik ben Clément Peleman, ingenieur. Ik werk voor een beperkt aantal klanten tegelijk. Je mailt en belt dus altijd met mij, en ik antwoord binnen een werkdag.
               </p>
               <p className="contact-gegevens">
                 <a href={`tel:${contact.telefoon}`}>{contact.telefoonLeesbaar}</a>
@@ -129,7 +174,7 @@ export default function Home() {
 
         <Vragen vragen={vragen} />
 
-        <Slot />
+        <Slot titel="Benieuwd hoe je site" vervolg="eruit kan zien?" tekst="Je krijgt gratis een voorbeeld van je homepage." />
       </main>
       <Voettekst />
       <GsmBalk />
