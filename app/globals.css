@@ -967,3 +967,25 @@ html[data-toestemming-open] .gsm-balk { display: none; }
 @media (min-width: 900px) { .pakketten--twee { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 880px; } }
 .pakket-vanaf { font-size: 18px; letter-spacing: 0; color: var(--pio-zacht); margin-right: 4px; }
 .maatwerk-knop { margin-top: 24px; }
+
+/* Beweging uit de animatie-scan (november 2026) */
+/* 1. Cookiebanner: komt rustig van onder in beeld in plaats van plots te verschijnen. */
+.toestemming { transition: opacity 280ms var(--pio-ease-out), transform 280ms var(--pio-ease-out); }
+@starting-style { .toestemming { opacity: 0; transform: translateY(16px); } }
+/* 2. Foutmelding onder een veld schuift kort in; de rode rand kleurt mee. */
+.veld :is(input, select, textarea) { transition: border-color 150ms ease, box-shadow 150ms ease; }
+.veld-fout { animation: fout-in 200ms var(--pio-ease-out) both; }
+@keyframes fout-in { from { opacity: 0; transform: translateY(-4px); } }
+/* 3. Bedanktpagina: een vinkje dat zich tekent. */
+.bedankt-vink { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 24px; border-radius: 50%; background: var(--pio-groengrijs); color: var(--pio-groen); }
+.bedankt-vink svg { width: 26px; height: 26px; }
+.bedankt-vink path { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: vink-teken 400ms var(--pio-ease-out) 150ms forwards; }
+@keyframes vink-teken { to { stroke-dashoffset: 0; } }
+/* 4. Tekstlinks: het pijltje schuift mee zoals bij de knoppen. */
+.tekstlink svg { transition: transform 200ms var(--pio-ease); }
+.tekstlink:hover svg { transform: translate(2px, -2px); }
+@media (prefers-reduced-motion: reduce) {
+  .toestemming, .veld :is(input, select, textarea), .tekstlink svg { transition: none; }
+  .veld-fout { animation: none; }
+  .bedankt-vink path { animation: none; stroke-dashoffset: 0; }
+}
