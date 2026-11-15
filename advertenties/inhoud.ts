@@ -1,6 +1,7 @@
 // Alle advertenties op één plek. Elke id is ook de utm_content, zodat een aanvraag in Twenty terug te leiden is
-// tot de advertentie. Teksten volgen docs/brand/website-abonnement/11-merkstem.md; `npm run controle` kijkt ze na.
-import { inclBtw, laagstePrijs, pakketten } from "../lib/gegevens.ts";
+// tot de advertentie. Sinds de herpositionering (november 2026) in 'ik', met het aanbod uit lib/gegevens.ts;
+// zie docs/brand/herpositionering/05-site-tekst.md. `npm run controle` kijkt ze na.
+import { aanbod, euro } from "../lib/gegevens.ts";
 
 export type Formaat = "staand" | "verhaal" | "vierkant";
 
@@ -46,12 +47,10 @@ export type Advertentie = Beeldinhoud & {
   knop: Knop;
 };
 
-const groei = pakketten.find((p) => p.naam === "Groei")!;
-// Lanceringsaanbod uit doc 08: de eerste drie zaken krijgen Groei het eerste jaar aan dit bedrag.
-export const lanceringsprijs = 79;
 
-// Sinds 16 oktober breed: zelfstandigen in het algemeen, naar de homepage (eerst was het maatwerk-1 naar /maatwerk).
-export const campagne = "zelfstandigen-1";
+// Sinds 16 oktober breed: zelfstandigen in het algemeen, naar de homepage. zelfstandigen-2 (november 2026) is de
+// eerste reeks na de herpositionering: 'ik', één aanbod (site eenmalig + maandbedrag). De oude reeks staat in git.
+export const campagne = "zelfstandigen-2";
 export const bestemming = "https://peleman.io/";
 
 export function url(a: Advertentie) {
@@ -63,177 +62,93 @@ export function url(a: Advertentie) {
   return u.toString();
 }
 
+const site = euro(aanbod.site);
+const maand = `€${aanbod.perMaand}`;
+
 export const advertenties: Advertentie[] = [
   {
-    id: "even-goed",
-    hoek: "Even goed als je werk",
+    id: "ik-maak",
+    hoek: "Gewoon zeggen wat ik doe",
     sjabloon: "glas",
     formaten: ["staand", "verhaal"],
-    beeld: { kop: ["Een website die even goed is", "als jouw werk."] },
+    beeld: { kop: ["Ik maak websites voor", "zelfstandigen en kmo’s."] },
     scherm: "h16",
     scherm2: "h16-project",
-    hoofdtekst:
-      "Wij maken en onderhouden websites voor zelfstandigen. Je begint met een gratis voorbeeld van je eigen zaak, en pas daarna beslis je.",
+    hoofdtekst: `Voor je iets beslist, maak ik gratis een voorbeeld van je homepage. Bevalt het, dan bouw ik de rest. Vanaf ${site}, daarna ${maand} per maand, excl. btw.`,
     kop: "Eerst een gratis voorbeeld",
-    beschrijving: "Vast bedrag per maand",
-    knop: "LEARN_MORE",
-  },
-  {
-    id: "eerst-zien",
-    hoek: "Eerst gratis zien",
-    sjabloon: "gsm",
-    formaten: ["staand", "verhaal"],
-    beeld: { kop: ["Zie eerst hoe jouw zaak", "online kan staan."], tekst: "Een gratis voorbeeld, binnen vijf werkdagen na onze bevestiging." },
-    scherm: "h16-project",
-    scherm2: "h16",
-    hoofdtekst:
-      "Benieuwd hoe jouw werk online kan staan? Vraag een gratis voorbeeld aan. Binnen vijf werkdagen na onze bevestiging zie je een werkende pagina van je eigen zaak.",
-    kop: "Je eigen site, eerst gratis bekijken",
     beschrijving: "Websites voor zelfstandigen",
     knop: "LEARN_MORE",
   },
   {
-    id: "vaste-prijs",
-    hoek: "Vaste prijs, niets vooraf",
+    id: "eerst-zien-2",
+    hoek: "Eerst zien, dan beslissen",
+    sjabloon: "gsm",
+    formaten: ["staand", "verhaal"],
+    beeld: { kop: ["Je ziet je homepage", "voor je iets betaalt."], tekst: "Het voorbeeld is gratis. Je zit nergens aan vast." },
+    scherm: "h16-project",
+    scherm2: "h16",
+    hoofdtekst: "Vertel me wat je doet en waar je werkt. Binnen een week krijg je een voorbeeld van je homepage. Daarna beslis je of je verder wil.",
+    kop: "Je homepage, eerst gratis bekijken",
+    beschrijving: "Geen verplichting",
+    knop: "LEARN_MORE",
+  },
+  {
+    id: "prijs-vooraf",
+    hoek: "De prijs staat er gewoon",
     sjabloon: "prijs",
     formaten: ["staand", "verhaal"],
     beeld: {
-      pil: "Geen investering vooraf",
-      kop: ["Vanaf", `€${laagstePrijs}`],
-      tekst: `per maand, excl. btw`,
-      voetnoot: `${inclBtw(laagstePrijs)} incl. btw`,
-      lijst: ["Ontwerp en bouw", "Hosting en onderhoud", "Elke maand aanpassingen"],
+      pil: "Vooraf bekend",
+      kop: ["Vanaf", site],
+      tekst: "eenmalig, excl. btw",
+      voetnoot: `daarna ${maand} per maand`,
+      lijst: ["De site en de teksten", "Hosting en updates", "Een kort maandrapport"],
     },
-    hoofdtekst:
-      "Een nieuwe website, zonder investering vooraf. Je betaalt een vast bedrag per maand. Ontwerp, hosting, onderhoud en aanpassingen zitten erin. Je start met een gratis voorbeeld.",
-    kop: `Vanaf €${laagstePrijs} per maand, excl. btw`,
-    beschrijving: "Alles inbegrepen",
-    knop: "LEARN_MORE",
-  },
-  {
-    id: "beter-doen",
-    hoek: "Wat moet je site beter doen",
-    sjabloon: "aanvraag",
-    formaten: ["staand", "verhaal"],
-    beeld: { kop: ["Wat moet jouw website", "beter doen?"], tekst: "Vertel het in twee minuten. Je gratis voorbeeld speelt erop in." },
-    scherm: "aanvraag",
-    hoofdtekst:
-      "Beter tonen wat je doet, betere aanvragen of personeel vinden? Vertel ons wat je website moet doen. We maken een gratis voorbeeld van je eigen zaak dat daarop inspeelt.",
-    kop: "Vertel wat je site moet doen",
-    beschrijving: "In twee minuten aangevraagd",
-    knop: "LEARN_MORE",
-  },
-  {
-    id: "niveau",
-    hoek: "Herkenning",
-    sjabloon: "scherm",
-    formaten: ["staand", "verhaal"],
-    beeld: { kop: ["Staat je website nog niet", "op het niveau van je werk?"] },
-    scherm: "h16",
-    hoofdtekst:
-      "Staat je website nog niet op het niveau van je werk? Dan zetten we dat recht. Wij bouwen je site en houden ze bij, voor een vast bedrag per maand. Eerst zie je een gratis voorbeeld.",
-    kop: "Een site die bij je werk past",
-    beschrijving: "Gratis voorbeeld eerst",
-    knop: "LEARN_MORE",
-  },
-  {
-    id: "zo-werkt-het",
-    hoek: "Zo werkt het",
-    sjabloon: "stappen",
-    formaten: ["vierkant"],
-    beeld: {},
-    kaarten: [
-      { kop: "Zo werkt het", titel: ["Je nieuwe website,", "in drie stappen."] },
-      { kop: "Gratis voorbeeld aanvragen", nummer: 1, titel: ["Je vraagt een gratis voorbeeld aan"], tekst: "Dat duurt twee minuten, ook op je gsm." },
-      {
-        kop: "Je voorbeeld in vijf werkdagen",
-        nummer: 2,
-        titel: ["Je bekijkt je voorbeeld"],
-        tekst: "Een werkende pagina van je eigen zaak, binnen vijf werkdagen na onze bevestiging.",
-      },
-      { kop: "Online na zo’n twee weken", nummer: 3, titel: ["Je beslist"], tekst: "Ga je verder, dan staat je site zo’n twee weken later online." },
-    ],
-    scherm: "h16",
-    hoofdtekst: "Een nieuwe website in drie stappen, met eerst een gratis voorbeeld van je eigen zaak.",
-    kop: "Zo werkt het",
-    beschrijving: "Websites voor zelfstandigen",
-    knop: "LEARN_MORE",
-  },
-  {
-    id: "schermvideo",
-    hoek: "Een echte site in beweging",
-    sjabloon: "schermvideo",
-    formaten: ["verhaal"],
-    beeld: {
-      zinnen: ["Zo kan jouw werk online staan.", "Eerst zie je een gratis voorbeeld van je eigen zaak.", "Daarna een vast bedrag per maand, alles inbegrepen."],
-      slot: "Vraag je gratis voorbeeld aan.",
-    },
-    scherm: "h16",
-    scherm2: "h16-project",
-    hoofdtekst:
-      "Zo kan jouw werk online staan. We maken eerst een gratis voorbeeld van je eigen zaak. Daarna betaal je een vast bedrag per maand, met alles inbegrepen.",
-    kop: "Zie hoe jouw site kan worden",
-    beschrijving: "Vast bedrag per maand",
-    knop: "LEARN_MORE",
-  },
-  {
-    id: "lanceringsaanbod",
-    hoek: "Lanceringsaanbod",
-    sjabloon: "lancering",
-    formaten: ["staand", "verhaal"],
-    beeld: {
-      pil: "Lanceringsaanbod",
-      kop: [`${groei.naam} aan €${lanceringsprijs} per maand,`, "het eerste jaar."],
-      tekst: "Voor de eerste drie zaken, in ruil voor een case met foto’s en een review.",
-      voetnoot: `Daarna €${groei.prijs} per maand. Prijzen excl. btw.`,
-      lijst: groei.inhoud.slice(0, 5),
-    },
-    hoofdtekst: `Voor de eerste drie zaken: ${groei.naam} een jaar lang aan €${lanceringsprijs} per maand in plaats van €${groei.prijs}, excl. btw. In ruil maken we samen een case met foto’s en een review. Je begint met een gratis voorbeeld.`,
-    kop: `Eerste jaar ${groei.naam} aan €${lanceringsprijs} per maand`,
-    beschrijving: "Voor de eerste drie zaken",
-    knop: "LEARN_MORE",
-  },
-  // Ronde 2 (18 oktober): uiterlijk als bewijs, en wat een zelfstandige elders niet krijgt.
-  {
-    id: "wat-je-krijgt",
-    hoek: "Wat je krijgt voor de laagste prijs",
-    sjabloon: "lijst",
-    formaten: ["staand", "verhaal"],
-    beeld: {
-      pil: "Alles inbegrepen, excl. btw",
-      kop: ["Wat je krijgt", `voor €${laagstePrijs} per maand.`],
-      lijst: ["Ontwerp en bouw", "Hosting en updates", "Elke maand aanpassingen", "Je domein op jouw naam", "Eén vast aanspreekpunt"],
-    },
-    hoofdtekst: `Vanaf €${laagstePrijs} per maand, excl. btw, maken en onderhouden wij je website. Geen bedrag vooraf, en je ziet je eigen site eerst gratis.`,
-    kop: `Alles inbegrepen, vanaf €${laagstePrijs} per maand`,
+    hoofdtekst: `De prijs staat gewoon op de site. Vanaf ${site} voor de bouw, daarna ${maand} per maand voor hosting, updates en een kort maandrapport. Alles excl. btw. Het voorbeeld vooraf is gratis.`,
+    kop: `Vanaf ${site}, daarna ${maand} per maand`,
     beschrijving: "Prijzen excl. btw",
     knop: "LEARN_MORE",
   },
   {
-    id: "eerste-indruk",
-    hoek: "Online maak je de eerste indruk",
-    sjabloon: "gsm",
+    id: "maandrapport",
+    hoek: "Zien of het werkt",
+    sjabloon: "lijst",
     formaten: ["staand", "verhaal"],
-    beeld: { kop: ["Online maak je", "de eerste indruk."], tekst: "Wij zorgen dat die meteen klopt. Je ziet je eigen site eerst gratis." },
-    scherm: "h16",
-    scherm2: "h16-project",
-    hoofdtekst:
-      "Voor veel klanten is je website de eerste kennismaking met je zaak. Wij zorgen dat die meteen toont wat je kan. Je ziet je eigen site eerst gratis, en pas daarna beslis je.",
-    kop: "Een eerste indruk die klopt",
-    beschrijving: "Gratis voorbeeld eerst",
+    beeld: {
+      pil: "Elke maand",
+      kop: ["Je ziet of je site", "zijn werk doet."],
+      lijst: ["Hoe vaak je gevonden werd", "Hoeveel mensen contact opnamen"],
+    },
+    hoofdtekst: "Een website moet groeien in Google, en dat duurt een paar maanden. Daarom krijg je elke maand een kort rapport: hoe vaak je gevonden werd en hoeveel mensen contact opnamen.",
+    kop: "Elke maand een kort rapport",
+    beschrijving: "Websites voor zelfstandigen",
     knop: "LEARN_MORE",
   },
   {
-    id: "aanpassing",
-    hoek: "Een aanpassing staat binnen vijf werkdagen online, altijd via dezelfde persoon",
+    id: "met-mij",
+    hoek: "Eén persoon, geen bureau",
     sjabloon: "tekst",
     formaten: ["staand", "verhaal"],
-    beeld: { kop: ["Je site aanpassen?", "Binnen vijf werkdagen online."], tekst: "Altijd via dezelfde persoon, inbegrepen in je maandprijs." },
+    beeld: { kop: ["Je mailt en belt", "altijd met mij."], tekst: "Ik werk voor een beperkt aantal klanten tegelijk." },
+    hoofdtekst: "Ik werk voor een beperkt aantal klanten tegelijk. Heb je een vraag of wil je iets aangepast zien, dan mail of bel je mij. Ik antwoord binnen een werkdag.",
+    kop: "Antwoord binnen een werkdag",
+    beschrijving: "Websites voor zelfstandigen",
+    knop: "LEARN_MORE",
+  },
+  {
+    id: "schermvideo-2",
+    hoek: "Een echte site in beweging",
+    sjabloon: "schermvideo",
+    formaten: ["verhaal"],
+    beeld: {
+      zinnen: ["Dit is een site die ik maakte.", "Je krijgt eerst gratis een voorbeeld van je homepage.", `Vanaf ${site}, daarna ${maand} per maand, excl. btw.`],
+      slot: "Vraag je gratis voorbeeld aan.",
+    },
     scherm: "h16",
-    hoofdtekst:
-      "Wij maken en onderhouden je website. Wil je iets aanpassen, dan mail of bel je altijd dezelfde persoon, en staat het binnen vijf werkdagen online. Dat zit in je maandprijs. Je begint met een gratis voorbeeld.",
-    kop: "Aanpassingen inbegrepen",
-    beschrijving: "Eén vast aanspreekpunt",
+    scherm2: "h16-project",
+    hoofdtekst: `Dit is een site die ik maakte. Voor jouw zaak maak ik eerst gratis een voorbeeld van je homepage. Bevalt het, dan bouw ik de rest, vanaf ${site} excl. btw.`,
+    kop: "Eerst een gratis voorbeeld",
+    beschrijving: "Prijzen excl. btw",
     knop: "LEARN_MORE",
   },
 ];

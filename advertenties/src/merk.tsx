@@ -19,7 +19,7 @@ function useMerkletters() {
   const [wacht] = useState(() => delayRender("Merkletters laden"));
   useEffect(() => {
     Promise.all(
-      ['600 80px "Bricolage Grotesque"', '700 80px "Bricolage Grotesque"', '400 40px "DM Sans"', '500 40px "DM Sans"', '600 40px "DM Sans"'].map((f) =>
+      ['700 80px "Bricolage Grotesque"', '400 80px "Absans"'].map((f) =>
         document.fonts.load(f),
       ),
     ).then(

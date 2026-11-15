@@ -3,11 +3,10 @@
 
 @font-face { font-family: "Bricolage Grotesque"; font-weight: 600; font-display: block; src: url("../../app/fonts/bricolage-grotesque-600.woff") format("woff"); }
 @font-face { font-family: "Bricolage Grotesque"; font-weight: 700; font-display: block; src: url("../../app/fonts/bricolage-grotesque-700.woff") format("woff"); }
-@font-face { font-family: "DM Sans"; font-weight: 400; font-display: block; src: url("../../app/fonts/dm-sans-400.woff") format("woff"); }
-@font-face { font-family: "DM Sans"; font-weight: 500; font-display: block; src: url("../../app/fonts/dm-sans-500.woff") format("woff"); }
-@font-face { font-family: "DM Sans"; font-weight: 600; font-display: block; src: url("../../app/fonts/dm-sans-600.woff") format("woff"); }
+/* Absans heeft één gewicht; het bereik voorkomt nep-vet, zoals op de site. */
+@font-face { font-family: "Absans"; font-weight: 100 900; font-display: block; src: url("../../app/fonts/absans-regular.woff2") format("woff2"); }
 
 :root {
   --font-bricolage: "Bricolage Grotesque";
-  --font-dm-sans: "DM Sans";
+  --font-absans: "Absans";
 }

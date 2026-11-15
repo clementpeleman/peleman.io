@@ -23,8 +23,7 @@ const verboden = [
   "landingspagina", "seo", "zoekmachineoptimalisatie", "kleine wijziging", "wijzigingsronde", "demo", "testsite",
   "mockup", "ai", "ai-gedreven", "team van experts", "full-service", "revolutionair", "uniek", "de beste",
   "state of the art", "gegarandeerd", "garantie", "laatste kans", "nummer één", "meer klanten",
-  // ‘wij’ en ‘je’, nooit ‘ik’ of ‘u’.
-  "ik", "mijn", "u", "uw", "ge",
+  "u", "uw", "ge",
   // Cases: namen nooit in de tekst; in beeld mogen ze zichtbaar zijn.
   "h16", "h16.be", "lvq", "lvq.wine", "le vin quotidien", "tourage",
 ];
@@ -55,6 +54,9 @@ function velden(a: Beeldinhoud & Partial<Advertentie> & { bijschrift?: string })
   return lijst;
 }
 
+// Advertenties zijn sinds november 2026 in ‘ik’; de oude Instagram-berichten bleven in ‘wij’.
+const voornaamwoorden = { advertentie: ["wij", "ons", "onze"], post: ["ik", "mijn"] };
+
 const meldingen: Melding[] = [];
 const ids = new Set<string>();
 
@@ -72,7 +74,7 @@ for (const a of advertenties) {
 
   for (const [veld, tekst] of velden(a)) {
     for (const [patroon, wat] of tekens) if (patroon.test(tekst)) m(veld, "fout", wat);
-    for (const w of verboden) if (woord(tekst, w)) m(veld, "fout", `‘${w}’ hoort niet in een advertentie`);
+    for (const w of [...verboden, ...voornaamwoorden.advertentie]) if (woord(tekst, w)) m(veld, "fout", `‘${w}’ hoort niet in een advertentie`);
     for (const w of nakijken) if (woord(tekst, w)) m(veld, "nakijken", `‘${w}’: alleen over het werk van de klant`);
     if (/peleman\.io/i.test(tekst) && !/peleman\.io/.test(tekst)) m(veld, "fout", "peleman.io altijd met kleine letters");
     for (const zin of tekst.split(/(?<=[.?:])\s+/)) {
@@ -104,7 +106,7 @@ for (const p of posts) {
   if (hashtags.length > 5) m("bijschrift", "nakijken", `${hashtags.length} hashtags; hou het bij vijf`);
   for (const [veld, tekst] of velden(p)) {
     for (const [patroon, wat] of tekens) if (patroon.test(tekst)) m(veld, "fout", wat);
-    for (const w of verboden) if (woord(tekst, w)) m(veld, "fout", `‘${w}’ hoort niet in een bericht`);
+    for (const w of [...verboden, ...voornaamwoorden.post]) if (woord(tekst, w)) m(veld, "fout", `‘${w}’ hoort niet in een bericht`);
     if (/€\s?\d/.test(tekst) && !/btw/.test(tekst) && veld !== "beeld.kop") m(veld, "fout", "prijs zonder ‘excl. btw’");
   }
 }

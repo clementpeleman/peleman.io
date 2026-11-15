@@ -1,7 +1,9 @@
 // Gewone berichten voor Instagram: het startraster van het profiel. Zelfde sjablonen als de advertenties, zonder knop
 // in het beeld. `volgorde` is de volgorde van plaatsen: het laatste bericht komt linksboven in het raster.
 // Groen en licht wisselen af als een dambord. Namen van klanten niet in de tekst, zoals in de advertenties.
-import { inclBtw, laagstePrijs } from "../lib/gegevens.ts";
+// Deze berichten staan al op Instagram en horen bij het oude abonnement (oktober 2026). Ze blijven zoals ze geplaatst zijn.
+const laagstePrijs = 79;
+const inclBtw = (prijs: number) => `€${(prijs * 1.21).toFixed(2).replace(".", ",")}`;
 import type { Beeldinhoud } from "./inhoud.ts";
 
 export type Post = Beeldinhoud & { volgorde: number; bijschrift: string };
