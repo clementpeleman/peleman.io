@@ -42,18 +42,22 @@ export function Desktop({ scherm, breedte, style }: { scherm: Scherm; breedte: n
 const STATUS = 54;
 const VIEWPORT = 844;
 
+// Zilveren kader en zwarte rand rond het scherm, als deel van de breedte.
+const KADER = 0.011;
+const RAND = 0.014;
+
 // Breedte en hoogte van het deel onder de statusbalk, voor een gsm van `breedte` pixels.
 export function schermmaat(breedte: number) {
-  const b = breedte * (1 - 2 * (0.011 + 0.02));
+  const b = breedte * (1 - 2 * (KADER + RAND));
   return { breedte: b, hoogte: (b * VIEWPORT) / 390 };
 }
 
-// Een rechte gsm zoals een echte: kader in grafiet, dunne zwarte rand, camera-eiland, statusbalk in de kleur van de site,
+// Een rechte gsm zoals een echte: kader in zilver (zoals de iPhone op de site, app/_componenten/Iphone.tsx), dunne zwarte rand, camera-eiland, statusbalk in de kleur van de site,
 // knoppen aan de zijkant en een rustige schaduw. Geen kanteling en geen browserbalk (19-menselijke pass).
 // `children` vult het deel onder de statusbalk (390 × 844 punten).
 export function Gsm({ breedte, kleur = "#ffffff", style, children }: { breedte: number; kleur?: string; style?: CSSProperties; children: ReactNode }) {
-  const kader = breedte * 0.011;
-  const rand = breedte * 0.02;
+  const kader = breedte * KADER;
+  const rand = breedte * RAND;
   const straal = breedte * 0.155;
   const pt = schermmaat(breedte).breedte / 390;
   const knop = (top: number, hoogte: number, kant: "links" | "rechts") => (
@@ -65,7 +69,7 @@ export function Gsm({ breedte, kleur = "#ffffff", style, children }: { breedte: 
         width: breedte * 0.009,
         height: breedte * hoogte,
         borderRadius: breedte * 0.004,
-        background: "linear-gradient(90deg, #3c423f, #1f2321)",
+        background: "linear-gradient(90deg, #8a8b90, #d2d3d6 60%, #9a9ba0)",
       }}
     />
   );
@@ -80,7 +84,7 @@ export function Gsm({ breedte, kleur = "#ffffff", style, children }: { breedte: 
           position: "relative",
           padding: kader,
           borderRadius: straal,
-          background: "linear-gradient(140deg, #5a605c 0%, #2a2f2c 22%, #1b1f1d 60%, #3a403c 100%)",
+          background: "linear-gradient(140deg, #e4e4e7 0%, #9a9ba0 22%, #d2d3d6 48%, #85868b 74%, #c9cacd 100%)",
           boxShadow: `0 ${breedte * 0.09}px ${breedte * 0.16}px -${breedte * 0.07}px rgba(6, 28, 18, .42), 0 ${breedte * 0.02}px ${breedte * 0.04}px -${breedte * 0.02}px rgba(6, 28, 18, .3)`,
         }}
       >

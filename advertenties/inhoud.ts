@@ -27,7 +27,7 @@ export type Kaart = { kop: string; nummer?: number; titel: [string, string?]; te
 export type Beeldinhoud = {
   id: string;
   sjabloon: Sjabloon;
-  beeld: { kop?: [string, string]; tekst?: string; pil?: string; lijst?: string[]; voetnoot?: string; zinnen?: string[]; slot?: string };
+  beeld: { kop?: [string, string?]; tekst?: string; pil?: string; lijst?: string[]; voetnoot?: string; zinnen?: string[]; slot?: string };
   // Het echte scherm in beeld. Een tweede scherm is de gsm vooraan bij ‘glas’, de gsm erachter bij ‘gsm’,
   // en de pagina waar de schermvideo naartoe gaat.
   scherm?: Scherm;
@@ -50,7 +50,10 @@ export type Advertentie = Beeldinhoud & {
 
 // Sinds 16 oktober breed: zelfstandigen in het algemeen, naar de homepage. zelfstandigen-2 (november 2026) is de
 // eerste reeks na de herpositionering: 'ik', één aanbod (site eenmalig + maandbedrag). De oude reeks staat in git.
-export const campagne = "zelfstandigen-2";
+// huisstijl-1 (20 november 2026): voor zaken die al een logo of huisstijl hebben, maar nog geen site die er klanten
+// mee binnenhaalt. Gebaseerd op het echte verloop bij H16 (huisstijl van een ontwerpbureau, site van Clément).
+// De reeks zelfstandigen-2 staat in git en in public/beeld/advertenties/zelfstandigen-2.
+export const campagne = "huisstijl-1";
 export const bestemming = "https://peleman.io/";
 
 export function url(a: Advertentie) {
@@ -63,92 +66,60 @@ export function url(a: Advertentie) {
 }
 
 const site = euro(aanbod.site);
-const maand = `€${aanbod.perMaand}`;
 
 export const advertenties: Advertentie[] = [
   {
-    id: "ik-maak",
-    hoek: "Gewoon zeggen wat ik doe",
+    id: "huisstijl-klanten",
+    hoek: "Je huisstijl omzetten in klanten",
     sjabloon: "glas",
     formaten: ["staand", "verhaal"],
-    beeld: { kop: ["Ik maak websites voor", "zelfstandigen en kmo’s."] },
-    scherm: "h16",
-    scherm2: "h16-project",
-    hoofdtekst: `Voor je iets beslist, maak ik gratis een voorbeeld van je homepage. Bevalt het, dan bouw ik de rest. Vanaf ${site}, daarna ${maand} per maand, excl. btw.`,
-    kop: "Eerst een gratis voorbeeld",
+    beeld: { kop: ["Je huisstijl omzetten in klanten?"] },
+    knopInBeeld: false,
+    scherm: "lvq",
+    scherm2: "lvq",
+    hoofdtekst: "Een logo en huisstijl maken je zaak herkenbaar. Klanten komen er pas van als ze je online vinden en meteen zien wat je doet. Daarvoor bouw ik je website in je eigen stijl.",
+    kop: "Websites in je eigen huisstijl",
     beschrijving: "Websites voor zelfstandigen",
     knop: "LEARN_MORE",
   },
   {
-    id: "eerst-zien-2",
-    hoek: "Eerst zien, dan beslissen",
+    id: "sterk-merk",
+    hoek: "Sterk merk, geen klanten via de site",
     sjabloon: "gsm",
     formaten: ["staand", "verhaal"],
-    beeld: { kop: ["Je ziet je homepage", "voor je iets betaalt."], tekst: "Het voorbeeld is gratis. Je zit nergens aan vast." },
+    beeld: { kop: ["Een sterk merk, maar nog geen klanten via je website?"], tekst: "Deze site bouwde ik in een huisstijl die er al was." },
     scherm: "h16-project",
     scherm2: "h16",
-    hoofdtekst: "Vertel me wat je doet en waar je werkt. Binnen een week krijg je een voorbeeld van je homepage. Daarna beslis je of je verder wil.",
-    kop: "Je homepage, eerst gratis bekijken",
-    beschrijving: "Geen verplichting",
+    hoofdtekst: "Veel zaken investeren in een logo en een huisstijl en hebben daarna een website die daar niet bij aansluit. Ik bouw sites die je merk overbrengen en aanvragen binnenhalen.",
+    kop: "Een website die bij je merk past",
+    beschrijving: "Websites voor zelfstandigen",
     knop: "LEARN_MORE",
   },
   {
-    id: "prijs-vooraf",
-    hoek: "De prijs staat er gewoon",
-    sjabloon: "prijs",
+    id: "nieuwe-klanten",
+    hoek: "Hoe nieuwe klanten je merk zien",
+    sjabloon: "scherm",
     formaten: ["staand", "verhaal"],
-    beeld: {
-      pil: "Vooraf bekend",
-      kop: ["Vanaf", site],
-      tekst: "eenmalig, excl. btw",
-      voetnoot: `daarna ${maand} per maand`,
-      lijst: ["De site en de teksten", "Hosting en updates", "Een kort maandrapport"],
-    },
-    hoofdtekst: `De prijs staat gewoon op de site. Vanaf ${site} voor de bouw, daarna ${maand} per maand voor hosting, updates en een kort maandrapport. Alles excl. btw. Het voorbeeld vooraf is gratis.`,
-    kop: `Vanaf ${site}, daarna ${maand} per maand`,
-    beschrijving: "Prijzen excl. btw",
+    beeld: { kop: ["Hoe zien nieuwe klanten je merk vandaag?"] },
+    scherm: "h16",
+    hoofdtekst: "Wie je nog niet kent zoekt meestal eerst in Google. Wat ze daar vinden is vaak het eerste wat ze van je merk zien. Ik bouw je website in je eigen branding, gemaakt om gevonden te worden.",
+    kop: "Gevonden worden met je eigen merk",
+    beschrijving: "Websites voor zelfstandigen",
     knop: "LEARN_MORE",
   },
   {
-    id: "maandrapport",
-    hoek: "Zien of het werkt",
+    id: "huisstijl-aanvragen",
+    hoek: "Van huisstijl naar aanvragen",
     sjabloon: "lijst",
     formaten: ["staand", "verhaal"],
     beeld: {
-      pil: "Elke maand",
-      kop: ["Je ziet of je site", "zijn werk doet."],
-      lijst: ["Hoe vaak je gevonden werd", "Hoeveel mensen contact opnamen"],
+      pil: "Zo werkt het",
+      kop: ["Van huisstijl naar aanvragen."],
+      lijst: ["Je bezorgt me je huisstijl en foto’s", "Ik maak gratis een voorbeeld van je homepage", "Bevalt het? Dan bouw ik de rest"],
     },
-    hoofdtekst: "Een website moet groeien in Google, en dat duurt een paar maanden. Daarom krijg je elke maand een kort rapport: hoe vaak je gevonden werd en hoeveel mensen contact opnamen.",
-    kop: "Elke maand een kort rapport",
-    beschrijving: "Websites voor zelfstandigen",
-    knop: "LEARN_MORE",
-  },
-  {
-    id: "met-mij",
-    hoek: "Eén persoon, geen bureau",
-    sjabloon: "tekst",
-    formaten: ["staand", "verhaal"],
-    beeld: { kop: ["Je mailt en belt", "altijd met mij."], tekst: "Ik werk voor een beperkt aantal klanten tegelijk." },
-    hoofdtekst: "Ik werk voor een beperkt aantal klanten tegelijk. Heb je een vraag of wil je iets aangepast zien, dan mail of bel je mij. Ik antwoord binnen een werkdag.",
-    kop: "Antwoord binnen een werkdag",
-    beschrijving: "Websites voor zelfstandigen",
-    knop: "LEARN_MORE",
-  },
-  {
-    id: "schermvideo-2",
-    hoek: "Een echte site in beweging",
-    sjabloon: "schermvideo",
-    formaten: ["verhaal"],
-    beeld: {
-      zinnen: ["Dit is een site die ik maakte.", "Je krijgt eerst gratis een voorbeeld van je homepage.", `Vanaf ${site}, daarna ${maand} per maand, excl. btw.`],
-      slot: "Vraag je gratis voorbeeld aan.",
-    },
-    scherm: "h16",
-    scherm2: "h16-project",
-    hoofdtekst: `Dit is een site die ik maakte. Voor jouw zaak maak ik eerst gratis een voorbeeld van je homepage. Bevalt het, dan bouw ik de rest, vanaf ${site} excl. btw.`,
-    kop: "Eerst een gratis voorbeeld",
-    beschrijving: "Prijzen excl. btw",
+    hoofdtekst: `Je bezorgt me je logo, je kleuren en foto’s van je werk. Ik maak eerst gratis een voorbeeld van je homepage. Bevalt het, dan bouw ik de rest: een site die gevonden wordt en aanvragen rechtstreeks naar je mailbox stuurt. Vanaf ${site} excl. btw.`,
+    kop: "Een website op basis van je huisstijl",
+    beschrijving: "Vanaf €1.500 excl. btw",
     knop: "LEARN_MORE",
   },
 ];
