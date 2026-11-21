@@ -3,6 +3,7 @@ import Link from "next/link";
 import ribbelglas from "@/public/beeld/ribbelglas.jpg";
 import { Navigatie, Voettekst } from "./_componenten/kader";
 import { Knop, Pijl, Vinkje } from "./_componenten/merk";
+import { HeroStapel } from "./_componenten/HeroStapel";
 import { Prijzen } from "./_secties/Prijzen";
 import { GsmBalk } from "./_secties/GsmBalk";
 import { Slot } from "./_secties/Slot";
@@ -67,24 +68,10 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <figure className="beeld">
+            <HeroStapel>
               <Image className="beeld-glas" src={ribbelglas} alt="" fill preload quality={55} sizes="(min-width: 1304px) 1240px, calc(100vw - 36px)" />
               <div className="beeld-waas" />
-              <div className="beeld-site">
-                <div className="browserbalk" aria-hidden="true">
-                  <span>h16.be</span>
-                </div>
-                <Image
-                  src="/beeld/h16-landing.jpg"
-                  width={1440}
-                  height={968}
-                  sizes="(min-width: 1100px) 520px, (min-width: 640px) 52vw, 84vw"
-                  alt="De website van H16, bouwcoördinatie en projectontwikkeling, met foto’s van twee realisaties."
-                  loading="eager"
-                />
-              </div>
-            </figure>
-            <p className="beeld-onderschrift">De site die ik voor H16 maakte.</p>
+            </HeroStapel>
           </div>
         </section>
 
