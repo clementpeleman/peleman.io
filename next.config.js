@@ -3,8 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   // Voor de Dockerfile: een zelfstandige server met alleen de pakketten die echt gebruikt worden.
   output: "standalone",
-  // Next 16 laat standaard alleen kwaliteit 75 toe; het ribbelglas gebruikt 55.
-  images: { qualities: [55, 75] },
+  // Next 16 laat standaard alleen kwaliteit 75 toe; het ribbelglas gebruikt 55, de screenshots in de hero 90.
+  images: { qualities: [55, 75, 90] },
   // De advertentiebeelden moeten ophaalbaar zijn voor Meta, maar horen niet in de zoekresultaten van Google.
   async headers() {
     return [{ source: "/beeld/advertenties/:pad*", headers: [{ key: "X-Robots-Tag", value: "noindex" }] }];

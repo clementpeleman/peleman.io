@@ -219,6 +219,8 @@ export function HeroStapel({ children }: { children: React.ReactNode }) {
                     alt={k.alt}
                     fill
                     draggable={false}
+                    // Screenshots met kleine tekst: bij kwaliteit 75 worden de letters wazig.
+                    quality={90}
                     sizes="(min-width: 1100px) 520px, (min-width: 640px) 52vw, 84vw"
                     loading={i === 0 ? "eager" : undefined}
                   />
