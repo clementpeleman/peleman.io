@@ -35,6 +35,8 @@ export type Beeldinhoud = {
   kaarten?: Kaart[];
   // Een knop ‘Gratis voorbeeld’ onderaan het beeld. Niet in gewone berichten: daar kan niemand op klikken.
   knopInBeeld?: boolean;
+  // Het merk van de klant (logo of beeldmerk uit publiek/merken), als kaartje bij de site in beeld.
+  merk?: string;
 };
 
 export type Advertentie = Beeldinhoud & {
@@ -69,12 +71,13 @@ const site = euro(aanbod.site);
 
 export const advertenties: Advertentie[] = [
   {
-    id: "huisstijl-klanten",
+    id: "huisstijl-klanten-2",
     hoek: "Je huisstijl omzetten in klanten",
     sjabloon: "glas",
     formaten: ["staand", "verhaal"],
     beeld: { kop: ["Je huisstijl omzetten in klanten?"] },
     knopInBeeld: false,
+    merk: "merken/lvq-logo.svg",
     scherm: "lvq",
     scherm2: "lvq",
     hoofdtekst: "Een logo en huisstijl maken je zaak herkenbaar. Klanten komen er pas van als ze je online vinden en meteen zien wat je doet. Daarvoor bouw ik je website in je eigen stijl.",
@@ -83,24 +86,25 @@ export const advertenties: Advertentie[] = [
     knop: "LEARN_MORE",
   },
   {
-    id: "sterk-merk",
+    id: "sterk-merk-2",
     hoek: "Sterk merk, geen klanten via de site",
     sjabloon: "gsm",
     formaten: ["staand", "verhaal"],
     beeld: { kop: ["Een sterk merk, maar nog geen klanten via je website?"], tekst: "Deze site bouwde ik in een huisstijl die er al was." },
+    merk: "merken/h16-kolibrie.png",
     scherm: "h16-project",
-    scherm2: "h16",
     hoofdtekst: "Veel zaken investeren in een logo en een huisstijl en hebben daarna een website die daar niet bij aansluit. Ik bouw sites die je merk overbrengen en aanvragen binnenhalen.",
     kop: "Een website die bij je merk past",
     beschrijving: "Websites voor zelfstandigen",
     knop: "LEARN_MORE",
   },
   {
-    id: "nieuwe-klanten",
+    id: "nieuwe-klanten-2",
     hoek: "Hoe nieuwe klanten je merk zien",
     sjabloon: "scherm",
     formaten: ["staand", "verhaal"],
     beeld: { kop: ["Hoe zien nieuwe klanten je merk vandaag?"] },
+    merk: "merken/h16-kolibrie.png",
     scherm: "h16",
     hoofdtekst: "Wie je nog niet kent zoekt meestal eerst in Google. Wat ze daar vinden is vaak het eerste wat ze van je merk zien. Ik bouw je website in je eigen branding, gemaakt om gevonden te worden.",
     kop: "Gevonden worden met je eigen merk",

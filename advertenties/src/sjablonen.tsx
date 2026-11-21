@@ -1,5 +1,5 @@
-import type { ComponentType } from "react";
-import { AbsoluteFill, Img } from "remotion";
+import type { ComponentType, CSSProperties } from "react";
+import { AbsoluteFill, Img, staticFile } from "remotion";
 import ribbelglasFoto from "../../public/beeld/ribbelglas.jpg";
 import type { Beeldinhoud, Formaat, Sjabloon } from "../inhoud.ts";
 import { posts } from "../posts.ts";
@@ -12,6 +12,29 @@ export type BeeldProps = { ad: Beeldinhoud; formaat: Formaat; veiligeZone?: bool
 const groen = "var(--pio-groen)";
 const groengrijs = "var(--pio-groengrijs)";
 
+// Het merk van de klant op een wit kaartje, half over de site: eerst het merk, dan de site die het uitdraagt.
+function Merkkaart({ bestand, breedte, style }: { bestand?: string; breedte: number; style: CSSProperties }) {
+  if (!bestand) return null;
+  return (
+    <div
+      style={{
+        position: "absolute",
+        width: breedte,
+        height: breedte,
+        padding: breedte * 0.12,
+        borderRadius: breedte * 0.13,
+        background: "#ffffff",
+        boxShadow: `0 ${breedte * 0.12}px ${breedte * 0.24}px -${breedte * 0.08}px rgba(6, 28, 18, .38)`,
+        display: "grid",
+        placeItems: "center",
+        ...style,
+      }}
+    >
+      <Img src={staticFile(bestand)} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+    </div>
+  );
+}
+
 // Ribbelglas over de foto's van een echte site, met die site scherp op een gsm ervoor. Kop op groen.
 function Glas({ ad, formaat, veiligeZone }: BeeldProps) {
   const v = vlak(formaat);
@@ -23,10 +46,14 @@ function Glas({ ad, formaat, veiligeZone }: BeeldProps) {
     <Kader achtergrond={groen} formaat={formaat} veiligeZone={veiligeZone}>
       <Ribbelglas src={scherm.desktop!} uitsnede={scherm.fotos} style={verhaal ? { left: 0, right: 0, top: grens, bottom: 0 } : { left: 0, right: 0, top: 0, height: grens }} />
       {verhaal ? (
-        <GsmMetScherm scherm={ad.scherm2 ?? ad.scherm!} breedte={560} style={{ left: 260, top: grens + 130 }} />
+        <>
+          <GsmMetScherm scherm={ad.scherm2 ?? ad.scherm!} breedte={560} style={{ left: 260, top: grens + 130 }} />
+          <Merkkaart bestand={ad.merk} breedte={280} style={{ left: 60, top: grens + 260 }} />
+        </>
       ) : (
         <div style={{ position: "absolute", left: 0, right: 0, top: 0, height: grens, overflow: "hidden" }}>
           <GsmMetScherm scherm={ad.scherm2 ?? ad.scherm!} breedte={420} style={{ left: 330, top: 110 }} />
+          <Merkkaart bestand={ad.merk} breedte={290} style={{ left: 90, top: 360 }} />
         </div>
       )}
       <div
@@ -66,9 +93,13 @@ function GsmBeeld({ ad, formaat, veiligeZone }: BeeldProps) {
         <>
           <GsmMetScherm scherm={ad.scherm2} breedte={breedte * 0.86} style={{ left: verhaal ? 90 : 110, top: verhaal ? 820 : 560 }} />
           <GsmMetScherm scherm={ad.scherm!} breedte={breedte} style={{ left: verhaal ? 420 : 470, top: verhaal ? 900 : 620 }} />
+          <Merkkaart bestand={ad.merk} breedte={verhaal ? 260 : 230} style={{ left: verhaal ? 40 : 50, top: verhaal ? 760 : 600 }} />
         </>
       ) : (
-        <GsmMetScherm scherm={ad.scherm!} breedte={breedte} style={{ left: (1080 - breedte) / 2, top: verhaal ? 860 : 580 }} />
+        <>
+          <GsmMetScherm scherm={ad.scherm!} breedte={breedte} style={{ left: (1080 - breedte) / 2, top: verhaal ? 860 : 580 }} />
+          <Merkkaart bestand={ad.merk} breedte={verhaal ? 260 : 230} style={{ left: verhaal ? 70 : 90, top: verhaal ? 1300 : 1000 }} />
+        </>
       )}
     </Kader>
   );
@@ -139,6 +170,7 @@ function Scherm({ ad, formaat, veiligeZone }: BeeldProps) {
         <Kop regels={ad.beeld.kop!} grootte={verhaal ? 92 : 80} style={{ marginTop: 20 }} />
       </div>
       <Desktop scherm={ad.scherm!} breedte={verhaal ? 1500 : 1320} style={{ left: v.left, top: verhaal ? 800 : 620 }} />
+      <Merkkaart bestand={ad.merk} breedte={verhaal ? 270 : 250} style={{ right: 70, top: verhaal ? 690 : 510 }} />
     </Kader>
   );
 }
