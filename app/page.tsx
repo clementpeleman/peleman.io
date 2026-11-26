@@ -59,7 +59,7 @@ export default function Home() {
             </h1>
             <div className="hero-rij">
               <p className="tekst-groot">
-                Ik bouw websites voor zaken die online gevonden willen worden.
+                Je merk verdient een website die je werk reflecteert.
               </p>
               <div className="hero-actie" data-hero-knop>
                 <Knop />
