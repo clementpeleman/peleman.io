@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: "%s | peleman.io",
   },
   description:
-    "Ik maak websites voor zelfstandigen en kmo's. Voor je iets beslist, krijg je gratis een voorbeeld van je homepage. Vanaf €1.500, daarna €29 per maand.",
+    "Ik maak websites voor zelfstandigen en kmo's. Voor je iets beslist, krijg je gratis een voorbeeld van je homepage.",
   alternates: { canonical: "./" },
   openGraph: {
     type: "website",

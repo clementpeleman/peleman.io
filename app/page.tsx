@@ -16,7 +16,7 @@ const vragen: [string, string][] = [
   ["Wat moet ik zelf aanleveren?", "Je logo, foto’s van je werk en een lijst van wat je doet en waar. Heb je al een huisstijl, dan bouw ik daarop verder."],
   ["Ik heb al een website. Kan dat ook?", "Ja. Ik vertrek van wat er staat, en je oude links blijven werken, zodat je niet terugvalt in Google."],
   ["Hoe snel sta ik bovenaan in Google?", "Dat kan niemand eerlijk beloven. Een nieuwe site heeft een paar maanden nodig. Het maandrapport toont hoe het evolueert."],
-  ["Gebruik je AI?", "Waar het tijd bespaart, ja. Daardoor kan ik goedkoper werken dan een bureau. Je teksten schrijf ik met jou, niet met een generator."],
+  // ["Gebruik je AI?", "Waar het tijd bespaart, ja. Daardoor kan ik goedkoper werken dan een bureau. Je teksten schrijf ik met jou, niet met een generator."],
 ];
 
 const werk = [
@@ -59,13 +59,13 @@ export default function Home() {
             </h1>
             <div className="hero-rij">
               <p className="tekst-groot">
-                Ik bouw websites voor zaken die online gevonden willen worden. Voor je iets beslist, maak ik gratis een voorbeeld van je homepage.
+                Ik bouw websites voor zaken die online gevonden willen worden.
               </p>
               <div className="hero-actie" data-hero-knop>
                 <Knop />
-                <p className="voorwaarden">
+                {/* <p className="voorwaarden">
                   Vanaf {euro(aanbod.site)}, daarna €{aanbod.perMaand} per maand. Excl. btw.
-                </p>
+                </p> */}
               </div>
             </div>
             <HeroStapel>
@@ -148,7 +148,7 @@ export default function Home() {
                 Wie je site bouwt
               </h2>
               <p className="tekst-groot zacht contact-tekst">
-                Ik ben Clément Peleman, ingenieur. Ik werk voor een beperkt aantal klanten tegelijk. Je mailt en belt dus altijd met mij, en ik antwoord binnen een werkdag.
+                Ik ben Clément Peleman, ingenieur. Ik werk voor een beperkt aantal klanten tegelijk. Ik blijf steeds snel bereikbaar en betrokken bij je zaak.
               </p>
               <p className="contact-gegevens">
                 <a href={`tel:${contact.telefoon}`}>{contact.telefoonLeesbaar}</a>
@@ -161,7 +161,7 @@ export default function Home() {
 
         <Vragen vragen={vragen} />
 
-        <Slot titel="Benieuwd hoe je site" vervolg="eruit kan zien?" tekst="Je krijgt gratis een voorbeeld van je homepage." />
+        <Slot titel="Benieuwd hoe je site" vervolg="eruit kan zien?" tekst="" />
       </main>
       <Voettekst />
       <GsmBalk />
